@@ -28,6 +28,9 @@ class TabBarViewController: UITabBarController {
         for (index, item) in items.enumerated() {
             item.image = UIImage(systemName: images[index])
         }
+        
+        // Change tint color
+        self.tabBar.tintColor = .black
     }
 }
 
