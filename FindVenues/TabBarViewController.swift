@@ -8,6 +8,8 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
+    
+    let repo = Repository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,20 @@ class TabBarViewController: UITabBarController {
         
         // Change tint color
         self.tabBar.tintColor = .black
+        
+        repo.getVenueDetails { venueData in
+            guard let venue = venueData else {
+                return
+            }
+            
+//            for venue in data {
+            print("""
+            DATA
+            id: \(venue.id)
+            name: \(venue.name)
+            location: \(venue.location)
+            """)
+//            }
+        }
     }
 }
-

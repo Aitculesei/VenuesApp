@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3997E3702768C64A00170EA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E36F2768C64A00170EA4 /* Constants.swift */; };
+		3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */; };
 		39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C527672F1000659BB3 /* AppDelegate.swift */; };
 		39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C727672F1000659BB3 /* SceneDelegate.swift */; };
 		39AC65CA27672F1000659BB3 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C927672F1000659BB3 /* TabBarViewController.swift */; };
@@ -18,9 +20,14 @@
 		39AC65E02767367E00659BB3 /* RangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65DE2767367E00659BB3 /* RangeViewController.xib */; };
 		39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E12767377500659BB3 /* DetailsViewController.swift */; };
 		39AC65E42767377500659BB3 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65E22767377500659BB3 /* DetailsViewController.xib */; };
+		39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */; };
+		39AC65E827678A8900659BB3 /* URLSession+createTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E727678A8900659BB3 /* URLSession+createTask.swift */; };
+		39AC65EC27678B0D00659BB3 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65EB27678B0D00659BB3 /* Repository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3997E36F2768C64A00170EA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSearchAPI.swift; sourceTree = "<group>"; };
 		39AC65C227672F1000659BB3 /* FindVenues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindVenues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AC65C527672F1000659BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39AC65C727672F1000659BB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +41,9 @@
 		39AC65DE2767367E00659BB3 /* RangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeViewController.xib; sourceTree = "<group>"; };
 		39AC65E12767377500659BB3 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		39AC65E22767377500659BB3 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenueDetailsAPI.swift; sourceTree = "<group>"; };
+		39AC65E727678A8900659BB3 /* URLSession+createTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+createTask.swift"; sourceTree = "<group>"; };
+		39AC65EB27678B0D00659BB3 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,7 @@
 		39AC65C427672F1000659BB3 /* FindVenues */ = {
 			isa = PBXGroup;
 			children = (
+				39AC65EB27678B0D00659BB3 /* Repository.swift */,
 				39AC65C527672F1000659BB3 /* AppDelegate.swift */,
 				39AC65C727672F1000659BB3 /* SceneDelegate.swift */,
 				39AC65C927672F1000659BB3 /* TabBarViewController.swift */,
@@ -75,11 +86,31 @@
 				39AC65E22767377500659BB3 /* DetailsViewController.xib */,
 				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
 				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
+				39AC65E927678ACA00659BB3 /* Extensions */,
+				39AC65EA27678AE600659BB3 /* APICalls */,
 				39AC65CE27672F1300659BB3 /* Assets.xcassets */,
 				39AC65D027672F1300659BB3 /* LaunchScreen.storyboard */,
 				39AC65D327672F1300659BB3 /* Info.plist */,
 			);
 			path = FindVenues;
+			sourceTree = "<group>";
+		};
+		39AC65E927678ACA00659BB3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				39AC65E727678A8900659BB3 /* URLSession+createTask.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		39AC65EA27678AE600659BB3 /* APICalls */ = {
+			isa = PBXGroup;
+			children = (
+				3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */,
+				39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */,
+				3997E36F2768C64A00170EA4 /* Constants.swift */,
+			);
+			path = APICalls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,10 +188,15 @@
 			files = (
 				39AC65DF2767367E00659BB3 /* RangeViewController.swift in Sources */,
 				39AC65CA27672F1000659BB3 /* TabBarViewController.swift in Sources */,
+				39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */,
+				3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */,
 				39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */,
 				39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */,
+				3997E3702768C64A00170EA4 /* Constants.swift in Sources */,
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */,
+				39AC65E827678A8900659BB3 /* URLSession+createTask.swift in Sources */,
+				39AC65EC27678B0D00659BB3 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
