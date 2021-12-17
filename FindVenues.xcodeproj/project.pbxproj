@@ -11,7 +11,7 @@
 		3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */; };
 		39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C527672F1000659BB3 /* AppDelegate.swift */; };
 		39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C727672F1000659BB3 /* SceneDelegate.swift */; };
-		39AC65CA27672F1000659BB3 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C927672F1000659BB3 /* TabBarViewController.swift */; };
+		39AC65CA27672F1000659BB3 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C927672F1000659BB3 /* UIViewController.swift */; };
 		39AC65CF27672F1300659BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65CE27672F1300659BB3 /* Assets.xcassets */; };
 		39AC65D227672F1300659BB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65D027672F1300659BB3 /* LaunchScreen.storyboard */; };
 		39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65D9276733D300659BB3 /* HomeViewController.swift */; };
@@ -23,6 +23,12 @@
 		39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */; };
 		39AC65E827678A8900659BB3 /* URLSession+createTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E727678A8900659BB3 /* URLSession+createTask.swift */; };
 		39AC65EC27678B0D00659BB3 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65EB27678B0D00659BB3 /* Repository.swift */; };
+		39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39AFAAAE276A3F1D006D7A98 /* Settings.plist */; };
+		39AFAAB1276B3CFB006D7A98 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AFAAB0276B3CFB006D7A98 /* HTTPClient.swift */; };
+		39AFAAB4276B3D65006D7A98 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AFAAB3276B3D65006D7A98 /* HTTPClientProtocol.swift */; };
+		39AFAAB7276B5749006D7A98 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AFAAB6276B5749006D7A98 /* APIClient.swift */; };
+		39AFAAB9276B5754006D7A98 /* APIClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AFAAB8276B5754006D7A98 /* APIClientProtocol.swift */; };
+		39AFAABD276B637A006D7A98 /* SettingsPlistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AFAABC276B637A006D7A98 /* SettingsPlistParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +37,7 @@
 		39AC65C227672F1000659BB3 /* FindVenues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindVenues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AC65C527672F1000659BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39AC65C727672F1000659BB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		39AC65C927672F1000659BB3 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		39AC65C927672F1000659BB3 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		39AC65CE27672F1300659BB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39AC65D127672F1300659BB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39AC65D327672F1300659BB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,6 +50,12 @@
 		39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenueDetailsAPI.swift; sourceTree = "<group>"; };
 		39AC65E727678A8900659BB3 /* URLSession+createTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+createTask.swift"; sourceTree = "<group>"; };
 		39AC65EB27678B0D00659BB3 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		39AFAAAE276A3F1D006D7A98 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		39AFAAB0276B3CFB006D7A98 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		39AFAAB3276B3D65006D7A98 /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
+		39AFAAB6276B5749006D7A98 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		39AFAAB8276B5754006D7A98 /* APIClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientProtocol.swift; sourceTree = "<group>"; };
+		39AFAABC276B637A006D7A98 /* SettingsPlistParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPlistParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,21 +88,18 @@
 		39AC65C427672F1000659BB3 /* FindVenues */ = {
 			isa = PBXGroup;
 			children = (
-				39AC65EB27678B0D00659BB3 /* Repository.swift */,
+				39AFAABC276B637A006D7A98 /* SettingsPlistParser.swift */,
 				39AC65C527672F1000659BB3 /* AppDelegate.swift */,
 				39AC65C727672F1000659BB3 /* SceneDelegate.swift */,
-				39AC65C927672F1000659BB3 /* TabBarViewController.swift */,
-				39AC65D9276733D300659BB3 /* HomeViewController.swift */,
-				39AC65DD2767367E00659BB3 /* RangeViewController.swift */,
-				39AC65E12767377500659BB3 /* DetailsViewController.swift */,
-				39AC65E22767377500659BB3 /* DetailsViewController.xib */,
-				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
-				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
+				3997E36F2768C64A00170EA4 /* Constants.swift */,
+				39AFAAB2276B3D1C006D7A98 /* Data Layer */,
+				39AFAABB276B5779006D7A98 /* Presentation */,
 				39AC65E927678ACA00659BB3 /* Extensions */,
 				39AC65EA27678AE600659BB3 /* APICalls */,
 				39AC65CE27672F1300659BB3 /* Assets.xcassets */,
 				39AC65D027672F1300659BB3 /* LaunchScreen.storyboard */,
 				39AC65D327672F1300659BB3 /* Info.plist */,
+				39AFAAAE276A3F1D006D7A98 /* Settings.plist */,
 			);
 			path = FindVenues;
 			sourceTree = "<group>";
@@ -108,9 +117,50 @@
 			children = (
 				3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */,
 				39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */,
-				3997E36F2768C64A00170EA4 /* Constants.swift */,
 			);
 			path = APICalls;
+			sourceTree = "<group>";
+		};
+		39AFAAB2276B3D1C006D7A98 /* Data Layer */ = {
+			isa = PBXGroup;
+			children = (
+				39AC65EB27678B0D00659BB3 /* Repository.swift */,
+				39AFAAB5276B572C006D7A98 /* HTTP */,
+				39AFAABA276B5758006D7A98 /* API */,
+			);
+			path = "Data Layer";
+			sourceTree = "<group>";
+		};
+		39AFAAB5276B572C006D7A98 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				39AFAAB0276B3CFB006D7A98 /* HTTPClient.swift */,
+				39AFAAB3276B3D65006D7A98 /* HTTPClientProtocol.swift */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		39AFAABA276B5758006D7A98 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				39AFAAB6276B5749006D7A98 /* APIClient.swift */,
+				39AFAAB8276B5754006D7A98 /* APIClientProtocol.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		39AFAABB276B5779006D7A98 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				39AC65C927672F1000659BB3 /* UIViewController.swift */,
+				39AC65D9276733D300659BB3 /* HomeViewController.swift */,
+				39AC65DD2767367E00659BB3 /* RangeViewController.swift */,
+				39AC65E12767377500659BB3 /* DetailsViewController.swift */,
+				39AC65E22767377500659BB3 /* DetailsViewController.xib */,
+				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
+				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +226,7 @@
 				39AC65E42767377500659BB3 /* DetailsViewController.xib in Resources */,
 				39AC65CF27672F1300659BB3 /* Assets.xcassets in Resources */,
 				39AC65DC276733D300659BB3 /* HomeViewController.xib in Resources */,
+				39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +238,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				39AC65DF2767367E00659BB3 /* RangeViewController.swift in Sources */,
-				39AC65CA27672F1000659BB3 /* TabBarViewController.swift in Sources */,
+				39AFAAB7276B5749006D7A98 /* APIClient.swift in Sources */,
+				39AFAAB9276B5754006D7A98 /* APIClientProtocol.swift in Sources */,
+				39AFAAB4276B3D65006D7A98 /* HTTPClientProtocol.swift in Sources */,
+				39AC65CA27672F1000659BB3 /* UIViewController.swift in Sources */,
+				39AFAAB1276B3CFB006D7A98 /* HTTPClient.swift in Sources */,
 				39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */,
 				3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */,
 				39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */,
@@ -196,6 +251,7 @@
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */,
 				39AC65E827678A8900659BB3 /* URLSession+createTask.swift in Sources */,
+				39AFAABD276B637A006D7A98 /* SettingsPlistParser.swift in Sources */,
 				39AC65EC27678B0D00659BB3 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
