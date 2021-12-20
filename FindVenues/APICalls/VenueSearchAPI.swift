@@ -10,6 +10,7 @@
 ////
 ////   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
 //
+
 import Foundation
 
 // MARK: - Welcome

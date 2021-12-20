@@ -24,15 +24,14 @@ struct VenueBO: Codable {
     }
 }
 
-class Repository {
-    let apiClient = APIClient()
+class VenueRepository: VenueRepositoryProtocol {
+    let apiClient: APIClientProtocol = APIClient()
     
     func getVenues(completion: @escaping ([VenueBO]?) -> Void) {
-        apiClient.getVenues(parameters: ["query": "food", "ll":"41.8781%2C-87.6298", "radius":"2000", "v":"20211217"], headers: nil) { response in
+        apiClient.getVenues { response in
             completion(response.venues.map({ apiVenueResult in
                 VenueBO(venueDetailsAPIData: apiVenueResult)
             }))
         }
     }
-    
 }

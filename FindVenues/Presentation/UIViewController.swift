@@ -10,19 +10,22 @@ import MapKit
 import CoreLocation
 
 class TabBarViewController: UITabBarController {
-    let repo = Repository()
+    let repo = VenueRepository()
     var locationManager: CLLocationManager!
+    let mapView = MKMapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(Constants.Venue.search)
+        print("First print first: \(Constants.Venue.search)")
         repo.getVenues { result in
+            print("MESSAGE!")
             guard let res = result else {
+                print("Result was nil in the UIViewController!")
                 return
             }
             for r in res {
-                print("\(r.id), \(r.name), \(r.location)")
+                print("R: \(r.id), \(r.name), \(r.location).")
             }
         }
     }
@@ -60,8 +63,6 @@ extension TabBarViewController {
         
         // Change tint color
         self.tabBar.tintColor = .black
-        
-        
     }
 }
 
@@ -80,18 +81,23 @@ extension TabBarViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
-//        repo.setCurrentLocation()
+        
+        let annotation = MKPointAnnotation()
+        annotation.title = "Title"
+        annotation.coordinate = CLLocationCoordinate2D(latitude: locValue.latitude , longitude: locValue.longitude )
+        mapView.addAnnotation(annotation)
+        //        repo.setCurrentLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
-        print("Error \(error)")
-    }
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+//    {
+//        print("Location Manager Error ->> \(error)")
+//    }
 }
 
 extension TabBarViewController: MKMapViewDelegate {
     func drawMyMap() {
-        let mapView = MKMapView()
+        
         
         let leftMargin:CGFloat = 10
         let topMargin:CGFloat = 60

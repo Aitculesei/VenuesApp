@@ -19,11 +19,18 @@ class HTTPClient: HTTPClientProtocol {
             completion(.failure(.badRequest))
             return
         }
-        
+//        var urlComps = URLComponents()
+        print("URL INITIAL COMPONENTS: \(urlComps)")
         // Set the URL parameters
+//        urlComps.scheme = Constants.VenueSearchURL.scheme
+//        urlComps.host = Constants.VenueSearchURL.host
+//        urlComps.path = Constants.VenueSearchURL.path
         var queryItems = [URLQueryItem]()
+        queryItems.append(URLQueryItem(name: "client_id", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_id") ?? "")"))
+        queryItems.append(URLQueryItem(name: "client_secret", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_secret") ?? "")"))
         for (key, value) in parameters {
             guard let name = key as? String else {
+                print("HTTPClient error: Name for the URLQueryItem (key) is nil!")
                 return
             }
             let queryItem = URLQueryItem(name: name, value: value)
@@ -31,10 +38,14 @@ class HTTPClient: HTTPClientProtocol {
         }
         urlComps.queryItems = queryItems
         
-        guard var url = urlComps.url else {
+        print("URL COMPONENTS: \(urlComps)")
+        
+        guard let url = urlComps.url else {
             completion(.failure(.badRequest))
             return
         }
+        
+        print("URL AFTER COMPONENTS: \(url)")
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -43,15 +54,23 @@ class HTTPClient: HTTPClientProtocol {
         request.allHTTPHeaderFields = [
             "Accept" : "application/json"
         ]
-        guard let header = headers as? [String: String] else {
-            return
+        
+        print("URL Headers: \(request.allHTTPHeaderFields)")
+        
+        let header: [String: String] = [:]
+        if (headers as? [String: String]) == nil {
+            print("HTTPClient: nil headers")
+        } else {
+            request.allHTTPHeaderFields?.merge(header, uniquingKeysWith: { current, _ in
+                current
+            })
         }
-        request.allHTTPHeaderFields?.merge(header, uniquingKeysWith: { current, _ in
-            current
-        })
+        
+//        print("Final request: \(request)")
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
             // HERE WE MAKE SURE THAT WE GET SOME DATA BACK
+            print("START THE URLSession!")
             guard let data = data, error == nil else {
                 print("Something went wrong in creating a data task.")
                 DispatchQueue.main.async {
@@ -59,6 +78,12 @@ class HTTPClient: HTTPClientProtocol {
                 }
                 return
             }
+            
+//            guard let httpResponse = response,
+//            (200...299).contains((httpResponse as! HTTPURLResponse).statusCode) else {
+//                print("HTTPClient: URLSession response error: \(response)")
+//                return
+//            }
             
             var dataResults: T?
             do {
@@ -79,5 +104,7 @@ class HTTPClient: HTTPClientProtocol {
                 completion(.success(json))
             }
         })
+        .resume()
+//        dataTask.resume()
     }
 }
