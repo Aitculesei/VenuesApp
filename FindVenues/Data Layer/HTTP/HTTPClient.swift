@@ -19,12 +19,8 @@ class HTTPClient: HTTPClientProtocol {
             completion(.failure(.badRequest))
             return
         }
-//        var urlComps = URLComponents()
-        print("URL INITIAL COMPONENTS: \(urlComps)")
+        
         // Set the URL parameters
-//        urlComps.scheme = Constants.VenueSearchURL.scheme
-//        urlComps.host = Constants.VenueSearchURL.host
-//        urlComps.path = Constants.VenueSearchURL.path
         var queryItems = [URLQueryItem]()
         queryItems.append(URLQueryItem(name: "client_id", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_id") ?? "")"))
         queryItems.append(URLQueryItem(name: "client_secret", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_secret") ?? "")"))
@@ -38,14 +34,10 @@ class HTTPClient: HTTPClientProtocol {
         }
         urlComps.queryItems = queryItems
         
-        print("URL COMPONENTS: \(urlComps)")
-        
         guard let url = urlComps.url else {
             completion(.failure(.badRequest))
             return
         }
-        
-        print("URL AFTER COMPONENTS: \(url)")
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -55,8 +47,6 @@ class HTTPClient: HTTPClientProtocol {
             "Accept" : "application/json"
         ]
         
-        print("URL Headers: \(request.allHTTPHeaderFields)")
-        
         let header: [String: String] = [:]
         if (headers as? [String: String]) == nil {
             print("HTTPClient: nil headers")
@@ -65,8 +55,6 @@ class HTTPClient: HTTPClientProtocol {
                 current
             })
         }
-        
-//        print("Final request: \(request)")
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
             // HERE WE MAKE SURE THAT WE GET SOME DATA BACK
@@ -105,6 +93,5 @@ class HTTPClient: HTTPClientProtocol {
             }
         })
         .resume()
-//        dataTask.resume()
     }
 }
