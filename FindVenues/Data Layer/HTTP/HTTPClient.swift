@@ -22,8 +22,11 @@ class HTTPClient: HTTPClientProtocol {
         
         // Set the URL parameters
         var queryItems = [URLQueryItem]()
+        queryItems.append(URLQueryItem(name: "client_id", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_id") ?? "")"))
+        queryItems.append(URLQueryItem(name: "client_secret", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_secret") ?? "")"))
         for (key, value) in parameters {
             guard let name = key as? String else {
+                print("HTTPClient error: Name for the URLQueryItem (key) is nil!")
                 return
             }
             let queryItem = URLQueryItem(name: name, value: value)
@@ -31,7 +34,7 @@ class HTTPClient: HTTPClientProtocol {
         }
         urlComps.queryItems = queryItems
         
-        guard var url = urlComps.url else {
+        guard let url = urlComps.url else {
             completion(.failure(.badRequest))
             return
         }
@@ -41,14 +44,19 @@ class HTTPClient: HTTPClientProtocol {
         
         // Set the URL headers
         request.allHTTPHeaderFields = [
-            "Accept" : "application/json"
+            "Accept" : "application/json",
+            "Authorization" : "fsq3WUSR+Iq4uCzdbSK0O7rZnR4bzQRek1l1b3pr5qkoU4g="
         ]
-        guard let header = headers as? [String: String] else {
-            return
+        
+        if let headers = headers as? [String: String] {
+            request.allHTTPHeaderFields?.merge(headers, uniquingKeysWith: { current, _ in
+                current
+            })
+        } else {
+            print("HTTPClient: nil headers")
         }
-        request.allHTTPHeaderFields?.merge(header, uniquingKeysWith: { current, _ in
-            current
-        })
+        
+        print("URL=\(url)")
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
             // HERE WE MAKE SURE THAT WE GET SOME DATA BACK
@@ -62,7 +70,8 @@ class HTTPClient: HTTPClientProtocol {
             
             var dataResults: T?
             do {
-                dataResults = try JSONDecoder().decode(T.self, from: data)
+                let decoder = JSONDecoder()
+                dataResults = try decoder.decode(T.self, from: data)
             }
             catch {
                 print("Failed to convert data: \(error.localizedDescription)")
@@ -79,5 +88,6 @@ class HTTPClient: HTTPClientProtocol {
                 completion(.success(json))
             }
         })
+        .resume()
     }
 }

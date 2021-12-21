@@ -6,5 +6,5 @@
 //
 
 protocol APIClientProtocol {
-    func getVenues(parameters: [AnyHashable: String], headers: [AnyHashable: String]?, completion: @escaping (Response) -> Void)
+    func getVenues(completion: @escaping (VenuesDTO) -> Void)
 }

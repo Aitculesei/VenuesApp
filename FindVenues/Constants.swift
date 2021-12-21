@@ -8,8 +8,24 @@
 import Foundation
 
 struct Constants {
-    enum Venue {
-        static let details = "https://api.foursquare.com/v2/venues/1/"
-        static let search = "https://api.foursquare.com/v2/venues/search?client_id=\(SettingsPlistParser.getSettingsData(forKey: "client_id") ?? "")&client_secret=\(SettingsPlistParser.getSettingsData(forKey: "client_secret") ?? "")"
+    enum API {
+        static let baseURL = "https://api.foursquare.com/"
+        static let apiVersion = "v3"
+        
+        enum Paths {
+            static let search = "/places/nearby"
+        }
+    }
+    
+    enum LocalDataManagerSavings {
+        enum Coordiantes {
+            static let latitudeKey = "locationLatitude"
+            static let longitudeKey = "locationLongitude"
+        }
+        static let queryKey = "query"
+    }
+    
+    enum TableViewCell {
+        static let identifier = "venuesTableCell"
     }
 }
