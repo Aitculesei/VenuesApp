@@ -44,21 +44,22 @@ class HTTPClient: HTTPClientProtocol {
         
         // Set the URL headers
         request.allHTTPHeaderFields = [
-            "Accept" : "application/json"
+            "Accept" : "application/json",
+            "Authorization" : "fsq3WUSR+Iq4uCzdbSK0O7rZnR4bzQRek1l1b3pr5qkoU4g="
         ]
         
-        let header: [String: String] = [:]
-        if (headers as? [String: String]) == nil {
-            print("HTTPClient: nil headers")
-        } else {
-            request.allHTTPHeaderFields?.merge(header, uniquingKeysWith: { current, _ in
+        if let headers = headers as? [String: String] {
+            request.allHTTPHeaderFields?.merge(headers, uniquingKeysWith: { current, _ in
                 current
             })
+        } else {
+            print("HTTPClient: nil headers")
         }
+        
+        print("URL=\(url)")
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
             // HERE WE MAKE SURE THAT WE GET SOME DATA BACK
-            print("START THE URLSession!")
             guard let data = data, error == nil else {
                 print("Something went wrong in creating a data task.")
                 DispatchQueue.main.async {
@@ -67,15 +68,10 @@ class HTTPClient: HTTPClientProtocol {
                 return
             }
             
-//            guard let httpResponse = response,
-//            (200...299).contains((httpResponse as! HTTPURLResponse).statusCode) else {
-//                print("HTTPClient: URLSession response error: \(response)")
-//                return
-//            }
-            
             var dataResults: T?
             do {
-                dataResults = try JSONDecoder().decode(T.self, from: data)
+                let decoder = JSONDecoder()
+                dataResults = try decoder.decode(T.self, from: data)
             }
             catch {
                 print("Failed to convert data: \(error.localizedDescription)")
