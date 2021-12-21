@@ -10,7 +10,7 @@ import UIKit
 class DetailsViewController: UIViewController {
     let venuesTableView: UITableView = {
         let venuesTableView = UITableView()
-        venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "venuesTableCell")
+        venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
         
         return venuesTableView
     }()
@@ -36,39 +36,6 @@ class DetailsViewController: UIViewController {
 
 // Delegate is used to handle interactions of cells
 extension DetailsViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        return .delete
-//    }
-//
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        true
-//    }
-//
-//    // Rearrange the table view
-//    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//        let toDoListAppDestinationElement = toDoListAppElements[sourceIndexPath.row]
-//        toDoListAppElements.remove(at: sourceIndexPath.row)
-//        toDoListAppElements.insert(toDoListAppDestinationElement, at: destinationIndexPath.row)
-//        LocalDataManager.saveData(data: toDoListAppElements, key: "listElements")
-//    }
-//
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            tableView.beginUpdates()
-//
-//            toDoListAppElements.remove(at: indexPath.row)
-//            toDoListTableView.deleteRows(at: [indexPath], with: .fade)
-//            LocalDataManager.saveData(data: toDoListAppElements, key: "listElements")
-//
-//            tableView.endUpdates()
-//        } else if editingStyle == .insert {
-//
-//        }
-//    }
 }
 
 extension DetailsViewController: UITableViewDataSource {
@@ -77,29 +44,11 @@ extension DetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = venuesTableView.dequeueReusableCell(withIdentifier: "venuesTableCell", for: indexPath) as? VenuesTableViewCell else {
+        guard let cell = venuesTableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier, for: indexPath) as? VenuesTableViewCell else {
             fatalError("Unable to determine Venues Table View Cell.")
         }
         
         
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.venuesListTableView.count
-//    }
-//
-//    // By default you cannot move rows
-//    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-//        true
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = venuesTableView.dequeueReusableCell(withIdentifier: "identifier", for: indexPath) as? VenuesTableViewCell else {
-//            fatalError("Unable to determine ReminderCell.")
-//        }
-//
-//
-//        return cell
-//    }
 }

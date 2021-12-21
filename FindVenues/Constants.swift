@@ -24,4 +24,8 @@ struct Constants {
         }
         static let queryKey = "query"
     }
+    
+    enum TableViewCell {
+        static let identifier = "venuesTableCell"
+    }
 }

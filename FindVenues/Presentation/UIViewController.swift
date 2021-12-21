@@ -14,7 +14,6 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         repo.getVenues { result in
-            print("MESSAGE!")
             guard let res = result else {
                 print("Result was nil in the UIViewController!")
                 return
@@ -53,6 +52,8 @@ extension TabBarViewController {
         for (index, item) in items.enumerated() {
             item.image = UIImage(systemName: images[index])
         }
+        
+        homeVC.drawMyMap()
         
         // Change tint color
         self.tabBar.tintColor = .black

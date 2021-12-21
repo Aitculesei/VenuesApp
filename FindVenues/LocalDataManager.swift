@@ -36,4 +36,13 @@ class LocalDataManager {
         
         return nil
     }
+    
+    static func resetData() {
+        print("Before RESET: \(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)")
+        
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        print("After RESET: \(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)")
+    }
 }

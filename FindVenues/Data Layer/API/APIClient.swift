@@ -22,8 +22,10 @@ class APIClient: APIClientProtocol {
         let venuesRequestDTO: VenuesRequestDTO
         if let query = LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.queryKey, type: String.self){
             venuesRequestDTO = VenuesRequestDTO(query: query, lat: "\(lat)", lng: "\(lng)")
+            LocalDataManager.resetData()
         } else {
             venuesRequestDTO = VenuesRequestDTO(query: "restaurant", lat: "\(lat)", lng: "\(lng)")
+            LocalDataManager.resetData()
         }
         
         httpClient.get(class: VenuesDTO.self, url: venuesRequestDTO.urlString, parameters: venuesRequestDTO.parametersDicitonary, headers: nil) { result in
