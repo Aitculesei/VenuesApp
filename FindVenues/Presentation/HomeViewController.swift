@@ -27,6 +27,8 @@ class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
+
 extension HomeViewController: CLLocationManagerDelegate {
     // TODO: Move this into a LocationManager singleton, that listens for location updates and has a variable of CLLocation with the most recent one that you can use where needed
     func determineMyCurrentLocation() {
@@ -43,6 +45,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         if let location = locations.first {
+            print("I WAS HERE!")
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             LocalDataManager.saveData(data: latitude, key: Constants.LocalDataManagerSavings.Coordiantes.latitudeKey)
