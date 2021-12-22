@@ -7,63 +7,137 @@ import Foundation
 
 // MARK: - Welcome
 struct VenuesDTO: Codable {
-    let results: [VenueDTO]
+    let meta: Meta?
+    let notifications: [Notification]?
+    let response: Response?
 }
 
-// MARK: - Result
-struct VenueDTO: Codable {
-    let fsqID: String
-    let categories: [Category]
-    let distance: Int
-    let geocodes: Geocodes
-    let location: Location
-    let name: String
-    let timezone: String
+// MARK: - Meta
+struct Meta: Codable {
+    let code: Int?
+    let requestId: String?
+}
 
-    enum CodingKeys: String, CodingKey {
-        case fsqID = "fsq_id"
-        case categories, distance, geocodes, location, name
-        case timezone
-    }
+// MARK: - Notification
+struct Notification: Codable {
+    let type: String?
+    let item: Item?
+}
+
+// MARK: - Item
+struct Item: Codable {
+    let unreadCount: Int?
+}
+
+// MARK: - Response
+struct Response: Codable {
+    let venues: [VenueDTO]?
+    let geocode: Geocode?
+}
+
+// MARK: - Geocode
+struct Geocode: Codable {
+    let what, geocodeWhere: String?
+    let feature: Feature?
+}
+
+// MARK: - Feature
+struct Feature: Codable {
+    let cc, name, displayName, matchedName: String?
+    let highlightedName: String?
+    let woeType: Int?
+    let slug, id, longId: String?
+    let geometry: Geometry?
+}
+
+// MARK: - Geometry
+struct Geometry: Codable {
+    let center: Center?
+    let bounds: Bounds?
+}
+
+// MARK: - Bounds
+struct Bounds: Codable {
+    let ne, sw: Center?
+}
+
+// MARK: - Center
+struct Center: Codable {
+    let lat, lng: Double?
+}
+
+// MARK: - Venue
+struct VenueDTO: Codable {
+    let id, name: String?
+    let contact: Contact?
+    let location: Location?
+    let canonicalURL: String?
+    let canonicalPath: String?
+    let categories: [Category]?
+    let verified: Bool?
+    let stats: Stats?
+    let url: String?
+    let urlSig: String?
+    let allowMenuURLEdit: Bool?
+    let beenHere: BeenHere?
+    let specials: Specials?
+    let hereNow: HereNow?
+    let referralId: String?
+    let hasPerk: Bool?
+}
+
+// MARK: - BeenHere
+struct BeenHere: Codable {
+    let lastCheckinExpiredAt: Int?
 }
 
 // MARK: - Category
 struct Category: Codable {
-    let id: Int
-    let name: String
-    let icon: Icon
+    let id, name, pluralName, shortName: String?
+    let icon: Icon?
+    let primary: Bool?
 }
 
 // MARK: - Icon
 struct Icon: Codable {
-    let prefix: String
-    let suffix: String
-
-    enum CodingKeys: String, CodingKey {
-        case prefix
-        case suffix
-    }
+    let iconPrefix, mapPrefix: String?
+    let suffix: String?
 }
 
-// MARK: - Geocodes
-struct Geocodes: Codable {
-    let main: Main
+// MARK: - Contact
+struct Contact: Codable {
+    let phone, formattedPhone: String?
 }
 
-// MARK: - Main
-struct Main: Codable {
-    let latitude, longitude: Double
+// MARK: - HereNow
+struct HereNow: Codable {
+    let count: Int?
+    let summary: String?
 }
 
 // MARK: - Location
 struct Location: Codable {
-    let address: String?
-    let country: String
-    let crossStreet, locality, postcode, region: String?
+    let address, crossStreet: String?
+    let lat, lng: Double?
+    let labeledLatLngs: [LabeledLatLng]?
+    let postalCode, cc, city, state: String?
+    let country, contextLine: String?
+    let contextGeoId: Double?
+    let formattedAddress: [String]?
+}
 
-    enum CodingKeys: String, CodingKey {
-        case address, country
-        case crossStreet = "cross_street"
-        case locality, postcode, region
-    }
+// MARK: - LabeledLatLng
+struct LabeledLatLng: Codable {
+    let label: String?
+    let lat, lng: Double?
+}
+
+// MARK: - Specials
+struct Specials: Codable {
+    let count: Int?
+}
+
+// MARK: - Stats
+struct Stats: Codable {
+    let tipCount, usersCount, checkinsCount: Int?
 }

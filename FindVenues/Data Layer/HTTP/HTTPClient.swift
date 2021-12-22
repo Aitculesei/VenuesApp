@@ -22,8 +22,11 @@ class HTTPClient: HTTPClientProtocol {
         
         // Set the URL parameters
         var queryItems = [URLQueryItem]()
-        queryItems.append(URLQueryItem(name: "client_id", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_id") ?? "")"))
-        queryItems.append(URLQueryItem(name: "client_secret", value: "\(SettingsPlistParser.getSettingsData(forKey: "client_secret") ?? "")"))
+
+        // TODO: move these back to constants, added them here because i am lazy
+        queryItems.append(URLQueryItem(name: "client_id", value: "K30AKLDFJ4Z5RQTV1MV1NWAOTWVKH55IWW3HM4B33ZHINEAI"))
+        queryItems.append(URLQueryItem(name: "client_secret", value: "BCFWZKQJE2AZDPPK0ZU5T2PPHUDBJVDYSZ122AHOTISAMRPM"))
+
         for (key, value) in parameters {
             guard let name = key as? String else {
                 print("HTTPClient error: Name for the URLQueryItem (key) is nil!")
@@ -45,7 +48,8 @@ class HTTPClient: HTTPClientProtocol {
         // Set the URL headers
         request.allHTTPHeaderFields = [
             "Accept" : "application/json",
-            "Authorization" : "fsq3WUSR+Iq4uCzdbSK0O7rZnR4bzQRek1l1b3pr5qkoU4g="
+            "cookie" : Constants.API.stupidCookie
+//            "Authorization" : "fsq3WUSR+Iq4uCzdbSK0O7rZnR4bzQRek1l1b3pr5qkoU4g=" // not needed anymore
         ]
         
         if let headers = headers as? [String: String] {

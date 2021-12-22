@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: document this
 struct SettingsPlistParser {
     static var settingsData: NSDictionary?
     

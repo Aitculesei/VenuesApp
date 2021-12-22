@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: document this
 class LocalDataManager {
     
     static func saveData<T: Codable>(data: T, key: String) {

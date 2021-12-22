@@ -28,13 +28,14 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
+    // TODO: Move this into a LocationManager singleton, that listens for location updates and has a variable of CLLocation with the most recent one that you can use where needed
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.desiredAccuracy = kCLLocationAccuracyReduced
             locationManager.startUpdatingLocation()
         }
     }
