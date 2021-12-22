@@ -14,6 +14,7 @@
 		39AB811F2771EF610073B1FE /* VenueBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB811E2771EF610073B1FE /* VenueBO.swift */; };
 		39AB81222771F0420073B1FE /* VenuesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB81212771F0420073B1FE /* VenuesRequestDTO.swift */; };
 		39AB81242771FDA70073B1FE /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB81232771FDA70073B1FE /* LocalDataManager.swift */; };
+		39AB81262772F6040073B1FE /* QueriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB81252772F6040073B1FE /* QueriesCollectionViewCell.swift */; };
 		39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C527672F1000659BB3 /* AppDelegate.swift */; };
 		39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C727672F1000659BB3 /* SceneDelegate.swift */; };
 		39AC65CA27672F1000659BB3 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C927672F1000659BB3 /* UIViewController.swift */; };
@@ -44,6 +45,7 @@
 		39AB811E2771EF610073B1FE /* VenueBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueBO.swift; sourceTree = "<group>"; };
 		39AB81212771F0420073B1FE /* VenuesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesRequestDTO.swift; sourceTree = "<group>"; };
 		39AB81232771FDA70073B1FE /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
+		39AB81252772F6040073B1FE /* QueriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		39AC65C227672F1000659BB3 /* FindVenues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindVenues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AC65C527672F1000659BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39AC65C727672F1000659BB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				39AC65C927672F1000659BB3 /* UIViewController.swift */,
 				39AC65D9276733D300659BB3 /* HomeViewController.swift */,
 				39AC65DD2767367E00659BB3 /* RangeViewController.swift */,
+				39AB81252772F6040073B1FE /* QueriesCollectionViewCell.swift */,
 				39AC65E12767377500659BB3 /* DetailsViewController.swift */,
 				39AB811C2771CBC70073B1FE /* VenuesTableViewCell.swift */,
 				39AC65E22767377500659BB3 /* DetailsViewController.xib */,
@@ -275,6 +278,7 @@
 				39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */,
 				39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */,
 				3997E3702768C64A00170EA4 /* Constants.swift in Sources */,
+				39AB81262772F6040073B1FE /* QueriesCollectionViewCell.swift in Sources */,
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */,
 				39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */,

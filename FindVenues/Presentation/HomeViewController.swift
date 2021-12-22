@@ -27,6 +27,8 @@ class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
+
 extension HomeViewController: CLLocationManagerDelegate {
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
@@ -42,6 +44,7 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         if let location = locations.first {
+            print("I WAS HERE!")
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             LocalDataManager.saveData(data: latitude, key: Constants.LocalDataManagerSavings.Coordiantes.latitudeKey)

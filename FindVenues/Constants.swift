@@ -28,4 +28,8 @@ struct Constants {
     enum TableViewCell {
         static let identifier = "venuesTableCell"
     }
+    
+    enum CollectionViewCell {
+        static let identifier = "queriesCollectionCell"
+    }
 }
