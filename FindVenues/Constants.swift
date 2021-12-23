@@ -36,4 +36,16 @@ struct Constants {
     enum CollectionViewCell {
         static let identifier = "queriesCollectionCell"
     }
+    
+    enum VenuesRequest {
+        static let defaultQuery = "restaurant"
+        enum Parameters {
+            static let query = "query"
+            static let ll = "ll"
+            static let nearby = "nearby"
+            static let radius = "radius"
+            static let v = "v"
+            static let categoryId = "categoryId"
+        }
+    }
 }

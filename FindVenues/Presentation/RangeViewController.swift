@@ -44,7 +44,7 @@ class RangeViewController: UIViewController {
 
 // MARK: - Extensions
 
-extension RangeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension RangeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return queriesDataSource.count
@@ -57,15 +57,22 @@ extension RangeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         let button = UIButton(frame: CGRect(x: 0,
                                             y: 20,
-                                            width: 40,
+                                            width: 85,
                                             height: 40))
         button.setTitle(queriesDataSource[indexPath.row], for: .normal)
         button.addTarget(self, action: #selector(didSelectQuery), for: .touchUpInside)
         button.backgroundColor = .blue
-        button.layer.preferredFrameSize()
+        
         cell.addSubview(button)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width / 5.0
+        let height = width
+        
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

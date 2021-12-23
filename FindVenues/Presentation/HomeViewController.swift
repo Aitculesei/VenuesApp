@@ -11,7 +11,7 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
     let mapView = MKMapView()
-    var locationManager: CLLocationManager!
+    var locationManager: CLLocationManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,29 +33,32 @@ extension HomeViewController: CLLocationManagerDelegate {
     // TODO: Move this into a LocationManager singleton, that listens for location updates and has a variable of CLLocation with the most recent one that you can use where needed
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyReduced
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        if let location = locations.first {
-            print("I WAS HERE!")
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.startUpdatingLocation()
+        
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+              CLLocationManager.authorizationStatus() == .authorizedAlways) {
+            guard let location = locationManager?.location else {
+                fatalError("Location is nil.")
+            }
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             LocalDataManager.saveData(data: latitude, key: Constants.LocalDataManagerSavings.Coordiantes.latitudeKey)
             LocalDataManager.saveData(data: longitude, key: Constants.LocalDataManagerSavings.Coordiantes.longitudeKey)
+    
         }
-        
-//        let annotation = MKPointAnnotation()
-//        annotation.title = "Title"
-//        annotation.coordinate = CLLocationCoordinate2D(latitude: locValue.latitude , longitude: locValue.longitude )
-//        mapView.addAnnotation(annotation)
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    
+                }
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)

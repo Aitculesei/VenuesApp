@@ -13,6 +13,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createTabBarMenu()
         repo.getVenues { result in
             guard let res = result else {
                 print("Result was nil in the UIViewController!")
@@ -22,12 +23,6 @@ class TabBarViewController: UITabBarController {
                 print("R: \(r.id), \(r.name), \(r.location).")
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        createTabBarMenu()
     }
 }
 
