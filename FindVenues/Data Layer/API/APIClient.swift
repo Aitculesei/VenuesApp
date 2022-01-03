@@ -8,6 +8,10 @@
 import Foundation
 import CoreLocation
 
+//enum APIError: Error {
+//    
+//}
+
 class APIClient: APIClientProtocol {
     var httpClient: HTTPClientProtocol = HTTPClient()
 

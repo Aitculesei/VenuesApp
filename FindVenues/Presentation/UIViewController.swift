@@ -13,7 +13,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createTabBarMenu()
+        
         repo.getVenues { result in
             guard let res = result else {
                 print("Result was nil in the UIViewController!")
@@ -22,6 +22,7 @@ class TabBarViewController: UITabBarController {
             for r in res {
                 print("R: \(r.id), \(r.name), \(r.location).")
             }
+            self.createTabBarMenu(venues: res)
         }
     }
 }
@@ -29,13 +30,11 @@ class TabBarViewController: UITabBarController {
 // MARK: - Extensions
 
 extension TabBarViewController {
-    func createTabBarMenu() {
-        // Tab bar is more like a collection of VC => Setup/Create instances of view controllers
+    func createTabBarMenu(venues: [VenueBO]) {
         let homeVC = HomeViewController()
         let rangeVC = RangeViewController()
         let detailsVC = DetailsViewController()
-        
-        homeVC.determineMyCurrentLocation()
+        detailsVC.receivedVenues = venues
         
         homeVC.title = "Home"
         rangeVC.title = "Distance"

@@ -14,7 +14,6 @@ struct VenuesRequestDTO {
     var ll: String
     var categories: String = "" // comma separated list
     var version: String
-    // TODO: init this always with Date() formatted to a String with "YYYYMMDD" format, it should be automatically be generated on every call
     
     var urlString: String {
         "\(Constants.API.baseURL)/\(Constants.API.apiVersion)/\(Constants.API.Paths.search)"
@@ -26,7 +25,6 @@ struct VenuesRequestDTO {
         return parameters
     }
 
-    // TODO: implement complete initializer
     init(query: String, lat: String, lng: String, version: String) {
         self.query = query
         self.ll = "\(lat),\(lng)"

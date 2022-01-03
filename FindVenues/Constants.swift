@@ -18,14 +18,14 @@ struct Constants {
         enum Paths {
             static let search = "venues/search"
         }
+        
+        enum Client {
+            static let id = URLQueryItem(name: "client_id", value: "K30AKLDFJ4Z5RQTV1MV1NWAOTWVKH55IWW3HM4B33ZHINEAI")
+            static let secret = URLQueryItem(name: "client_secret", value: "BCFWZKQJE2AZDPPK0ZU5T2PPHUDBJVDYSZ122AHOTISAMRPM")
+        }
     }
     
     enum LocalDataManagerSavings {
-        // TODO: Don't store these locally, just keep them in a "LocationManager" that uodates them based on the location updates delegate, they should alway sbe up to date
-        enum Coordiantes {
-            static let latitudeKey = "locationLatitude"
-            static let longitudeKey = "locationLongitude"
-        }
         static let queryKey = "query"
     }
     

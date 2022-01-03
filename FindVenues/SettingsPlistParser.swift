@@ -7,10 +7,18 @@
 
 import Foundation
 
-// TODO: document this
+/// The one that is parsing the data stored in the Settings plist.
 struct SettingsPlistParser {
+    /// A dictionary with the data stored in the Settings plist.
     static var settingsData: NSDictionary?
     
+    /**
+     The *getSettingsData* function gets the data stored in the Settings plist as a dictionary and returns a value as an optional String.
+     
+     - Parameter key: specify the key for the expected returned value
+     
+     - Returns: A new String containing the value associated with the given Key that is found in the Settings plist.
+     */
     static func getSettingsData(forKey key: String) -> String? {
         if settingsData == nil {
             let uri = Bundle.main.url(forResource: "Settings", withExtension: "plist")

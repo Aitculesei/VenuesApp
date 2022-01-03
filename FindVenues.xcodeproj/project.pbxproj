@@ -15,6 +15,7 @@
 		39AB81222771F0420073B1FE /* VenuesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB81212771F0420073B1FE /* VenuesRequestDTO.swift */; };
 		39AB81242771FDA70073B1FE /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB81232771FDA70073B1FE /* LocalDataManager.swift */; };
 		39AB81262772F6040073B1FE /* QueriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB81252772F6040073B1FE /* QueriesCollectionViewCell.swift */; };
+		39AB81282774C2370073B1FE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB81272774C2370073B1FE /* LocationManager.swift */; };
 		39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C527672F1000659BB3 /* AppDelegate.swift */; };
 		39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C727672F1000659BB3 /* SceneDelegate.swift */; };
 		39AC65CA27672F1000659BB3 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65C927672F1000659BB3 /* UIViewController.swift */; };
@@ -27,7 +28,6 @@
 		39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E12767377500659BB3 /* DetailsViewController.swift */; };
 		39AC65E42767377500659BB3 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65E22767377500659BB3 /* DetailsViewController.xib */; };
 		39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */; };
-		39AC65E827678A8900659BB3 /* URLSession+createTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E727678A8900659BB3 /* URLSession+createTask.swift */; };
 		39AC65EC27678B0D00659BB3 /* VenueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65EB27678B0D00659BB3 /* VenueRepository.swift */; };
 		39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39AFAAAE276A3F1D006D7A98 /* Settings.plist */; };
 		39AFAAB1276B3CFB006D7A98 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AFAAB0276B3CFB006D7A98 /* HTTPClient.swift */; };
@@ -46,6 +46,7 @@
 		39AB81212771F0420073B1FE /* VenuesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesRequestDTO.swift; sourceTree = "<group>"; };
 		39AB81232771FDA70073B1FE /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
 		39AB81252772F6040073B1FE /* QueriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		39AB81272774C2370073B1FE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		39AC65C227672F1000659BB3 /* FindVenues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindVenues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AC65C527672F1000659BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39AC65C727672F1000659BB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		39AC65E12767377500659BB3 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		39AC65E22767377500659BB3 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenueDetailsAPI.swift; sourceTree = "<group>"; };
-		39AC65E727678A8900659BB3 /* URLSession+createTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+createTask.swift"; sourceTree = "<group>"; };
 		39AC65EB27678B0D00659BB3 /* VenueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRepository.swift; sourceTree = "<group>"; };
 		39AFAAAE276A3F1D006D7A98 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		39AFAAB0276B3CFB006D7A98 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -113,10 +113,10 @@
 				39AC65C727672F1000659BB3 /* SceneDelegate.swift */,
 				39AB81232771FDA70073B1FE /* LocalDataManager.swift */,
 				3997E36F2768C64A00170EA4 /* Constants.swift */,
+				39AB81272774C2370073B1FE /* LocationManager.swift */,
 				39AB81202771EF890073B1FE /* Business Layer */,
 				39AFAAB2276B3D1C006D7A98 /* Data Layer */,
 				39AFAABB276B5779006D7A98 /* Presentation */,
-				39AC65E927678ACA00659BB3 /* Extensions */,
 				39AC65EA27678AE600659BB3 /* APICalls */,
 				39AC65CE27672F1300659BB3 /* Assets.xcassets */,
 				39AC65D027672F1300659BB3 /* LaunchScreen.storyboard */,
@@ -124,14 +124,6 @@
 				39AFAAAE276A3F1D006D7A98 /* Settings.plist */,
 			);
 			path = FindVenues;
-			sourceTree = "<group>";
-		};
-		39AC65E927678ACA00659BB3 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				39AC65E727678A8900659BB3 /* URLSession+createTask.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		39AC65EA27678AE600659BB3 /* APICalls */ = {
@@ -270,6 +262,7 @@
 				39AFAAB9276B5754006D7A98 /* APIClientProtocol.swift in Sources */,
 				39AFAAB4276B3D65006D7A98 /* HTTPClientProtocol.swift in Sources */,
 				39AB811F2771EF610073B1FE /* VenueBO.swift in Sources */,
+				39AB81282774C2370073B1FE /* LocationManager.swift in Sources */,
 				39AC65CA27672F1000659BB3 /* UIViewController.swift in Sources */,
 				39AB81242771FDA70073B1FE /* LocalDataManager.swift in Sources */,
 				39AFAAB1276B3CFB006D7A98 /* HTTPClient.swift in Sources */,
@@ -282,7 +275,6 @@
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */,
 				39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */,
-				39AC65E827678A8900659BB3 /* URLSession+createTask.swift in Sources */,
 				39AFAABD276B637A006D7A98 /* SettingsPlistParser.swift in Sources */,
 				39AC65EC27678B0D00659BB3 /* VenueRepository.swift in Sources */,
 			);

@@ -26,6 +26,8 @@ class RangeViewController: UIViewController {
         TabBarViewController().reloadInputViews()
     }
     
+    // MARK: - Create the Collection View with 8 queries
+    
     func createCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
@@ -44,7 +46,7 @@ class RangeViewController: UIViewController {
 
 // MARK: - Extensions
 
-extension RangeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension RangeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return queriesDataSource.count
@@ -68,15 +70,23 @@ extension RangeViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print("Selected query: \(queriesDataSource[indexPath.row])")
+    }
+}
+
+extension RangeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print(queriesDataSource[indexPath.row])
+    }
+}
+
+extension RangeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width / 5.0
         let height = width
         
         return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print("Selected query: \(queriesDataSource[indexPath.row])")
     }
 }

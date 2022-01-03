@@ -14,6 +14,11 @@ class DetailsViewController: UIViewController {
         
         return venuesTableView
     }()
+    var receivedVenues: [VenueBO] = [] {
+        didSet {
+            venuesTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +45,7 @@ extension DetailsViewController: UITableViewDelegate {
 
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        25
+        self.receivedVenues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,6 +53,7 @@ extension DetailsViewController: UITableViewDataSource {
             fatalError("Unable to determine Venues Table View Cell.")
         }
         
+        cell.textLabel?.text = self.receivedVenues[indexPath.row].name
         
         return cell
     }

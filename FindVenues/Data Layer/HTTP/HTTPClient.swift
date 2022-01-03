@@ -23,9 +23,8 @@ class HTTPClient: HTTPClientProtocol {
         // Set the URL parameters
         var queryItems = [URLQueryItem]()
 
-        // TODO: move these back to constants, added them here because i am lazy
-        queryItems.append(URLQueryItem(name: "client_id", value: "K30AKLDFJ4Z5RQTV1MV1NWAOTWVKH55IWW3HM4B33ZHINEAI"))
-        queryItems.append(URLQueryItem(name: "client_secret", value: "BCFWZKQJE2AZDPPK0ZU5T2PPHUDBJVDYSZ122AHOTISAMRPM"))
+        queryItems.append(Constants.API.Client.id)
+        queryItems.append(Constants.API.Client.secret)
 
         for (key, value) in parameters {
             guard let name = key as? String else {
@@ -49,7 +48,6 @@ class HTTPClient: HTTPClientProtocol {
         request.allHTTPHeaderFields = [
             "Accept" : "application/json",
             "cookie" : Constants.API.stupidCookie
-//            "Authorization" : "fsq3WUSR+Iq4uCzdbSK0O7rZnR4bzQRek1l1b3pr5qkoU4g=" // not needed anymore
         ]
         
         if let headers = headers as? [String: String] {
@@ -63,7 +61,6 @@ class HTTPClient: HTTPClientProtocol {
         print("URL=\(url)")
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-            // HERE WE MAKE SURE THAT WE GET SOME DATA BACK
             guard let data = data, error == nil else {
                 print("Something went wrong in creating a data task.")
                 DispatchQueue.main.async {

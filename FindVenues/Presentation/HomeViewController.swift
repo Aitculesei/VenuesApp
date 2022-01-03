@@ -22,50 +22,11 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        determineMyCurrentLocation()
         drawMyMap()
     }
 }
 
 // MARK: - Extensions
-
-extension HomeViewController: CLLocationManagerDelegate {
-    // TODO: Move this into a LocationManager singleton, that listens for location updates and has a variable of CLLocation with the most recent one that you can use where needed
-    func determineMyCurrentLocation() {
-        locationManager = CLLocationManager()
-        locationManager?.requestAlwaysAuthorization()
-        locationManager?.requestWhenInUseAuthorization()
-        locationManager?.delegate = self
-        locationManager?.startUpdatingLocation()
-        
-        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-              CLLocationManager.authorizationStatus() == .authorizedAlways) {
-            guard let location = locationManager?.location else {
-                fatalError("Location is nil.")
-            }
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            LocalDataManager.saveData(data: latitude, key: Constants.LocalDataManagerSavings.Coordiantes.latitudeKey)
-            LocalDataManager.saveData(data: longitude, key: Constants.LocalDataManagerSavings.Coordiantes.longitudeKey)
-    
-        }
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if manager.authorizationStatus == .authorizedAlways {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-                    
-                }
-            }
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
-        print("Location Manager Error ->> \(error)")
-    }
-}
 
 extension HomeViewController: MKMapViewDelegate {
     func drawMyMap() {
