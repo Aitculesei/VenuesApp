@@ -15,14 +15,15 @@ class TabBarViewController: UITabBarController {
         
         
         repo.getVenues { result in
-            guard let res = result else {
-                print("Result was nil in the UIViewController!")
-                return
+            switch result {
+            case .success(let venuesBO):
+                for r in venuesBO {
+                    print("R: \(r.id), \(r.name), \(r.location).")
+                    self.createTabBarMenu(venues: venuesBO)
+                }
+            case .failure(let error):
+                print("Something is baaad \(error.localizedDescription)")
             }
-            for r in res {
-                print("R: \(r.id), \(r.name), \(r.location).")
-            }
-            self.createTabBarMenu(venues: res)
         }
     }
 }

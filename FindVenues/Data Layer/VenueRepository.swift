@@ -11,8 +11,7 @@ import CoreLocation
 class VenueRepository: VenueRepositoryProtocol {
     let apiClient: APIClientProtocol = APIClient()
 
-    // TODO: This should return a Result<[VenueBO], APIError> and get use plain parameters like query, nearby, location (a CLLocation) and categories
-    func getVenues(completion: @escaping ([VenueBO]?) -> Void) {
+    func getVenues(completion: @escaping (Result<[VenueBO], APIError>) -> Void) {
         guard let lat = LocationManager.sharedLocation?.coordinate.latitude else {
             fatalError("APIClient: Latitude coordinate is missing.")
         }
@@ -31,12 +30,12 @@ class VenueRepository: VenueRepositoryProtocol {
 
         apiClient.getVenues(requestDTO: requestDTO) { response in
             guard let rawVenues = response.response?.venues else {
-                completion(nil)
+                completion(.failure(.noData))
                 return
             }
-            completion(rawVenues.map({ apiVenueResult in
+            completion(.success(rawVenues.map({ apiVenueResult in
                 VenueBO(venueDetailsAPIData: apiVenueResult)
-            }))
+            })))
         }
     }
     

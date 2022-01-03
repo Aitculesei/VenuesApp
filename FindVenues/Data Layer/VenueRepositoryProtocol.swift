@@ -6,5 +6,5 @@
 //
 
 protocol VenueRepositoryProtocol {
-    func getVenues(completion: @escaping ([VenueBO]?) -> Void)
+    func getVenues(completion: @escaping (Result<[VenueBO], APIError>) -> Void)
 }

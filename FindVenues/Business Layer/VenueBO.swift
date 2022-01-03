@@ -13,6 +13,6 @@ struct VenueBO: Codable {
     init(venueDetailsAPIData: VenueDTO) {
         self.id = venueDetailsAPIData.id
         self.name = venueDetailsAPIData.name
-        self.location = "\(venueDetailsAPIData.location?.address ?? "")" //" str \(venueDetailsAPIData.location?.crossStreet ?? "")"
+        self.location = "\(venueDetailsAPIData.location?.address ?? "")"
     }
 }
