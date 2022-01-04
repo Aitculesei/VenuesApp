@@ -39,6 +39,21 @@ class VenueRepository: VenueRepositoryProtocol {
         }
     }
     
+    func getCategories(completion: @escaping (Result<[CategoryBO], APIError>) -> Void) {
+        let currentDate = getCurrentDate()
+        let categoryRequestDTO = CategoriesRequestDTO(version: currentDate)
+        
+        apiClient.getCategories(requestDTO: categoryRequestDTO) { response in
+            guard let rawCategories = response.response.categories else {
+                completion(.failure(.noData))
+                return
+            }
+            completion(.success(rawCategories.map({ apiVenuesCategoriesResult in
+                CategoryBO(venueCategoriesData: apiVenuesCategoriesResult)
+            })))
+        }
+    }
+    
     func getCurrentDate() -> String {
         let currentDate = Date()
         let dateFormatterGet = DateFormatter()

@@ -9,6 +9,7 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     let repo = VenueRepository()
+    let detailsVC = DetailsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,12 +18,24 @@ class TabBarViewController: UITabBarController {
         repo.getVenues { result in
             switch result {
             case .success(let venuesBO):
+                self.detailsVC.receivedVenues = venuesBO
                 for r in venuesBO {
                     print("R: \(r.id), \(r.name), \(r.location).")
                     self.createTabBarMenu(venues: venuesBO)
                 }
             case .failure(let error):
                 print("Something is baaad \(error.localizedDescription)")
+            }
+        }
+        
+        repo.getCategories { result in
+            switch result {
+            case .success(let categoriesBO):
+                for category in categoriesBO {
+                    print("C: \(category.name)")
+                }
+            case .failure(let error):
+                print("Categories got a problem \(error.localizedDescription)")
             }
         }
     }
@@ -34,7 +47,7 @@ extension TabBarViewController {
     func createTabBarMenu(venues: [VenueBO]) {
         let homeVC = HomeViewController()
         let rangeVC = RangeViewController()
-        let detailsVC = DetailsViewController()
+        
         detailsVC.receivedVenues = venues
         
         homeVC.title = "Home"

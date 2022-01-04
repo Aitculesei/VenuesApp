@@ -8,4 +8,5 @@
 protocol APIClientProtocol {
 //    func getVenues(requestDTO: VenuesRequestDTO, completion: @escaping (VenuesDTO) -> Void)
     func getVenues(requestDTO: VenuesRequestDTO, completion: @escaping (VenuesDTO) -> Void)
+    func getCategories(requestDTO: CategoriesRequestDTO, completion: @escaping (CategoriesDTO) -> Void)
 }

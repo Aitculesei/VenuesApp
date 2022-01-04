@@ -23,7 +23,18 @@ class APIClient: APIClientProtocol {
             case .success(let receivedVenues):
                 completion(receivedVenues)
             case .failure(let error):
-                print("HTTPClient Error: \(error.localizedDescription)")
+                print("HTTPClient Error for venues: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getCategories(requestDTO: CategoriesRequestDTO, completion: @escaping (CategoriesDTO) -> Void) {
+        httpClient.get(class: CategoriesDTO.self, url: requestDTO.urlString, parameters: requestDTO.parametersDicitonary, headers: nil) { result in
+            switch result {
+            case .success(let receivedCategories):
+                completion(receivedCategories)
+            case .failure(let error):
+                print("HTTPClient Error for categories: \(error.localizedDescription)")
             }
         }
     }

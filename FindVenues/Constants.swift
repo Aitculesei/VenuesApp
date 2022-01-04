@@ -17,6 +17,7 @@ struct Constants {
         
         enum Paths {
             static let search = "venues/search"
+            static let categories = "venues/categories"
         }
         
         enum Client {

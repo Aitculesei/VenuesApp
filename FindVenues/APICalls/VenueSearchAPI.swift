@@ -7,21 +7,7 @@ import Foundation
 
 // MARK: - Welcome
 struct VenuesDTO: Codable {
-    let meta: Meta?
-    let notifications: [Notification]?
-    let response: Response?
-}
-
-// MARK: - Meta
-struct Meta: Codable {
-    let code: Int?
-    let requestId: String?
-}
-
-// MARK: - Notification
-struct Notification: Codable {
-    let type: String?
-    let item: Item?
+    let response: ResponseVenue?
 }
 
 // MARK: - Item
@@ -30,8 +16,8 @@ struct Item: Codable {
 }
 
 // MARK: - Response
-struct Response: Codable {
-    let venues: [VenueDTO]?
+struct ResponseVenue: Codable {
+    let venues: [VenueData]?
     let geocode: Geocode?
 }
 
@@ -67,7 +53,7 @@ struct Center: Codable {
 }
 
 // MARK: - Venue
-struct VenueDTO: Codable {
+struct VenueData: Codable {
     let id, name: String?
     let contact: Contact?
     let location: Location?

@@ -87,7 +87,7 @@ class RangeViewController: UIViewController {
     func createShowCurrentLocationCheckBox() {
         showCurrentLocationCheckBox.style = .tick
         showCurrentLocationCheckBox.borderStyle = .square
-        showCurrentLocationCheckBox.frame = CGRect(x: 40, y: 355, width: 35, height: 35)
+        showCurrentLocationCheckBox.frame = CGRect(x: 40, y: 370, width: 35, height: 35)
         showCurrentLocationCheckBox.addTarget(self, action: #selector(checkBoxValueDidChange(_:)), for: .valueChanged)
         
         self.view.addSubview(showCurrentLocationCheckBox)
@@ -99,7 +99,7 @@ class RangeViewController: UIViewController {
     }
     
     func addChecboxLabel() {
-        let checkBoxLabel = UILabel(frame: CGRect(x: 75, y: 355, width: 275, height: 35))
+        let checkBoxLabel = UILabel(frame: CGRect(x: 75, y: 370, width: 275, height: 35))
         
         checkBoxLabel.textAlignment = .center
         checkBoxLabel.text = "Show current location on map"

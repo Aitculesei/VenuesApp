@@ -10,7 +10,7 @@ struct VenueBO: Codable {
     let name: String?
     let location: String?
 
-    init(venueDetailsAPIData: VenueDTO) {
+    init(venueDetailsAPIData: VenueData) {
         self.id = venueDetailsAPIData.id
         self.name = venueDetailsAPIData.name
         self.location = "\(venueDetailsAPIData.location?.address ?? "")"
