@@ -6,19 +6,21 @@
 //
 
 import UIKit
+import SimpleCheckbox
+import RangeUISlider
 
 class RangeViewController: UIViewController {
     var queriesDataSource = ["restaurant", "food", "art", "music", "cultural", "pub", "bistro", "drinks"]
     var queriesCollectionView: UICollectionView?
-    var rangeSelector : UISlider = UISlider()
+//    var rangeSelector : UISlider = UISlider()
     let resetButton = UIButton()
-    var showCurrentLocationCheckBox: CheckBox! = CheckBox()
+    var showCurrentLocationCheckBox = SimpleCheckbox.Checkbox()
     let rangeLabel : UILabel = UILabel(frame: CGRect(x: 30, y: 330, width: 200, height: 21))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rangeSelector.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
+//        rangeSelector.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,32 +62,43 @@ class RangeViewController: UIViewController {
         label.center = CGPoint(x: 50, y: 285)
         label.textAlignment = .center
         label.text = "Range"
+//
+//        rangeLabel.isUserInteractionEnabled = true
+//
+//        rangeSelector.isUserInteractionEnabled = true
+//        rangeSelector = UISlider(frame: CGRect (x: 45,y: 70,width: 310,height: 31))
+//        rangeSelector.center = CGPoint(x: 185, y: 315)
+//        rangeSelector.minimumValue = 1
+//        rangeSelector.maximumValue = 10
+//        rangeSelector.isContinuous = false
+//        rangeSelector.tintColor = .blue
+//        rangeSelector.value = 1
+//        rangeLabel.text = "\(rangeSelector.value) km"
+//
+//        self.view.addSubview(label)
+//        self.view.addSubview(rangeSelector)
+//        self.view.addSubview(rangeLabel)
         
-        rangeLabel.isUserInteractionEnabled = true
-        
-        rangeSelector.isUserInteractionEnabled = true
-        rangeSelector = UISlider(frame: CGRect (x: 45,y: 70,width: 310,height: 31))
-        rangeSelector.center = CGPoint(x: 185, y: 315)
-        rangeSelector.minimumValue = 1
-        rangeSelector.maximumValue = 10
-        rangeSelector.isContinuous = false
-        rangeSelector.tintColor = .blue
-        rangeSelector.value = 1
-        rangeLabel.text = "\(rangeSelector.value) km"
-        
-        self.view.addSubview(label)
-        self.view.addSubview(rangeSelector)
-        self.view.addSubview(rangeLabel)
-    }
-    
-    @objc func sliderValueDidChange(_ sender: UISlider!)
-    {
-        print("payback value: \(sender.value)")
-        rangeLabel.text = "\(sender.value) km"
+        let rangeSlider = RangeUISlider(frame: CGRect(origin: CGPoint(x: 185, y: 315), size: CGSize(width: 100,height: 50)))
+//        rangeSlider.center = CGPoint(x: 185, y: 315)
+        rangeSlider.isUserInteractionEnabled = true
+        rangeSlider.translatesAutoresizingMaskIntoConstraints = false
+        rangeSlider.delegate = self
+        rangeSlider.barHeight = 20
+        rangeSlider.barCorners = 10
+        rangeSlider.leftKnobColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+        rangeSlider.leftKnobWidth = 40
+        rangeSlider.leftKnobHeight = 40
+        rangeSlider.leftKnobCorners = 20
+        rangeSlider.rightKnobColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+        rangeSlider.rightKnobWidth = 40
+        rangeSlider.rightKnobHeight = 40
+        rangeSlider.rightKnobCorners = 20
+        self.view.addSubview(rangeSlider)
     }
     
     func createShowCurrentLocationCheckBox() {
-        showCurrentLocationCheckBox.style = .tick
+        showCurrentLocationCheckBox.checkmarkStyle = .tick
         showCurrentLocationCheckBox.borderStyle = .square
         showCurrentLocationCheckBox.frame = CGRect(x: 40, y: 370, width: 35, height: 35)
         showCurrentLocationCheckBox.addTarget(self, action: #selector(checkBoxValueDidChange(_:)), for: .valueChanged)
@@ -93,7 +106,7 @@ class RangeViewController: UIViewController {
         self.view.addSubview(showCurrentLocationCheckBox)
     }
     
-    @objc func checkBoxValueDidChange(_ sender: CheckBox) {
+    @objc func checkBoxValueDidChange(_ sender: SimpleCheckbox.Checkbox) {
         
         print(sender.isChecked)
     }
@@ -162,4 +175,13 @@ extension RangeViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: width, height: height)
     }
+}
+
+extension RangeViewController: RangeUISliderDelegate {
+    func rangeChangeFinished(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
+        print("payback value: \(maxValueSelected)")
+        rangeLabel.text = "\(maxValueSelected) km"
+    }
+    
+    
 }

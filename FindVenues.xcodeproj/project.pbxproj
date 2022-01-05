@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BC8DD27704E6B0057EB06 /* VenueRepositoryProtocol.swift */; };
-		39818BCB278478BB00BCDE53 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCA278478BB00BCDE53 /* CheckBox.swift */; };
 		39818BCD278487F900BCDE53 /* VenueCategoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */; };
 		39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */; };
 		39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BD027848F2300BCDE53 /* CategoryBO.swift */; };
+		39818BE42785C0DC00BCDE53 /* SimpleCheckbox in Frameworks */ = {isa = PBXBuildFile; productRef = 39818BE32785C0DC00BCDE53 /* SimpleCheckbox */; };
+		39818BE72785C27500BCDE53 /* RangeUISlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39818BE62785C27500BCDE53 /* RangeUISlider */; };
 		3997E3702768C64A00170EA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E36F2768C64A00170EA4 /* Constants.swift */; };
 		3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */; };
 		39AB811D2771CBC70073B1FE /* VenuesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB811C2771CBC70073B1FE /* VenuesTableViewCell.swift */; };
@@ -43,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		390BC8DD27704E6B0057EB06 /* VenueRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRepositoryProtocol.swift; sourceTree = "<group>"; };
-		39818BCA278478BB00BCDE53 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategoriesAPI.swift; sourceTree = "<group>"; };
 		39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequestDTO.swift; sourceTree = "<group>"; };
 		39818BD027848F2300BCDE53 /* CategoryBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBO.swift; sourceTree = "<group>"; };
@@ -83,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39818BE42785C0DC00BCDE53 /* SimpleCheckbox in Frameworks */,
+				39818BE72785C27500BCDE53 /* RangeUISlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +190,6 @@
 				39AC65E22767377500659BB3 /* DetailsViewController.xib */,
 				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
 				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
-				39818BCA278478BB00BCDE53 /* CheckBox.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -209,6 +210,10 @@
 			dependencies = (
 			);
 			name = FindVenues;
+			packageProductDependencies = (
+				39818BE32785C0DC00BCDE53 /* SimpleCheckbox */,
+				39818BE62785C27500BCDE53 /* RangeUISlider */,
+			);
 			productName = FindVenues;
 			productReference = 39AC65C227672F1000659BB3 /* FindVenues.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +242,10 @@
 				Base,
 			);
 			mainGroup = 39AC65B927672F1000659BB3;
+			packageReferences = (
+				39818BE22785C0DC00BCDE53 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */,
+				39818BE52785C27500BCDE53 /* XCRemoteSwiftPackageReference "RangeUISlider" */,
+			);
 			productRefGroup = 39AC65C327672F1000659BB3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -290,7 +299,6 @@
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */,
 				39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */,
-				39818BCB278478BB00BCDE53 /* CheckBox.swift in Sources */,
 				39AFAABD276B637A006D7A98 /* SettingsPlistParser.swift in Sources */,
 				39AC65EC27678B0D00659BB3 /* VenueRepository.swift in Sources */,
 			);
@@ -504,6 +512,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39818BE22785C0DC00BCDE53 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BeauNouvelle/SimpleCheckbox";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		39818BE52785C27500BCDE53 /* XCRemoteSwiftPackageReference "RangeUISlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chicio/RangeUISlider";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39818BE32785C0DC00BCDE53 /* SimpleCheckbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39818BE22785C0DC00BCDE53 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */;
+			productName = SimpleCheckbox;
+		};
+		39818BE62785C27500BCDE53 /* RangeUISlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39818BE52785C27500BCDE53 /* XCRemoteSwiftPackageReference "RangeUISlider" */;
+			productName = RangeUISlider;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 39AC65BA27672F1000659BB3 /* Project object */;
 }
