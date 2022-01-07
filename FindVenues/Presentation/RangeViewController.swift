@@ -10,7 +10,11 @@ import SimpleCheckbox
 import RangeUISlider
 
 class RangeViewController: UIViewController {
-    var queriesDataSource = ["restaurant", "food", "art", "music", "cultural", "pub", "bistro", "drinks"]
+    var queriesDataSource: [String] = [] {
+        didSet {
+            queriesCollectionView?.reloadData()
+        }
+    }
     var queriesCollectionView: UICollectionView?
 //    var rangeSelector : UISlider = UISlider()
     let resetButton = UIButton()
@@ -19,8 +23,6 @@ class RangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        rangeSelector.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +42,7 @@ class RangeViewController: UIViewController {
         TabBarViewController().reloadInputViews()
     }
     
-    // MARK: - Create the Collection View with 8 queries
+    // MARK: - Create the Collection View with the queries
     
     func createCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -56,6 +58,8 @@ class RangeViewController: UIViewController {
         
         self.view.addSubview(queriesCollectionView ?? UICollectionView())
     }
+    
+    // MARK: - Add the range slider
     
     func createRangeSelector() {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
@@ -79,7 +83,8 @@ class RangeViewController: UIViewController {
 //        self.view.addSubview(rangeSelector)
 //        self.view.addSubview(rangeLabel)
         
-        let rangeSlider = RangeUISlider(frame: CGRect(origin: CGPoint(x: 185, y: 315), size: CGSize(width: 100,height: 50)))
+        let rangeSlider = RangeUISlider()
+        rangeSlider.frame = CGRect(origin: CGPoint(x: 185, y: 315), size: CGSize(width: 100,height: 50))
 //        rangeSlider.center = CGPoint(x: 185, y: 315)
         rangeSlider.isUserInteractionEnabled = true
         rangeSlider.translatesAutoresizingMaskIntoConstraints = false
@@ -97,9 +102,12 @@ class RangeViewController: UIViewController {
         self.view.addSubview(rangeSlider)
     }
     
+    // MARK: - Add the checkbox that is responsible for either showing the current location on map or not
+    
     func createShowCurrentLocationCheckBox() {
         showCurrentLocationCheckBox.checkmarkStyle = .tick
         showCurrentLocationCheckBox.borderStyle = .square
+        showCurrentLocationCheckBox.emoji = "✅"
         showCurrentLocationCheckBox.frame = CGRect(x: 40, y: 370, width: 35, height: 35)
         showCurrentLocationCheckBox.addTarget(self, action: #selector(checkBoxValueDidChange(_:)), for: .valueChanged)
         
@@ -120,6 +128,8 @@ class RangeViewController: UIViewController {
         self.view.addSubview(checkBoxLabel)
     }
     
+    // MARK: - A RESET button responsible for getting all the values to a default state
+    
     func createResetButton() {
         resetButton.translatesAutoresizingMaskIntoConstraints = false
         resetButton.setTitle("Reset", for: UIControl.State.normal)
@@ -134,7 +144,6 @@ class RangeViewController: UIViewController {
 
 extension RangeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return queriesDataSource.count
     }
     
@@ -157,7 +166,6 @@ extension RangeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         print("Selected query: \(queriesDataSource[indexPath.row])")
     }
 }
@@ -182,6 +190,4 @@ extension RangeViewController: RangeUISliderDelegate {
         print("payback value: \(maxValueSelected)")
         rangeLabel.text = "\(maxValueSelected) km"
     }
-    
-    
 }

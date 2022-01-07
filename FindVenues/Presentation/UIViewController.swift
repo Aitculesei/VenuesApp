@@ -9,20 +9,21 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     let repo = VenueRepository()
-    let detailsVC = DetailsViewController()
+    let venuesVC = VenuesViewController()
+    let rangeVC = RangeViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        createTabBarMenu()
         repo.getVenues { result in
             switch result {
             case .success(let venuesBO):
-                self.detailsVC.receivedVenues = venuesBO
+                self.venuesVC.receivedVenues = venuesBO
                 for r in venuesBO {
                     print("R: \(r.id), \(r.name), \(r.location).")
-                    self.createTabBarMenu(venues: venuesBO)
                 }
+                self.venuesVC.receivedVenues = venuesBO
             case .failure(let error):
                 print("Something is baaad \(error.localizedDescription)")
             }
@@ -31,9 +32,15 @@ class TabBarViewController: UITabBarController {
         repo.getCategories { result in
             switch result {
             case .success(let categoriesBO):
+                var categories: [String] = []
                 for category in categoriesBO {
                     print("C: \(category.name)")
+                    guard let name = category.name else {
+                        fatalError("One category name is missing for some reason!")
+                    }
+                    categories.append(name)
                 }
+                self.rangeVC.queriesDataSource = categories
             case .failure(let error):
                 print("Categories got a problem \(error.localizedDescription)")
             }
@@ -44,18 +51,15 @@ class TabBarViewController: UITabBarController {
 // MARK: - Extensions
 
 extension TabBarViewController {
-    func createTabBarMenu(venues: [VenueBO]) {
+    func createTabBarMenu() {
         let homeVC = HomeViewController()
-        let rangeVC = RangeViewController()
-        
-        detailsVC.receivedVenues = venues
         
         homeVC.title = "Home"
         rangeVC.title = "Distance"
-        detailsVC.title = "Details"
+        venuesVC.title = "Venues"
         
         // Assign VC to Tab bar controller
-        self.setViewControllers([homeVC, rangeVC, detailsVC], animated: false)
+        self.setViewControllers([homeVC, rangeVC, venuesVC], animated: false)
         
         guard let items = self.tabBar.items else {return}
         let images = ["house", "slider.horizontal.3", "list.bullet.rectangle.portrait.fill"]

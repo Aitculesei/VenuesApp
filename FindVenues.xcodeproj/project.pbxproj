@@ -13,6 +13,8 @@
 		39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BD027848F2300BCDE53 /* CategoryBO.swift */; };
 		39818BE42785C0DC00BCDE53 /* SimpleCheckbox in Frameworks */ = {isa = PBXBuildFile; productRef = 39818BE32785C0DC00BCDE53 /* SimpleCheckbox */; };
 		39818BE72785C27500BCDE53 /* RangeUISlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39818BE62785C27500BCDE53 /* RangeUISlider */; };
+		39818BEA2787131A00BCDE53 /* VenueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BE82787131A00BCDE53 /* VenueDetailsViewController.swift */; };
+		39818BEB2787131A00BCDE53 /* VenueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */; };
 		3997E3702768C64A00170EA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E36F2768C64A00170EA4 /* Constants.swift */; };
 		3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */; };
 		39AB811D2771CBC70073B1FE /* VenuesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB811C2771CBC70073B1FE /* VenuesTableViewCell.swift */; };
@@ -30,8 +32,7 @@
 		39AC65DC276733D300659BB3 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65DA276733D300659BB3 /* HomeViewController.xib */; };
 		39AC65DF2767367E00659BB3 /* RangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65DD2767367E00659BB3 /* RangeViewController.swift */; };
 		39AC65E02767367E00659BB3 /* RangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65DE2767367E00659BB3 /* RangeViewController.xib */; };
-		39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E12767377500659BB3 /* DetailsViewController.swift */; };
-		39AC65E42767377500659BB3 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65E22767377500659BB3 /* DetailsViewController.xib */; };
+		39AC65E32767377500659BB3 /* VenuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E12767377500659BB3 /* VenuesViewController.swift */; };
 		39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */; };
 		39AC65EC27678B0D00659BB3 /* VenueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65EB27678B0D00659BB3 /* VenueRepository.swift */; };
 		39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39AFAAAE276A3F1D006D7A98 /* Settings.plist */; };
@@ -47,6 +48,8 @@
 		39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategoriesAPI.swift; sourceTree = "<group>"; };
 		39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequestDTO.swift; sourceTree = "<group>"; };
 		39818BD027848F2300BCDE53 /* CategoryBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBO.swift; sourceTree = "<group>"; };
+		39818BE82787131A00BCDE53 /* VenueDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailsViewController.swift; sourceTree = "<group>"; };
+		39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VenueDetailsViewController.xib; sourceTree = "<group>"; };
 		3997E36F2768C64A00170EA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSearchAPI.swift; sourceTree = "<group>"; };
 		39AB811C2771CBC70073B1FE /* VenuesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesTableViewCell.swift; sourceTree = "<group>"; };
@@ -66,8 +69,7 @@
 		39AC65DA276733D300659BB3 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		39AC65DD2767367E00659BB3 /* RangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeViewController.swift; sourceTree = "<group>"; };
 		39AC65DE2767367E00659BB3 /* RangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeViewController.xib; sourceTree = "<group>"; };
-		39AC65E12767377500659BB3 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		39AC65E22767377500659BB3 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		39AC65E12767377500659BB3 /* VenuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesViewController.swift; sourceTree = "<group>"; };
 		39AC65E527677C7300659BB3 /* GetVenueDetailsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenueDetailsAPI.swift; sourceTree = "<group>"; };
 		39AC65EB27678B0D00659BB3 /* VenueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRepository.swift; sourceTree = "<group>"; };
 		39AFAAAE276A3F1D006D7A98 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
@@ -185,11 +187,12 @@
 				39AC65D9276733D300659BB3 /* HomeViewController.swift */,
 				39AC65DD2767367E00659BB3 /* RangeViewController.swift */,
 				39AB81252772F6040073B1FE /* QueriesCollectionViewCell.swift */,
-				39AC65E12767377500659BB3 /* DetailsViewController.swift */,
+				39818BE82787131A00BCDE53 /* VenueDetailsViewController.swift */,
+				39AC65E12767377500659BB3 /* VenuesViewController.swift */,
 				39AB811C2771CBC70073B1FE /* VenuesTableViewCell.swift */,
-				39AC65E22767377500659BB3 /* DetailsViewController.xib */,
 				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
 				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
+				39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -262,10 +265,10 @@
 			files = (
 				39AC65E02767367E00659BB3 /* RangeViewController.xib in Resources */,
 				39AC65D227672F1300659BB3 /* LaunchScreen.storyboard in Resources */,
-				39AC65E42767377500659BB3 /* DetailsViewController.xib in Resources */,
 				39AC65CF27672F1300659BB3 /* Assets.xcassets in Resources */,
 				39AC65DC276733D300659BB3 /* HomeViewController.xib in Resources */,
 				39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */,
+				39818BEB2787131A00BCDE53 /* VenueDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +293,7 @@
 				39AFAAB1276B3CFB006D7A98 /* HTTPClient.swift in Sources */,
 				39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */,
 				39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */,
+				39818BEA2787131A00BCDE53 /* VenueDetailsViewController.swift in Sources */,
 				3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */,
 				39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */,
 				39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */,
@@ -298,7 +302,7 @@
 				39AB81262772F6040073B1FE /* QueriesCollectionViewCell.swift in Sources */,
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */,
-				39AC65E32767377500659BB3 /* DetailsViewController.swift in Sources */,
+				39AC65E32767377500659BB3 /* VenuesViewController.swift in Sources */,
 				39AFAABD276B637A006D7A98 /* SettingsPlistParser.swift in Sources */,
 				39AC65EC27678B0D00659BB3 /* VenueRepository.swift in Sources */,
 			);

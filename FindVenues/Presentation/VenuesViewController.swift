@@ -7,13 +7,10 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
-    let venuesTableView: UITableView = {
-        let venuesTableView = UITableView()
-        venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
-        
-        return venuesTableView
-    }()
+class VenuesViewController: UIViewController {
+    let venuesTableView = UITableView()
+    let venueDetailsView = VenueDetailsViewController()
+    
     var receivedVenues: [VenueBO] = [] {
         didSet {
             venuesTableView.reloadData()
@@ -26,6 +23,7 @@ class DetailsViewController: UIViewController {
         venuesTableView.backgroundColor = .lightGray
         venuesTableView.delegate = self
         venuesTableView.dataSource = self
+        venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
         view.addSubview(venuesTableView)
     }
     
@@ -34,16 +32,19 @@ class DetailsViewController: UIViewController {
         
         venuesTableView.frame = view.bounds
     }
-
 }
 
 // MARK: - Extensions
 
 // Delegate is used to handle interactions of cells
-extension DetailsViewController: UITableViewDelegate {
+extension VenuesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.venueDetailsView.receivedVenue = receivedVenues[indexPath.row]
+        show(venueDetailsView, sender: self)
+    }
 }
 
-extension DetailsViewController: UITableViewDataSource {
+extension VenuesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.receivedVenues.count
     }
@@ -54,6 +55,7 @@ extension DetailsViewController: UITableViewDataSource {
         }
         
         cell.textLabel?.text = self.receivedVenues[indexPath.row].name
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }

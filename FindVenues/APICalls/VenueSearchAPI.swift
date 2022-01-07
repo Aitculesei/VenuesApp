@@ -106,6 +106,7 @@ struct Location: Codable {
     let address, crossStreet: String?
     let lat, lng: Double?
     let labeledLatLngs: [LabeledLatLng]?
+    let distance: Int?
     let postalCode, cc, city, state: String?
     let country, contextLine: String?
     let contextGeoId: Double?
