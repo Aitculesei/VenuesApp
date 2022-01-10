@@ -10,7 +10,7 @@ import SimpleCheckbox
 import RangeUISlider
 
 class RangeViewController: UIViewController {
-    var queriesDataSource: [String] = [] {
+    var queriesDataSource: [CategoryBO] = [] {
         didSet {
             queriesCollectionView?.reloadData()
         }
@@ -152,15 +152,62 @@ extension RangeViewController: UICollectionViewDataSource {
             fatalError("Queries Collection View cell could not be created.")
         }
         
+        guard let categoryIconUrl = queriesDataSource[indexPath.row].icon else {
+            fatalError("\(queriesDataSource[indexPath.row].name) category icon is missing.")
+        }
+        var categoryIcon: UIImage?
+        let imageview = UIImageView()
+        imageview.downloaded(from: categoryIconUrl) { icon in
+            categoryIcon = icon
+        }
+        
         let button = UIButton(frame: CGRect(x: 0,
                                             y: 20,
                                             width: 85,
                                             height: 40))
-        button.setTitle(queriesDataSource[indexPath.row], for: .normal)
-        button.addTarget(self, action: #selector(didSelectQuery), for: .touchUpInside)
-        button.backgroundColor = .blue
-        
+        var loadingActivityIndicator: UIActivityIndicatorView = {
+            let indicator = UIActivityIndicatorView()
+            
+            indicator.style = .large
+            indicator.color = .blue
+                
+            // The indicator should be animating when
+            // the view appears.
+            indicator.startAnimating()
+                
+            // Setting the autoresizing mask to flexible for all
+            // directions will keep the indicator in the center
+            // of the view and properly handle rotation.
+            indicator.autoresizingMask = [
+                .flexibleLeftMargin, .flexibleRightMargin,
+                .flexibleTopMargin, .flexibleBottomMargin
+            ]
+                
+            return indicator
+        }()
+        loadingActivityIndicator.center = CGPoint(
+            x: 40,
+            y: 20
+        )
+        loadingActivityIndicator.tag = 999
+        button.addSubview(loadingActivityIndicator)
         cell.addSubview(button)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if let viewWithTag = self.view.viewWithTag(999) {
+                viewWithTag.removeFromSuperview()
+            }
+            categoryIcon = categoryIcon?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+            
+            button.setImage(categoryIcon, for: .normal)
+            button.setTitle(self.queriesDataSource[indexPath.row].name, for: .normal)
+//            button.imageView?.contentMode = .scaleAspectFit
+//            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+            button.addTarget(self, action: #selector(self.didSelectQuery), for: .touchUpInside)
+            button.backgroundColor = .blue
+            
+            
+        }
         
         return cell
     }

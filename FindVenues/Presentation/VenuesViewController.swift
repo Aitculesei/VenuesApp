@@ -8,29 +8,38 @@
 import UIKit
 
 class VenuesViewController: UIViewController {
-    let venuesTableView = UITableView()
+    static var venuesTableView = UITableView()
     let venueDetailsView = VenueDetailsViewController()
     
-    var receivedVenues: [VenueBO] = [] {
+    static var receivedVenues: [VenueBO] = [] {
         didSet {
-            venuesTableView.reloadData()
+            print("You updated the venues list.")
+//            DispatchQueue.main.async {
+            self.venuesTableView.reloadData()
+//            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        venuesTableView.backgroundColor = .lightGray
-        venuesTableView.delegate = self
-        venuesTableView.dataSource = self
-        venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
-        view.addSubview(venuesTableView)
+        VenuesViewController.venuesTableView.backgroundColor = .lightGray
+        VenuesViewController.venuesTableView.delegate = self
+        VenuesViewController.venuesTableView.dataSource = self
+        VenuesViewController.venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
+        view.addSubview(VenuesViewController.venuesTableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        VenuesViewController.venuesTableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        venuesTableView.frame = view.bounds
+        VenuesViewController.venuesTableView.frame = view.bounds
     }
 }
 
@@ -39,22 +48,23 @@ class VenuesViewController: UIViewController {
 // Delegate is used to handle interactions of cells
 extension VenuesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.venueDetailsView.receivedVenue = receivedVenues[indexPath.row]
+        self.venueDetailsView.receivedVenue = VenuesViewController.receivedVenues[indexPath.row]
         show(venueDetailsView, sender: self)
     }
 }
 
 extension VenuesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.receivedVenues.count
+        VenuesViewController.receivedVenues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = venuesTableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier, for: indexPath) as? UITableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier, for: indexPath) as? UITableViewCell else {
             fatalError("Unable to determine Venues Table View Cell.")
         }
         
-        cell.textLabel?.text = self.receivedVenues[indexPath.row].name
+        print("Received venues: \(VenuesViewController.receivedVenues)")
+        cell.textLabel?.text = VenuesViewController.receivedVenues[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         
         return cell

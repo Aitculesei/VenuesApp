@@ -11,12 +11,20 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
     let mapView = MKMapView()
-    var locationManager: CLLocationManager?
+    var locationManager: LocationManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .lightGray
+        guard let location = LocationManager.sharedLocation else {
+            fatalError("Could not get coordinates.")
+        }
+        locationManager = LocationManager(location)
+        
+        if let coor = mapView.userLocation.location?.coordinate{
+            mapView.setCenter(coor, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +40,7 @@ extension HomeViewController: MKMapViewDelegate {
     func drawMyMap() {
         mapView.frame = view.bounds
         
+        mapView.delegate = self
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
@@ -40,5 +49,23 @@ extension HomeViewController: MKMapViewDelegate {
         mapView.center = view.center
         
         view.addSubview(mapView)
+    }
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        
+        mapView.mapType = MKMapType.standard
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: locValue, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locValue
+        annotation.title = "Javed Multani"
+        annotation.subtitle = "current location"
+        mapView.addAnnotation(annotation)
     }
 }

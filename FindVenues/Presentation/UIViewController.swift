@@ -19,11 +19,10 @@ class TabBarViewController: UITabBarController {
         repo.getVenues { result in
             switch result {
             case .success(let venuesBO):
-                self.venuesVC.receivedVenues = venuesBO
                 for r in venuesBO {
                     print("R: \(r.id), \(r.name), \(r.location).")
                 }
-                self.venuesVC.receivedVenues = venuesBO
+                VenuesViewController.receivedVenues = venuesBO
             case .failure(let error):
                 print("Something is baaad \(error.localizedDescription)")
             }
@@ -40,7 +39,7 @@ class TabBarViewController: UITabBarController {
                     }
                     categories.append(name)
                 }
-                self.rangeVC.queriesDataSource = categories
+                self.rangeVC.queriesDataSource = categoriesBO
             case .failure(let error):
                 print("Categories got a problem \(error.localizedDescription)")
             }

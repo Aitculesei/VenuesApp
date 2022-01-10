@@ -16,7 +16,6 @@ class LocationManager {
         locationManager = CLLocationManager()
         locationManager?.requestAlwaysAuthorization()
         locationManager?.requestWhenInUseAuthorization()
-//        locationManager?.delegate = self
         locationManager?.startUpdatingLocation()
         
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
@@ -31,7 +30,7 @@ class LocationManager {
         }
     }()
     
-    private init(location: CLLocation) {
+    init(_ location: CLLocation) {
         self.location = location
     }
     

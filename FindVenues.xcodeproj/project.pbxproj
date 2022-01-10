@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BC8DD27704E6B0057EB06 /* VenueRepositoryProtocol.swift */; };
+		391B9027278C03EB00F3A5C8 /* UIImageView+downloaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391B9026278C03EB00F3A5C8 /* UIImageView+downloaded.swift */; };
 		39818BCD278487F900BCDE53 /* VenueCategoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */; };
 		39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */; };
 		39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BD027848F2300BCDE53 /* CategoryBO.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		390BC8DD27704E6B0057EB06 /* VenueRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRepositoryProtocol.swift; sourceTree = "<group>"; };
+		391B9026278C03EB00F3A5C8 /* UIImageView+downloaded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+downloaded.swift"; sourceTree = "<group>"; };
 		39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategoriesAPI.swift; sourceTree = "<group>"; };
 		39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequestDTO.swift; sourceTree = "<group>"; };
 		39818BD027848F2300BCDE53 /* CategoryBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBO.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				39AC65D027672F1300659BB3 /* LaunchScreen.storyboard */,
 				39AC65D327672F1300659BB3 /* Info.plist */,
 				39AFAAAE276A3F1D006D7A98 /* Settings.plist */,
+				391B9026278C03EB00F3A5C8 /* UIImageView+downloaded.swift */,
 			);
 			path = FindVenues;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */,
 				3997E3702768C64A00170EA4 /* Constants.swift in Sources */,
 				39AB81262772F6040073B1FE /* QueriesCollectionViewCell.swift in Sources */,
+				391B9027278C03EB00F3A5C8 /* UIImageView+downloaded.swift in Sources */,
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */,
 				39AC65E32767377500659BB3 /* VenuesViewController.swift in Sources */,

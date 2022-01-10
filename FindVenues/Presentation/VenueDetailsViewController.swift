@@ -13,7 +13,11 @@ class VenueDetailsViewController: UIViewController {
     let venueAddress = UILabel()
     let venuePhone = UILabel()
     let venueDistance = UILabel()
-    var receivedVenue: VenueBO? 
+    var receivedVenue: VenueBO? {
+        didSet {
+            self.viewDidLoad()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +25,27 @@ class VenueDetailsViewController: UIViewController {
         guard let venue = receivedVenue else {
             fatalError("Venue details are missing / Venue is missing.")
         }
-        guard let location = venue.location else {
-            fatalError("Address is missing.")
-        }
-        guard let phone = venue.phone else {
-            fatalError("Phone number is missing.")
+        guard var location = venue.location else {
+            fatalError("Address cannot be missing.")
         }
         guard let distance = venue.distance else {
             fatalError("Distance cannot be nil.")
         }
+        let phone: String
+        if venue.phone == nil {
+            phone = "<don't have a specified phone number>"
+        } else {
+            phone = venue.phone!
+        }
         let convertedDistance = (Float(distance) / 1000)
+        if location == "" {
+            location = "<don't have a location specified>"
+        }
         
         venueTitle.text = venue.name
         venueAddress.text = "📍 \(location)"
         venuePhone.text = "☎️ \(phone)"
-        venueDistance.text = "\(convertedDistance) km from the current location"
+        venueDistance.text = "\(NSString(format: "%.01f", convertedDistance)) km from the current location"
         
         buildVenueDetailsView()
     }
