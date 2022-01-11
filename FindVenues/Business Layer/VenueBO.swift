@@ -13,6 +13,8 @@ struct VenueBO: Codable {
     let location: String?
     let distance: Int?
     let phone: String?
+    let lat: Double?
+    let long: Double?
 //    let photo: UIImage?
     
     
@@ -22,6 +24,8 @@ struct VenueBO: Codable {
         self.location = "\(venueDetailsAPIData.location?.address ?? "")"
         self.distance = venueDetailsAPIData.location?.distance
         self.phone = venueDetailsAPIData.contact?.phone
+        self.lat = venueDetailsAPIData.location?.lat
+        self.long = venueDetailsAPIData.location?.lng
 //        self.photo = nil
     }
     

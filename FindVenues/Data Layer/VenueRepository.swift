@@ -12,17 +12,17 @@ class VenueRepository: VenueRepositoryProtocol {
     let apiClient: APIClientProtocol = APIClient()
 
     func getVenues(completion: @escaping (Result<[VenueBO], APIError>) -> Void) {
-        guard let lat = LocationManager.sharedLocation?.coordinate.latitude else {
+        guard let lat = LocationManagerClass.sharedLocation?.coordinate.latitude else {
             fatalError("APIClient: Latitude coordinate is missing.")
         }
-        guard let lng = LocationManager.sharedLocation?.coordinate.longitude else {
+        guard let lng = LocationManagerClass.sharedLocation?.coordinate.longitude else {
             fatalError("APIClient: Longitude coordinate is missing.")
         }
         let version = getCurrentDate()
         let requestDTO: VenuesRequestDTO
         if let query = LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.queryKey, type: String.self){
             requestDTO = VenuesRequestDTO(query: query, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version)
-            LocalDataManager.resetData()
+//            LocalDataManager.resetData()
         } else {
             requestDTO = VenuesRequestDTO(query: Constants.VenuesRequest.defaultQuery, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version)
             LocalDataManager.resetData()

@@ -13,10 +13,7 @@ class VenuesViewController: UIViewController {
     
     static var receivedVenues: [VenueBO] = [] {
         didSet {
-            print("You updated the venues list.")
-//            DispatchQueue.main.async {
             self.venuesTableView.reloadData()
-//            }
         }
     }
     
@@ -63,7 +60,6 @@ extension VenuesViewController: UITableViewDataSource {
             fatalError("Unable to determine Venues Table View Cell.")
         }
         
-        print("Received venues: \(VenuesViewController.receivedVenues)")
         cell.textLabel?.text = VenuesViewController.receivedVenues[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         

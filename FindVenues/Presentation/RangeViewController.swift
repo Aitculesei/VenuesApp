@@ -165,7 +165,7 @@ extension RangeViewController: UICollectionViewDataSource {
                                             y: 20,
                                             width: 85,
                                             height: 40))
-        var loadingActivityIndicator: UIActivityIndicatorView = {
+        let loadingActivityIndicator: UIActivityIndicatorView = {
             let indicator = UIActivityIndicatorView()
             
             indicator.style = .large
@@ -201,8 +201,6 @@ extension RangeViewController: UICollectionViewDataSource {
             
             button.setImage(categoryIcon, for: .normal)
             button.setTitle(self.queriesDataSource[indexPath.row].name, for: .normal)
-//            button.imageView?.contentMode = .scaleAspectFit
-//            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
             button.addTarget(self, action: #selector(self.didSelectQuery), for: .touchUpInside)
             button.backgroundColor = .blue
             

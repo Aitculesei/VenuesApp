@@ -11,48 +11,22 @@ class TabBarViewController: UITabBarController {
     let repo = VenueRepository()
     let venuesVC = VenuesViewController()
     let rangeVC = RangeViewController()
+    let homeVC = HomeViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createTabBarMenu()
-        repo.getVenues { result in
-            switch result {
-            case .success(let venuesBO):
-                for r in venuesBO {
-                    print("R: \(r.id), \(r.name), \(r.location).")
-                }
-                VenuesViewController.receivedVenues = venuesBO
-            case .failure(let error):
-                print("Something is baaad \(error.localizedDescription)")
-            }
-        }
-        
-        repo.getCategories { result in
-            switch result {
-            case .success(let categoriesBO):
-                var categories: [String] = []
-                for category in categoriesBO {
-                    print("C: \(category.name)")
-                    guard let name = category.name else {
-                        fatalError("One category name is missing for some reason!")
-                    }
-                    categories.append(name)
-                }
-                self.rangeVC.queriesDataSource = categoriesBO
-            case .failure(let error):
-                print("Categories got a problem \(error.localizedDescription)")
-            }
-        }
+        updateVenues()
+        getCategories()
     }
+    
 }
 
 // MARK: - Extensions
 
 extension TabBarViewController {
     func createTabBarMenu() {
-        let homeVC = HomeViewController()
-        
         homeVC.title = "Home"
         rangeVC.title = "Distance"
         venuesVC.title = "Venues"
@@ -69,5 +43,39 @@ extension TabBarViewController {
         // Change tint color
         self.tabBar.tintColor = .black
         self.tabBar.backgroundColor = .white
+    }
+    
+    func updateVenues() {
+        repo.getVenues { result in
+            switch result {
+            case .success(let venuesBO):
+                for r in venuesBO {
+                    print("R: \(r.id), \(r.name), \(r.location).")
+                }
+                VenuesViewController.receivedVenues = venuesBO
+                self.homeVC.venues = venuesBO
+            case .failure(let error):
+                print("Something is baaad \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getCategories() {
+        repo.getCategories { result in
+            switch result {
+            case .success(let categoriesBO):
+                var categories: [String] = []
+                for category in categoriesBO {
+                    print("C: \(category.name)")
+                    guard let name = category.name else {
+                        fatalError("One category name is missing for some reason!")
+                    }
+                    categories.append(name)
+                }
+                self.rangeVC.queriesDataSource = categoriesBO
+            case .failure(let error):
+                print("Categories got a problem \(error.localizedDescription)")
+            }
+        }
     }
 }
