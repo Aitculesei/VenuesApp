@@ -9,7 +9,12 @@ import UIKit
 import SimpleCheckbox
 import RangeUISlider
 
+protocol ManageVenuesConsideringTheSelectedQuery: AnyObject {
+    func shouldUpdateVenues()
+}
+
 class RangeViewController: UIViewController {
+    weak var delegateNecessaryVenuesFunctionality: ManageVenuesConsideringTheSelectedQuery?
     var queriesDataSource: [CategoryBO] = [] {
         didSet {
             queriesCollectionView?.reloadData()
@@ -17,9 +22,9 @@ class RangeViewController: UIViewController {
     }
     var queriesCollectionView: UICollectionView?
 //    var rangeSelector : UISlider = UISlider()
+    let rangeLabel : UILabel = UILabel(frame: CGRect(x: 30, y: 330, width: 200, height: 21))
     let resetButton = UIButton()
     var showCurrentLocationCheckBox = SimpleCheckbox.Checkbox()
-    let rangeLabel : UILabel = UILabel(frame: CGRect(x: 30, y: 330, width: 200, height: 21))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,7 @@ class RangeViewController: UIViewController {
             LocalDataManager.saveData(data: query, key: Constants.LocalDataManagerSavings.queryKey)
         }
         TabBarViewController().reloadInputViews()
+//        delegateNecessaryVenuesFunctionality?.shouldUpdateVenues()
     }
     
     // MARK: - Create the Collection View with the queries
@@ -115,8 +121,7 @@ class RangeViewController: UIViewController {
     }
     
     @objc func checkBoxValueDidChange(_ sender: SimpleCheckbox.Checkbox) {
-        
-        print(sender.isChecked)
+        LocationManagerClass.isCurrentLocationON = sender.isChecked
     }
     
     func addChecboxLabel() {
@@ -164,7 +169,7 @@ extension RangeViewController: UICollectionViewDataSource {
         let button = UIButton(frame: CGRect(x: 0,
                                             y: 20,
                                             width: 85,
-                                            height: 40))
+                                            height: 60))
         let loadingActivityIndicator: UIActivityIndicatorView = {
             let indicator = UIActivityIndicatorView()
             
@@ -201,10 +206,13 @@ extension RangeViewController: UICollectionViewDataSource {
             
             button.setImage(categoryIcon, for: .normal)
             button.setTitle(self.queriesDataSource[indexPath.row].name, for: .normal)
+            
+            let categoryLabel = UILabel(frame: CGRect(x: 0, y: 64, width: 90, height: 10))
+            let categoryNameSplitted = self.queriesDataSource[indexPath.row].name?.split(separator: " ")
+            categoryLabel.text = String(categoryNameSplitted?[0] ?? "")
+            button.addSubview(categoryLabel)
             button.addTarget(self, action: #selector(self.didSelectQuery), for: .touchUpInside)
             button.backgroundColor = .blue
-            
-            
         }
         
         return cell

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SimpleCheckbox
 
 class TabBarViewController: UITabBarController {
     let repo = VenueRepository()
@@ -20,7 +21,6 @@ class TabBarViewController: UITabBarController {
         updateVenues()
         getCategories()
     }
-    
 }
 
 // MARK: - Extensions
@@ -55,7 +55,7 @@ extension TabBarViewController {
                 VenuesViewController.receivedVenues = venuesBO
                 self.homeVC.venues = venuesBO
             case .failure(let error):
-                print("Something is baaad \(error.localizedDescription)")
+                print("Something is baaad with getting the venues \(error.localizedDescription)")
             }
         }
     }
@@ -79,3 +79,4 @@ extension TabBarViewController {
         }
     }
 }
+

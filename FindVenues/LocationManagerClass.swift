@@ -11,6 +11,7 @@ import UIKit
 
 class LocationManagerClass: NSObject, CLLocationManagerDelegate {
     let location: CLLocation
+    static var isCurrentLocationON: Bool = false
     static var locationManager: CLLocationManager!
     
     static let sharedLocation: CLLocation? = {

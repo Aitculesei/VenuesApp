@@ -22,7 +22,6 @@ class VenueRepository: VenueRepositoryProtocol {
         let requestDTO: VenuesRequestDTO
         if let query = LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.queryKey, type: String.self){
             requestDTO = VenuesRequestDTO(query: query, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version)
-//            LocalDataManager.resetData()
         } else {
             requestDTO = VenuesRequestDTO(query: Constants.VenuesRequest.defaultQuery, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version)
             LocalDataManager.resetData()

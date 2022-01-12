@@ -21,6 +21,7 @@ class APIClient: APIClientProtocol {
         httpClient.get(class: VenuesDTO.self, url: requestDTO.urlString, parameters: requestDTO.parametersDicitonary, headers: nil) { result in
             switch result {
             case .success(let receivedVenues):
+                print("RECEIVED VENUES \(receivedVenues)")
                 completion(receivedVenues)
             case .failure(let error):
                 print("HTTPClient Error for venues: \(error.localizedDescription)")

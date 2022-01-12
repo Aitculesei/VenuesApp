@@ -8,11 +8,11 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SimpleCheckbox
 
 class HomeViewController: UIViewController {
     let mapView = MKMapView()
     var location = CLLocation()
-    var venuesOnMap: [VenueOnMap] = []
     var locationManager: LocationManagerClass?
     var venues: [VenueBO] = [] {
         didSet {
@@ -28,13 +28,14 @@ class HomeViewController: UIViewController {
             fatalError("Could not get coordinates.")
         }
         self.location = location
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         TabBarViewController().reloadInputViews()
+        self.reloadInputViews()
+        drawMyMap()
     }
     
     func pinLocationsOnMap() {
@@ -45,9 +46,8 @@ class HomeViewController: UIViewController {
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             let venueOnMap = VenueOnMap(locationName: venue.name, coordinate: coordinate)
             
-            venuesOnMap.append(venueOnMap)
+            mapView.addAnnotation(venueOnMap)
         }
-        drawMyMap()
     }
 }
 
@@ -62,13 +62,10 @@ extension HomeViewController: MKMapViewDelegate {
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         
-//        mapView.center = view.center
         mapView.centerToLocation(self.location)
-        let myLocation = MyLocation(coordinate: self.location.coordinate)
-        mapView.addAnnotation(myLocation)
-        
-        for venueOnMap in venuesOnMap {
-            mapView.addAnnotation(venueOnMap)
+        if LocationManagerClass.isCurrentLocationON {
+            let myLocation = MyLocation(coordinate: self.location.coordinate)
+            mapView.addAnnotation(myLocation)
         }
         
         view.addSubview(mapView)
