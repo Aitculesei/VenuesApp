@@ -75,7 +75,7 @@ class HTTPClient: HTTPClientProtocol {
                 dataResults = try decoder.decode(T.self, from: data)
             }
             catch {
-                print("Failed to convert data: \(error.localizedDescription)")
+                print("Failed to convert data: \(error)")
                 DispatchQueue.main.async {
                     completion(.failure(.badData))
                 }

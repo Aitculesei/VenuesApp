@@ -21,7 +21,6 @@ class APIClient: APIClientProtocol {
         httpClient.get(class: VenuesDTO.self, url: requestDTO.urlString, parameters: requestDTO.parametersDicitonary, headers: nil) { result in
             switch result {
             case .success(let receivedVenues):
-                print("RECEIVED VENUES \(receivedVenues)")
                 completion(receivedVenues)
             case .failure(let error):
                 print("HTTPClient Error for venues: \(error.localizedDescription)")
@@ -36,6 +35,17 @@ class APIClient: APIClientProtocol {
                 completion(receivedCategories)
             case .failure(let error):
                 print("HTTPClient Error for categories: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getVenuePhoto(requestDTO: VenuePhotoRequestDTO, completion: @escaping (VenuePhotosDTO) -> Void) {
+        httpClient.get(class: VenuePhotosDTO.self, url: requestDTO.photoURLString, parameters: requestDTO.parametersDicitonary, headers: nil) { result in
+            switch result {
+            case .success(let receivedPhotos):
+                completion(receivedPhotos)
+            case .failure(let error):
+                print("HTTPClient Error for venues photos request: \(error)")
             }
         }
     }

@@ -11,7 +11,7 @@ struct CategoriesRequestDTO {
     var version: String
     
     var urlString: String {
-        "\(Constants.API.baseURL)/\(Constants.API.apiVersion)/\(Constants.API.Paths.categories)"
+        "\(Constants.API.baseURL)\(Constants.API.apiVersion)/\(Constants.API.Paths.categories)"
     }
     
     var parametersDicitonary: [String: String] {

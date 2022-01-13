@@ -6,7 +6,7 @@
 //
 
 protocol APIClientProtocol {
-//    func getVenues(requestDTO: VenuesRequestDTO, completion: @escaping (VenuesDTO) -> Void)
     func getVenues(requestDTO: VenuesRequestDTO, completion: @escaping (VenuesDTO) -> Void)
     func getCategories(requestDTO: CategoriesRequestDTO, completion: @escaping (CategoriesDTO) -> Void)
+    func getVenuePhoto(requestDTO: VenuePhotoRequestDTO, completion: @escaping (VenuePhotosDTO) -> Void)
 }

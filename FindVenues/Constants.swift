@@ -18,6 +18,11 @@ struct Constants {
         enum Paths {
             static let search = "venues/search"
             static let categories = "venues/categories"
+            static let photos = "venues/"
+        }
+        
+        enum Photo {
+            static let dimensions = "250x250"
         }
         
         enum Client {

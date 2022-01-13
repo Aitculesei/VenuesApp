@@ -13,6 +13,7 @@ class TabBarViewController: UITabBarController {
     let venuesVC = VenuesViewController()
     let rangeVC = RangeViewController()
     let homeVC = HomeViewController()
+    var currentVenues: [VenueBO]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,7 @@ extension TabBarViewController {
                     print("R: \(r.id), \(r.name), \(r.location).")
                 }
                 VenuesViewController.receivedVenues = venuesBO
+                self.getPhotos(venuesBO)
                 self.homeVC.venues = venuesBO
             case .failure(let error):
                 print("Something is baaad with getting the venues \(error.localizedDescription)")
@@ -75,6 +77,25 @@ extension TabBarViewController {
                 self.rangeVC.queriesDataSource = categoriesBO
             case .failure(let error):
                 print("Categories got a problem \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getPhotos(_ venues: [VenueBO]) {
+        for venue in venues {
+            guard let venueID = venue.id else {
+                fatalError("Venue id found nil!")
+            }
+        
+            repo.getVenuePhotos(venueID: venueID) { result in
+                switch result {
+                case .success(let venuePhotos):
+                    for venuePhoto in venuePhotos {
+                        print("P: \(venuePhoto.id) => \(venuePhoto.photo)")
+                    }
+                case .failure(let error):
+                    print("Thrown error when we received venue photos.")
+                }
             }
         }
     }

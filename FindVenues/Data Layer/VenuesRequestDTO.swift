@@ -16,7 +16,7 @@ struct VenuesRequestDTO {
     var version: String
     
     var urlString: String {
-        "\(Constants.API.baseURL)/\(Constants.API.apiVersion)/\(Constants.API.Paths.search)"
+        "\(Constants.API.baseURL)\(Constants.API.apiVersion)/\(Constants.API.Paths.search)"
     }
     
     var parametersDicitonary: [String: String] {

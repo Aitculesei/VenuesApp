@@ -15,8 +15,6 @@ struct VenueBO: Codable {
     let phone: String?
     let lat: Double?
     let long: Double?
-//    let photo: UIImage?
-    
     
     init(venueDetailsAPIData: VenueData) {
         self.id = venueDetailsAPIData.id
@@ -26,7 +24,5 @@ struct VenueBO: Codable {
         self.phone = venueDetailsAPIData.contact?.phone
         self.lat = venueDetailsAPIData.location?.lat
         self.long = venueDetailsAPIData.location?.lng
-//        self.photo = nil
     }
-    
 }

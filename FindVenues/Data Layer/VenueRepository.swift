@@ -53,6 +53,25 @@ class VenueRepository: VenueRepositoryProtocol {
         }
     }
     
+    func getVenuePhotos(venueID: String, completion: @escaping (Result<[VenuePhotoDetailsBO], APIError>) -> Void) {
+        let currentDate = getCurrentDate()
+        let venuePhotoRequestDTO = VenuePhotoRequestDTO(venueID: venueID, version: currentDate)
+        
+        apiClient.getVenuePhoto(requestDTO: venuePhotoRequestDTO) { response in
+            if response.response.venue.photos.count > 0 {
+                let rawData = response.response.venue.photos.groups[0].items
+                completion(.success(rawData.map({ apiVenuePhotosRequestResult in
+                    VenuePhotoDetailsBO(venueID: response.response.venue.id, venueDetailsAPIData: apiVenuePhotosRequestResult)
+                })))
+            } else {
+                let rawData = response.response.venue.photos.groups
+                completion(.success(rawData.map({ _ in
+                    VenuePhotoDetailsBO(venueID: response.response.venue.id, venueDetailsAPIData: nil)
+                })))
+            }
+        }
+    }
+    
     func getCurrentDate() -> String {
         let currentDate = Date()
         let dateFormatterGet = DateFormatter()
