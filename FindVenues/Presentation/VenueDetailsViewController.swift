@@ -13,7 +13,12 @@ class VenueDetailsViewController: UIViewController {
     let venueAddress = UILabel()
     let venuePhone = UILabel()
     let venueDistance = UILabel()
-    var receivedVenue: VenueBO? {
+//    var receivedVenue: VenueBO? {
+//        didSet {
+//            self.viewDidLoad()
+//        }
+//    }
+    var receivedVenue: VenueDetailsBO? {
         didSet {
             self.viewDidLoad()
         }
@@ -22,7 +27,7 @@ class VenueDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let venue = receivedVenue else {
+        guard let venue = receivedVenue?.venueBO else {
             fatalError("Venue details are missing / Venue is missing.")
         }
         guard var location = venue.location else {

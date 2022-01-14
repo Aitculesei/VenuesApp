@@ -11,8 +11,9 @@ class VenuesViewController: UIViewController {
     static var venuesTableView = UITableView()
     let venueDetailsView = VenueDetailsViewController()
     
-    static var receivedVenues: [VenueBO] = [] {
+    static var receivedVenues: [VenueDetailsBO] = [] {
         didSet {
+            print("\(VenuesViewController.receivedVenues.count)")
             self.venuesTableView.reloadData()
         }
     }
@@ -52,15 +53,15 @@ extension VenuesViewController: UITableViewDelegate {
 
 extension VenuesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        VenuesViewController.receivedVenues.count
+        return VenuesViewController.receivedVenues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier, for: indexPath) as? UITableViewCell else {
             fatalError("Unable to determine Venues Table View Cell.")
         }
-        
-        cell.textLabel?.text = VenuesViewController.receivedVenues[indexPath.row].name
+        print("Creating the table view cell.")
+        cell.textLabel?.text = VenuesViewController.receivedVenues[indexPath.row].venueBO?.name
         cell.accessoryType = .disclosureIndicator
         
         return cell

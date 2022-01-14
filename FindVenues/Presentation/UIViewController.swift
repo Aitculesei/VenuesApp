@@ -13,14 +13,20 @@ class TabBarViewController: UITabBarController {
     let venuesVC = VenuesViewController()
     let rangeVC = RangeViewController()
     let homeVC = HomeViewController()
-    var currentVenues: [VenueBO]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createTabBarMenu()
-        updateVenues()
         getCategories()
+        updateVenues { venues in
+            if let receivedVen = self.getPhotos(venues){
+                print("receivedVenues: \(receivedVen)")
+                VenuesViewController.receivedVenues = receivedVen
+            } else {
+                VenuesViewController.receivedVenues = []
+            }
+        }
     }
 }
 
@@ -46,18 +52,17 @@ extension TabBarViewController {
         self.tabBar.backgroundColor = .white
     }
     
-    func updateVenues() {
+    func updateVenues(completion: @escaping ([VenueBO]) -> Void) {
         repo.getVenues { result in
             switch result {
             case .success(let venuesBO):
                 for r in venuesBO {
                     print("R: \(r.id), \(r.name), \(r.location).")
                 }
-                VenuesViewController.receivedVenues = venuesBO
-                self.getPhotos(venuesBO)
                 self.homeVC.venues = venuesBO
+                completion(venuesBO)
             case .failure(let error):
-                print("Something is baaad with getting the venues \(error.localizedDescription)")
+                print("Something is baaad with getting the venues \(error)")
             }
         }
     }
@@ -76,12 +81,13 @@ extension TabBarViewController {
                 }
                 self.rangeVC.queriesDataSource = categoriesBO
             case .failure(let error):
-                print("Categories got a problem \(error.localizedDescription)")
+                print("Categories got a problem \(error)")
             }
         }
     }
     
-    func getPhotos(_ venues: [VenueBO]) {
+    func getPhotos(_ venues: [VenueBO]) -> [VenueDetailsBO]? {
+        var venueDetails: [VenueDetailsBO]?
         for venue in venues {
             guard let venueID = venue.id else {
                 fatalError("Venue id found nil!")
@@ -90,14 +96,18 @@ extension TabBarViewController {
             repo.getVenuePhotos(venueID: venueID) { result in
                 switch result {
                 case .success(let venuePhotos):
-                    for venuePhoto in venuePhotos {
-                        print("P: \(venuePhoto.id) => \(venuePhoto.photo)")
+                    if venuePhotos.isEmpty {
+                        venueDetails?.append(VenueDetailsBO(venueBO: venue, photo: nil))
+                    } else {
+                        venueDetails?.append(VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!))
                     }
                 case .failure(let error):
-                    print("Thrown error when we received venue photos.")
+                    print("Thrown error when we received venue photos. \(error)")
                 }
             }
         }
+        print("VenueDetails: \(venueDetails)")
+        return venueDetails
     }
 }
 

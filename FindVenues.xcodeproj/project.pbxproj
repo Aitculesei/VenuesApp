@@ -15,6 +15,8 @@
 		396E36A72790103600090C08 /* GetVenuePhotosAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36A62790103600090C08 /* GetVenuePhotosAPI.swift */; };
 		396E36A9279020A600090C08 /* VenuePhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36A8279020A600090C08 /* VenuePhotoRequestDTO.swift */; };
 		396E36AB2790443B00090C08 /* VenuePhotoDetailsBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36AA2790443B00090C08 /* VenuePhotoDetailsBO.swift */; };
+		396E36AD279152EE00090C08 /* VenueDetailsBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36AC279152EE00090C08 /* VenueDetailsBO.swift */; };
+		396E36AF2791C92100090C08 /* MyLocationMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */; };
 		39818BCD278487F900BCDE53 /* VenueCategoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */; };
 		39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */; };
 		39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BD027848F2300BCDE53 /* CategoryBO.swift */; };
@@ -59,6 +61,8 @@
 		396E36A62790103600090C08 /* GetVenuePhotosAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenuePhotosAPI.swift; sourceTree = "<group>"; };
 		396E36A8279020A600090C08 /* VenuePhotoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePhotoRequestDTO.swift; sourceTree = "<group>"; };
 		396E36AA2790443B00090C08 /* VenuePhotoDetailsBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePhotoDetailsBO.swift; sourceTree = "<group>"; };
+		396E36AC279152EE00090C08 /* VenueDetailsBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailsBO.swift; sourceTree = "<group>"; };
+		396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationMarkerView.swift; sourceTree = "<group>"; };
 		39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategoriesAPI.swift; sourceTree = "<group>"; };
 		39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequestDTO.swift; sourceTree = "<group>"; };
 		39818BD027848F2300BCDE53 /* CategoryBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBO.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 				39AB811E2771EF610073B1FE /* VenueBO.swift */,
 				39818BD027848F2300BCDE53 /* CategoryBO.swift */,
 				396E36AA2790443B00090C08 /* VenuePhotoDetailsBO.swift */,
+				396E36AC279152EE00090C08 /* VenueDetailsBO.swift */,
 			);
 			path = "Business Layer";
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
 				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
 				39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */,
+				396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				39AB81282774C2370073B1FE /* LocationManagerClass.swift in Sources */,
 				39AC65CA27672F1000659BB3 /* UIViewController.swift in Sources */,
 				39AB81242771FDA70073B1FE /* LocalDataManager.swift in Sources */,
+				396E36AF2791C92100090C08 /* MyLocationMarkerView.swift in Sources */,
 				39AFAAB1276B3CFB006D7A98 /* HTTPClient.swift in Sources */,
 				396E36A72790103600090C08 /* GetVenuePhotosAPI.swift in Sources */,
 				39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */,
@@ -327,6 +334,7 @@
 				39818BEA2787131A00BCDE53 /* VenueDetailsViewController.swift in Sources */,
 				3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */,
 				396E36A9279020A600090C08 /* VenuePhotoRequestDTO.swift in Sources */,
+				396E36AD279152EE00090C08 /* VenueDetailsBO.swift in Sources */,
 				39AC65C627672F1000659BB3 /* AppDelegate.swift in Sources */,
 				39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */,
 				39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */,
