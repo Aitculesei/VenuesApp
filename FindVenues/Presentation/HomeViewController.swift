@@ -17,6 +17,8 @@ class HomeViewController: UIViewController {
     var venues: [VenueBO] = [] {
         didSet {
             self.pinLocationsOnMap()
+            self.mapView.reloadInputViews()
+            drawMyMap()
         }
     }
 
@@ -38,11 +40,18 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         TabBarViewController().reloadInputViews()
-        self.reloadInputViews()
+        pinLocationsOnMap()
         drawMyMap()
     }
     
     func pinLocationsOnMap() {
+        let allAnnotations = self.mapView.annotations
+        for v in venues {
+            print("VENUE \(v.name)")
+        }
+        print("ALL ANNOTATIONS RESULT: \(allAnnotations)")
+        self.mapView.removeAnnotations(allAnnotations)
+        
         for venue in venues {
             guard let lat = venue.lat, let lng = venue.long else {
                 fatalError("Venue lat or lng is missing.")
@@ -68,7 +77,7 @@ extension HomeViewController: MKMapViewDelegate {
         
         mapView.centerToLocation(self.location)
         if LocationManagerClass.isCurrentLocationON {
-            let myLocation = MyLocation(title: "ME",coordinate: self.location.coordinate)
+            let myLocation = MyLocation(title: "I am here!",coordinate: self.location.coordinate)
             mapView.addAnnotation(myLocation)
         }
         

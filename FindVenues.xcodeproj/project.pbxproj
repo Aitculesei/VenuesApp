@@ -224,10 +224,10 @@
 				39AB811C2771CBC70073B1FE /* VenuesTableViewCell.swift */,
 				391B902B278D803700F3A5C8 /* VenueOnMap.swift */,
 				391B902D278DD4D100F3A5C8 /* MyLocation.swift */,
+				396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */,
 				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
 				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
 				39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */,
-				396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

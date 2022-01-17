@@ -13,7 +13,6 @@ class VenuesViewController: UIViewController {
     
     static var receivedVenues: [VenueDetailsBO] = [] {
         didSet {
-            print("\(VenuesViewController.receivedVenues.count)")
             self.venuesTableView.reloadData()
         }
     }
@@ -31,7 +30,7 @@ class VenuesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VenuesViewController.venuesTableView.reloadData()
+//        VenuesViewController.venuesTableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,7 +59,7 @@ extension VenuesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier, for: indexPath) as? UITableViewCell else {
             fatalError("Unable to determine Venues Table View Cell.")
         }
-        print("Creating the table view cell.")
+        
         cell.textLabel?.text = VenuesViewController.receivedVenues[indexPath.row].venueBO?.name
         cell.accessoryType = .disclosureIndicator
         

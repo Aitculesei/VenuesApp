@@ -13,11 +13,6 @@ class VenueDetailsViewController: UIViewController {
     let venueAddress = UILabel()
     let venuePhone = UILabel()
     let venueDistance = UILabel()
-//    var receivedVenue: VenueBO? {
-//        didSet {
-//            self.viewDidLoad()
-//        }
-//    }
     var receivedVenue: VenueDetailsBO? {
         didSet {
             self.viewDidLoad()
@@ -36,6 +31,8 @@ class VenueDetailsViewController: UIViewController {
         guard let distance = venue.distance else {
             fatalError("Distance cannot be nil.")
         }
+        
+        uploadPhoto(link: self.receivedVenue?.photo)
         let phone: String
         if venue.phone == nil {
             phone = "<don't have a specified phone number>"
@@ -53,6 +50,22 @@ class VenueDetailsViewController: UIViewController {
         venueDistance.text = "\(NSString(format: "%.01f", convertedDistance)) km from the current location"
         
         buildVenueDetailsView()
+    }
+    
+    func uploadPhoto(link: String?) {
+        if let venuePhotoURL = link {
+            var venueImage: UIImage?
+            self.venuePhoto.downloaded(from: venuePhotoURL) { image in
+                venueImage = image
+            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+            
+            self.venuePhoto.image = venueImage
+//            }
+        } else {
+//            self.venuePhoto = <placeholder>
+        }
     }
     
     func buildVenueDetailsView() {

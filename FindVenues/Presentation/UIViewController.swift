@@ -20,12 +20,8 @@ class TabBarViewController: UITabBarController {
         createTabBarMenu()
         getCategories()
         updateVenues { venues in
-            if let receivedVen = self.getPhotos(venues){
-                print("receivedVenues: \(receivedVen)")
-                VenuesViewController.receivedVenues = receivedVen
-            } else {
-                VenuesViewController.receivedVenues = []
-            }
+            VenuesViewController.receivedVenues = []
+            self.getPhotos(venues)
         }
     }
 }
@@ -56,9 +52,9 @@ extension TabBarViewController {
         repo.getVenues { result in
             switch result {
             case .success(let venuesBO):
-                for r in venuesBO {
-                    print("R: \(r.id), \(r.name), \(r.location).")
-                }
+//                for r in venuesBO {
+//                    print("R: \(r.id), \(r.name), \(r.location).")
+//                }
                 self.homeVC.venues = venuesBO
                 completion(venuesBO)
             case .failure(let error):
@@ -73,7 +69,7 @@ extension TabBarViewController {
             case .success(let categoriesBO):
                 var categories: [String] = []
                 for category in categoriesBO {
-                    print("C: \(category.name)")
+//                    print("C: \(category.name)")
                     guard let name = category.name else {
                         fatalError("One category name is missing for some reason!")
                     }
@@ -86,8 +82,7 @@ extension TabBarViewController {
         }
     }
     
-    func getPhotos(_ venues: [VenueBO]) -> [VenueDetailsBO]? {
-        var venueDetails: [VenueDetailsBO]?
+    func getPhotos(_ venues: [VenueBO]) {
         for venue in venues {
             guard let venueID = venue.id else {
                 fatalError("Venue id found nil!")
@@ -97,17 +92,15 @@ extension TabBarViewController {
                 switch result {
                 case .success(let venuePhotos):
                     if venuePhotos.isEmpty {
-                        venueDetails?.append(VenueDetailsBO(venueBO: venue, photo: nil))
+                        VenuesViewController.receivedVenues.append(VenueDetailsBO(venueBO: venue, photo: nil))
                     } else {
-                        venueDetails?.append(VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!))
+                        VenuesViewController.receivedVenues.append(VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!))
                     }
                 case .failure(let error):
                     print("Thrown error when we received venue photos. \(error)")
                 }
             }
         }
-        print("VenueDetails: \(venueDetails)")
-        return venueDetails
     }
 }
 
