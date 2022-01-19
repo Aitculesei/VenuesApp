@@ -29,8 +29,6 @@ class VenuesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        VenuesViewController.venuesTableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {

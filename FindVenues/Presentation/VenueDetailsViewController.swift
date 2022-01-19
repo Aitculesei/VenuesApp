@@ -58,11 +58,9 @@ class VenueDetailsViewController: UIViewController {
             self.venuePhoto.downloaded(from: venuePhotoURL) { image in
                 venueImage = image
             }
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
             
             self.venuePhoto.image = venueImage
-//            }
         } else {
 //            self.venuePhoto = <placeholder>
         }
@@ -72,7 +70,8 @@ class VenueDetailsViewController: UIViewController {
         venueTitle.frame = CGRect(origin: CGPoint(x: 100, y: 65), size: CGSize(width: 400, height: 21))
         view.addSubview(venueTitle)
         
-        venuePhoto.frame = CGRect(origin: CGPoint(x: 20, y: 95), size: CGSize(width: 800, height: 400))
+        venuePhoto.frame = CGRect(origin: CGPoint(x: 20, y: 95), size: CGSize(width: 450, height: 325))
+        venuePhoto.center = CGPoint(x: 225, y: 300)
         view.addSubview(venuePhoto)
         
         venueAddress.frame = CGRect(origin: CGPoint(x: 23, y: 510), size: CGSize(width: 400, height: 21))

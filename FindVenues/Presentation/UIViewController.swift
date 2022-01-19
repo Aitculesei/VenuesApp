@@ -20,7 +20,7 @@ class TabBarViewController: UITabBarController {
         createTabBarMenu()
         getCategories()
         updateVenues { venues in
-            VenuesViewController.receivedVenues = []
+            VenuesViewController.receivedVenues.removeAll()
             self.getPhotos(venues)
         }
     }
@@ -67,14 +67,6 @@ extension TabBarViewController {
         repo.getCategories { result in
             switch result {
             case .success(let categoriesBO):
-                var categories: [String] = []
-                for category in categoriesBO {
-//                    print("C: \(category.name)")
-                    guard let name = category.name else {
-                        fatalError("One category name is missing for some reason!")
-                    }
-                    categories.append(name)
-                }
                 self.rangeVC.queriesDataSource = categoriesBO
             case .failure(let error):
                 print("Categories got a problem \(error)")

@@ -17,8 +17,6 @@ class HomeViewController: UIViewController {
     var venues: [VenueBO] = [] {
         didSet {
             self.pinLocationsOnMap()
-            self.mapView.reloadInputViews()
-            drawMyMap()
         }
     }
 
@@ -40,16 +38,18 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         TabBarViewController().reloadInputViews()
-        pinLocationsOnMap()
+//        pinLocationsOnMap()
+        self.mapView.reloadInputViews()
         drawMyMap()
     }
     
+//    func removeAllAnnotations() {
+//        let allAnnotations = self.mapView.annotations
+//        self.mapView.removeAnnotations(allAnnotations)
+//    }
+    
     func pinLocationsOnMap() {
         let allAnnotations = self.mapView.annotations
-        for v in venues {
-            print("VENUE \(v.name)")
-        }
-        print("ALL ANNOTATIONS RESULT: \(allAnnotations)")
         self.mapView.removeAnnotations(allAnnotations)
         
         for venue in venues {
@@ -76,8 +76,9 @@ extension HomeViewController: MKMapViewDelegate {
         mapView.isScrollEnabled = true
         
         mapView.centerToLocation(self.location)
+        self.pinLocationsOnMap()
         if LocationManagerClass.isCurrentLocationON {
-            let myLocation = MyLocation(title: "I am here!",coordinate: self.location.coordinate)
+            let myLocation = MyLocation(title: "I am here!", coordinate: self.location.coordinate)
             mapView.addAnnotation(myLocation)
         }
         
@@ -113,12 +114,12 @@ extension HomeViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let venueOnMap = view.annotation as? VenueOnMap else {
             return
-          }
-
-          let launchOptions = [
+        }
+        
+        let launchOptions = [
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
-          ]
-          venueOnMap.mapItem?.openInMaps(launchOptions: launchOptions)
+        ]
+        venueOnMap.mapItem?.openInMaps(launchOptions: launchOptions)
     }
 }
 

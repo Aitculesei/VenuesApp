@@ -21,13 +21,15 @@ class RangeViewController: UIViewController {
         }
     }
     var queriesCollectionView: UICollectionView?
-//    var rangeSelector : UISlider = UISlider()
-    let rangeLabel : UILabel = UILabel(frame: CGRect(x: 30, y: 330, width: 200, height: 21))
+    var rangeSelector : UISlider = UISlider()
+    let rangeLabel : UILabel = UILabel(frame: CGRect(x: 30, y: 430, width: 200, height: 21))
     let resetButton = UIButton()
     var showCurrentLocationCheckBox = SimpleCheckbox.Checkbox()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,16 +38,7 @@ class RangeViewController: UIViewController {
         createShowCurrentLocationCheckBox()
         addChecboxLabel()
         
-        self.view.addSubview(resetButton)
         createResetButton()
-    }
-    
-    @objc func didSelectQuery(_ sender: UIButton) {
-        if let query = sender.currentTitle {
-            LocalDataManager.saveData(data: query, key: Constants.LocalDataManagerSavings.queryKey)
-        }
-        TabBarViewController().reloadInputViews()
-//        delegateNecessaryVenuesFunctionality?.shouldUpdateVenues()
     }
     
     // MARK: - Create the Collection View with the queries
@@ -69,43 +62,31 @@ class RangeViewController: UIViewController {
     
     func createRangeSelector() {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.center = CGPoint(x: 50, y: 285)
+        label.center = CGPoint(x: 50, y: 385)
         label.textAlignment = .center
         label.text = "Range"
-//
-//        rangeLabel.isUserInteractionEnabled = true
-//
-//        rangeSelector.isUserInteractionEnabled = true
-//        rangeSelector = UISlider(frame: CGRect (x: 45,y: 70,width: 310,height: 31))
-//        rangeSelector.center = CGPoint(x: 185, y: 315)
-//        rangeSelector.minimumValue = 1
-//        rangeSelector.maximumValue = 10
-//        rangeSelector.isContinuous = false
-//        rangeSelector.tintColor = .blue
-//        rangeSelector.value = 1
-//        rangeLabel.text = "\(rangeSelector.value) km"
-//
-//        self.view.addSubview(label)
-//        self.view.addSubview(rangeSelector)
-//        self.view.addSubview(rangeLabel)
         
-        let rangeSlider = RangeUISlider()
-        rangeSlider.frame = CGRect(origin: CGPoint(x: 185, y: 315), size: CGSize(width: 100,height: 50))
-//        rangeSlider.center = CGPoint(x: 185, y: 315)
-        rangeSlider.isUserInteractionEnabled = true
-        rangeSlider.translatesAutoresizingMaskIntoConstraints = false
-        rangeSlider.delegate = self
-        rangeSlider.barHeight = 20
-        rangeSlider.barCorners = 10
-        rangeSlider.leftKnobColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
-        rangeSlider.leftKnobWidth = 40
-        rangeSlider.leftKnobHeight = 40
-        rangeSlider.leftKnobCorners = 20
-        rangeSlider.rightKnobColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
-        rangeSlider.rightKnobWidth = 40
-        rangeSlider.rightKnobHeight = 40
-        rangeSlider.rightKnobCorners = 20
-        self.view.addSubview(rangeSlider)
+        rangeLabel.isUserInteractionEnabled = true
+        
+        rangeSelector.isUserInteractionEnabled = true
+        rangeSelector = UISlider(frame: CGRect (x: 45, y: 370, width: 310, height: 31))
+        rangeSelector.center = CGPoint(x: 185, y: 415)
+        rangeSelector.minimumValue = 1
+        rangeSelector.maximumValue = 5
+        rangeSelector.isContinuous = false
+        rangeSelector.tintColor = .blue
+//        if let range = LocationManagerClass.range {
+//            rangeSelector.value = range
+//        } else {
+//            rangeSelector.value = 1.0
+//        }
+        rangeSelector.value = 1.0
+        rangeSelector.addTarget(self, action: #selector(updateSelectedRangeLabel(_:)), for: .valueChanged)
+        rangeLabel.text = "\(rangeSelector.value) km"
+
+        self.view.addSubview(label)
+        self.view.addSubview(rangeSelector)
+        self.view.addSubview(rangeLabel)
     }
     
     // MARK: - Add the checkbox that is responsible for either showing the current location on map or not
@@ -114,18 +95,14 @@ class RangeViewController: UIViewController {
         showCurrentLocationCheckBox.checkmarkStyle = .tick
         showCurrentLocationCheckBox.borderStyle = .square
         showCurrentLocationCheckBox.emoji = "✅"
-        showCurrentLocationCheckBox.frame = CGRect(x: 40, y: 370, width: 35, height: 35)
+        showCurrentLocationCheckBox.frame = CGRect(x: 33, y: 465, width: 35, height: 35)
         showCurrentLocationCheckBox.addTarget(self, action: #selector(checkBoxValueDidChange(_:)), for: .valueChanged)
         
         self.view.addSubview(showCurrentLocationCheckBox)
     }
     
-    @objc func checkBoxValueDidChange(_ sender: SimpleCheckbox.Checkbox) {
-        LocationManagerClass.isCurrentLocationON = sender.isChecked
-    }
-    
     func addChecboxLabel() {
-        let checkBoxLabel = UILabel(frame: CGRect(x: 75, y: 370, width: 275, height: 35))
+        let checkBoxLabel = UILabel(frame: CGRect(x: 63, y: 465, width: 275, height: 35))
         
         checkBoxLabel.textAlignment = .center
         checkBoxLabel.text = "Show current location on map"
@@ -136,12 +113,13 @@ class RangeViewController: UIViewController {
     // MARK: - A RESET button responsible for getting all the values to a default state
     
     func createResetButton() {
-        resetButton.translatesAutoresizingMaskIntoConstraints = false
-        resetButton.setTitle("Reset", for: UIControl.State.normal)
-        resetButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        resetButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        resetButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        resetButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 45).isActive = true
+        resetButton.frame = CGRect(origin: CGPoint(x: 180, y: 775), size: CGSize(width: 70, height: 30))
+        resetButton.setTitle("Reset", for: .normal)
+        resetButton.setTitle("Release", for: .highlighted)
+        resetButton.addTarget(self, action: #selector(didTapReset(_:)), for: .touchUpInside)
+        resetButton.backgroundColor = .lightGray
+        
+        self.view.addSubview(resetButton)
     }
 }
 
@@ -217,15 +195,11 @@ extension RangeViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected query: \(queriesDataSource[indexPath.row])")
-    }
 }
 
 extension RangeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print(queriesDataSource[indexPath.row])
+        print("Selected query: \(queriesDataSource[indexPath.row])")
     }
 }
 
@@ -238,9 +212,36 @@ extension RangeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension RangeViewController: RangeUISliderDelegate {
-    func rangeChangeFinished(minValueSelected: CGFloat, maxValueSelected: CGFloat, slider: RangeUISlider) {
-        print("payback value: \(maxValueSelected)")
-        rangeLabel.text = "\(maxValueSelected) km"
+// MARK: - Objective C functions. Targets for the UI elements.
+
+extension RangeViewController {
+
+    // A new query was selected
+    @objc func didSelectQuery(_ sender: UIButton) {
+        if let query = sender.currentTitle {
+            LocalDataManager.saveData(data: query, key: Constants.LocalDataManagerSavings.queryKey)
+        }
+        TabBarViewController().reloadInputViews()
+//        delegateNecessaryVenuesFunctionality?.shouldUpdateVenues()
+    }
+    
+    // Update the value of the UISlider's label
+    @objc func updateSelectedRangeLabel(_ sender: UISlider) {
+        rangeLabel.text = "\(rangeSelector.value) km"
+        LocationManagerClass.range = rangeSelector.value * 1000.0
+//        LocalDataManager.saveData(data: rangeSelector.value, key: "rangeValue")
+    }
+    
+    // Change the state of the checkbox
+    @objc func checkBoxValueDidChange(_ sender: SimpleCheckbox.Checkbox) {
+        LocationManagerClass.isCurrentLocationON = sender.isChecked
+    }
+    
+    // Reset button
+    @objc func didTapReset(_ sender: UIButton!) {
+        showCurrentLocationCheckBox.isChecked = false
+        LocationManagerClass.isCurrentLocationON = showCurrentLocationCheckBox.isChecked
+        rangeSelector.value = 1.0
+        rangeLabel.text = "\(rangeSelector.value)"
     }
 }

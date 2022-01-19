@@ -25,9 +25,10 @@ struct VenuesRequestDTO {
         return parameters
     }
 
-    init(query: String, lat: String, lng: String, version: String) {
+    init(query: String, lat: String, lng: String, version: String, radius: String) {
         self.query = query
         self.ll = "\(lat),\(lng)"
         self.version = version
+        self.radius = radius
     }
 }
