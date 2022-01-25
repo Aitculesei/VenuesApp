@@ -111,7 +111,7 @@ extension RangeViewController: UICollectionViewDataSource {
             categoryIcon = categoryIcon?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
             
             button.setImage(categoryIcon, for: .normal)
-            button.setTitle("\(self.queriesDataSource[indexPath.row].name)", for: .normal)
+            button.setTitle("\(self.queriesDataSource[indexPath.row].name!)", for: .normal)
             
             categoryLabel.snp.makeConstraints { make in
                 make.centerX.bottom.equalToSuperview()

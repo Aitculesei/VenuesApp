@@ -9,7 +9,7 @@ import Foundation
 
 extension VenuesViewController {
     func setupConstraints() {
-        VenuesViewController.venuesTableView.snp.makeConstraints { make in
+        venuesTableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
     }

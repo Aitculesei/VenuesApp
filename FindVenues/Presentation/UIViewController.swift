@@ -20,7 +20,6 @@ class TabBarViewController: UITabBarController {
         createTabBarMenu()
         getCategories()
         updateVenues { venues in
-            VenuesViewController.receivedVenues.removeAll()
             self.getPhotos(venues)
         }
     }
@@ -84,9 +83,9 @@ extension TabBarViewController {
                 switch result {
                 case .success(let venuePhotos):
                     if venuePhotos.isEmpty {
-                        VenuesViewController.receivedVenues.append(VenueDetailsBO(venueBO: venue, photo: nil))
+                        self.venuesVC.receivedVenues.append(VenueDetailsBO(venueBO: venue, photo: nil))
                     } else {
-                        VenuesViewController.receivedVenues.append(VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!))
+                        self.venuesVC.receivedVenues.append(VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!))
                     }
                 case .failure(let error):
                     print("Thrown error when we received venue photos. \(error)")

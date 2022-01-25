@@ -18,20 +18,14 @@ class APIClient: APIClientProtocol {
     var httpClient: HTTPClientProtocol = HTTPClient()
 
     func getVenues(requestDTO: VenuesRequestDTO, completion: @escaping (VenuesDTO) -> Void) {
-//        httpClient.get(class: VenuesDTO.self, url: requestDTO.urlString, parameters: requestDTO.parametersDicitonary, headers: nil) { result in
-//            switch result {
-//            case .success(let receivedVenues):
-//                completion(receivedVenues)
-//            case .failure(let error):
-//                print("APIClient: HTTPClient Error for venues: \(error.localizedDescription)")
-//            }
-//        }
-        httpClient.getFromLocalFile(class: VenuesDTO.self, file: "FoodVenues") { result in
-            switch result {
-            case .success(let receivedVenues):
-                completion(receivedVenues)
-            case .failure(let error):
-                print("APIClient: HTTPClient Error for venues: \(error.localizedDescription)")
+        if let query = LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.queryKey, type: String.self) {
+            httpClient.getFromLocalFile(class: VenuesDTO.self, file: query) { result in
+                switch result {
+                case .success(let receivedVenues):
+                    completion(receivedVenues)
+                case .failure(let error):
+                    print("APIClient: HTTPClient Error for venues: \(error.localizedDescription)")
+                }
             }
         }
     }

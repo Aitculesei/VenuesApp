@@ -21,7 +21,7 @@
 		396E36B727993C8F00090C08 /* RangeViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36B627993C8F00090C08 /* RangeViewController+Constraints.swift */; };
 		396E36BA2799461200090C08 /* RangeViewController+collectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36B92799461200090C08 /* RangeViewController+collectionView.swift */; };
 		396E36BC279FE00E00090C08 /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36BB279FE00E00090C08 /* Categories.json */; };
-		396E36BE279FEF0000090C08 /* FoodVenues.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36BD279FEF0000090C08 /* FoodVenues.json */; };
+		396E36BE279FEF0000090C08 /* Food.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36BD279FEF0000090C08 /* Food.json */; };
 		396E36C0279FFFE700090C08 /* HomeViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36BF279FFFE700090C08 /* HomeViewController+Constraints.swift */; };
 		396E36C227A0034B00090C08 /* VenueDetailsViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36C127A0034B00090C08 /* VenueDetailsViewController+Constraints.swift */; };
 		396E36C427A0051A00090C08 /* 589b75ac18fd2b5565de258b.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36C327A0051A00090C08 /* 589b75ac18fd2b5565de258b.json */; };
@@ -32,6 +32,7 @@
 		396E36D027A006AA00090C08 /* 4d977138744f37045b62d557.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36CF27A006AA00090C08 /* 4d977138744f37045b62d557.json */; };
 		396E36D227A019EF00090C08 /* VenueDetailsViewController+collectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36D127A019EF00090C08 /* VenueDetailsViewController+collectionView.swift */; };
 		396E36D427A0288500090C08 /* VenuesViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36D327A0288500090C08 /* VenuesViewController+Constraints.swift */; };
+		396E36D627A0307100090C08 /* Residence.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36D527A0307100090C08 /* Residence.json */; };
 		39818BCD278487F900BCDE53 /* VenueCategoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */; };
 		39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */; };
 		39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BD027848F2300BCDE53 /* CategoryBO.swift */; };
@@ -81,7 +82,7 @@
 		396E36B627993C8F00090C08 /* RangeViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeViewController+Constraints.swift"; sourceTree = "<group>"; };
 		396E36B92799461200090C08 /* RangeViewController+collectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeViewController+collectionView.swift"; sourceTree = "<group>"; };
 		396E36BB279FE00E00090C08 /* Categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
-		396E36BD279FEF0000090C08 /* FoodVenues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FoodVenues.json; sourceTree = "<group>"; };
+		396E36BD279FEF0000090C08 /* Food.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Food.json; sourceTree = "<group>"; };
 		396E36BF279FFFE700090C08 /* HomeViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Constraints.swift"; sourceTree = "<group>"; };
 		396E36C127A0034B00090C08 /* VenueDetailsViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VenueDetailsViewController+Constraints.swift"; sourceTree = "<group>"; };
 		396E36C327A0051A00090C08 /* 589b75ac18fd2b5565de258b.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 589b75ac18fd2b5565de258b.json; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		396E36CF27A006AA00090C08 /* 4d977138744f37045b62d557.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 4d977138744f37045b62d557.json; sourceTree = "<group>"; };
 		396E36D127A019EF00090C08 /* VenueDetailsViewController+collectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VenueDetailsViewController+collectionView.swift"; sourceTree = "<group>"; };
 		396E36D327A0288500090C08 /* VenuesViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VenuesViewController+Constraints.swift"; sourceTree = "<group>"; };
+		396E36D527A0307100090C08 /* Residence.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Residence.json; sourceTree = "<group>"; };
 		39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategoriesAPI.swift; sourceTree = "<group>"; };
 		39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequestDTO.swift; sourceTree = "<group>"; };
 		39818BD027848F2300BCDE53 /* CategoryBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBO.swift; sourceTree = "<group>"; };
@@ -168,7 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				396E36BB279FE00E00090C08 /* Categories.json */,
-				396E36BD279FEF0000090C08 /* FoodVenues.json */,
+				396E36BD279FEF0000090C08 /* Food.json */,
+				396E36D527A0307100090C08 /* Residence.json */,
 				396E36C627A0054900090C08 /* Photo */,
 			);
 			path = MockData;
@@ -375,8 +378,9 @@
 				39AC65CF27672F1300659BB3 /* Assets.xcassets in Resources */,
 				39AC65DC276733D300659BB3 /* HomeViewController.xib in Resources */,
 				396E36C427A0051A00090C08 /* 589b75ac18fd2b5565de258b.json in Resources */,
+				396E36D627A0307100090C08 /* Residence.json in Resources */,
 				396E36D027A006AA00090C08 /* 4d977138744f37045b62d557.json in Resources */,
-				396E36BE279FEF0000090C08 /* FoodVenues.json in Resources */,
+				396E36BE279FEF0000090C08 /* Food.json in Resources */,
 				39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */,
 				396E36CC27A0065600090C08 /* 5f4116c2459e75490f0d4450.json in Resources */,
 				396E36C827A005E900090C08 /* 518cd853498e9692cce275f0.json in Resources */,
