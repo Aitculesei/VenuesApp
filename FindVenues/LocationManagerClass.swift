@@ -13,7 +13,7 @@ class LocationManagerClass: NSObject, CLLocationManagerDelegate {
     let location: CLLocation
     static var isCurrentLocationON: Bool = false
     static var locationManager: CLLocationManager!
-    static var range: Float?
+    
     
     static let sharedLocation: CLLocation? = {
         locationManager = CLLocationManager()

@@ -17,6 +17,21 @@
 		396E36AB2790443B00090C08 /* VenuePhotoDetailsBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36AA2790443B00090C08 /* VenuePhotoDetailsBO.swift */; };
 		396E36AD279152EE00090C08 /* VenueDetailsBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36AC279152EE00090C08 /* VenueDetailsBO.swift */; };
 		396E36AF2791C92100090C08 /* MyLocationMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */; };
+		396E36B22797F7E500090C08 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 396E36B12797F7E500090C08 /* SnapKit */; };
+		396E36B727993C8F00090C08 /* RangeViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36B627993C8F00090C08 /* RangeViewController+Constraints.swift */; };
+		396E36BA2799461200090C08 /* RangeViewController+collectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36B92799461200090C08 /* RangeViewController+collectionView.swift */; };
+		396E36BC279FE00E00090C08 /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36BB279FE00E00090C08 /* Categories.json */; };
+		396E36BE279FEF0000090C08 /* FoodVenues.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36BD279FEF0000090C08 /* FoodVenues.json */; };
+		396E36C0279FFFE700090C08 /* HomeViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36BF279FFFE700090C08 /* HomeViewController+Constraints.swift */; };
+		396E36C227A0034B00090C08 /* VenueDetailsViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36C127A0034B00090C08 /* VenueDetailsViewController+Constraints.swift */; };
+		396E36C427A0051A00090C08 /* 589b75ac18fd2b5565de258b.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36C327A0051A00090C08 /* 589b75ac18fd2b5565de258b.json */; };
+		396E36C827A005E900090C08 /* 518cd853498e9692cce275f0.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36C727A005E900090C08 /* 518cd853498e9692cce275f0.json */; };
+		396E36CA27A0062200090C08 /* 4f97d63ce4b06330b575433c.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36C927A0062200090C08 /* 4f97d63ce4b06330b575433c.json */; };
+		396E36CC27A0065600090C08 /* 5f4116c2459e75490f0d4450.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36CB27A0065600090C08 /* 5f4116c2459e75490f0d4450.json */; };
+		396E36CE27A0067A00090C08 /* 4e745a8bb993a71aa331748a.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36CD27A0067A00090C08 /* 4e745a8bb993a71aa331748a.json */; };
+		396E36D027A006AA00090C08 /* 4d977138744f37045b62d557.json in Resources */ = {isa = PBXBuildFile; fileRef = 396E36CF27A006AA00090C08 /* 4d977138744f37045b62d557.json */; };
+		396E36D227A019EF00090C08 /* VenueDetailsViewController+collectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36D127A019EF00090C08 /* VenueDetailsViewController+collectionView.swift */; };
+		396E36D427A0288500090C08 /* VenuesViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396E36D327A0288500090C08 /* VenuesViewController+Constraints.swift */; };
 		39818BCD278487F900BCDE53 /* VenueCategoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */; };
 		39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */; };
 		39818BD127848F2300BCDE53 /* CategoryBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BD027848F2300BCDE53 /* CategoryBO.swift */; };
@@ -63,6 +78,20 @@
 		396E36AA2790443B00090C08 /* VenuePhotoDetailsBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePhotoDetailsBO.swift; sourceTree = "<group>"; };
 		396E36AC279152EE00090C08 /* VenueDetailsBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailsBO.swift; sourceTree = "<group>"; };
 		396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationMarkerView.swift; sourceTree = "<group>"; };
+		396E36B627993C8F00090C08 /* RangeViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeViewController+Constraints.swift"; sourceTree = "<group>"; };
+		396E36B92799461200090C08 /* RangeViewController+collectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeViewController+collectionView.swift"; sourceTree = "<group>"; };
+		396E36BB279FE00E00090C08 /* Categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
+		396E36BD279FEF0000090C08 /* FoodVenues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FoodVenues.json; sourceTree = "<group>"; };
+		396E36BF279FFFE700090C08 /* HomeViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Constraints.swift"; sourceTree = "<group>"; };
+		396E36C127A0034B00090C08 /* VenueDetailsViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VenueDetailsViewController+Constraints.swift"; sourceTree = "<group>"; };
+		396E36C327A0051A00090C08 /* 589b75ac18fd2b5565de258b.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 589b75ac18fd2b5565de258b.json; sourceTree = "<group>"; };
+		396E36C727A005E900090C08 /* 518cd853498e9692cce275f0.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 518cd853498e9692cce275f0.json; sourceTree = "<group>"; };
+		396E36C927A0062200090C08 /* 4f97d63ce4b06330b575433c.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 4f97d63ce4b06330b575433c.json; sourceTree = "<group>"; };
+		396E36CB27A0065600090C08 /* 5f4116c2459e75490f0d4450.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 5f4116c2459e75490f0d4450.json; sourceTree = "<group>"; };
+		396E36CD27A0067A00090C08 /* 4e745a8bb993a71aa331748a.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 4e745a8bb993a71aa331748a.json; sourceTree = "<group>"; };
+		396E36CF27A006AA00090C08 /* 4d977138744f37045b62d557.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 4d977138744f37045b62d557.json; sourceTree = "<group>"; };
+		396E36D127A019EF00090C08 /* VenueDetailsViewController+collectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VenueDetailsViewController+collectionView.swift"; sourceTree = "<group>"; };
+		396E36D327A0288500090C08 /* VenuesViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VenuesViewController+Constraints.swift"; sourceTree = "<group>"; };
 		39818BCC278487F900BCDE53 /* VenueCategoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategoriesAPI.swift; sourceTree = "<group>"; };
 		39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequestDTO.swift; sourceTree = "<group>"; };
 		39818BD027848F2300BCDE53 /* CategoryBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBO.swift; sourceTree = "<group>"; };
@@ -103,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396E36B22797F7E500090C08 /* SnapKit in Frameworks */,
 				39818BE42785C0DC00BCDE53 /* SimpleCheckbox in Frameworks */,
 				39818BE72785C27500BCDE53 /* RangeUISlider in Frameworks */,
 			);
@@ -114,10 +144,47 @@
 		391B9028278D6FA400F3A5C8 /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
+				396E36B827993C9600090C08 /* Constraints */,
 				391B9026278C03EB00F3A5C8 /* UIImageView+downloaded.swift */,
 				391B9029278D6FC800F3A5C8 /* MKMapView+centerToLocation.swift */,
+				396E36B92799461200090C08 /* RangeViewController+collectionView.swift */,
+				396E36D127A019EF00090C08 /* VenueDetailsViewController+collectionView.swift */,
 			);
 			path = Extenstions;
+			sourceTree = "<group>";
+		};
+		396E36B827993C9600090C08 /* Constraints */ = {
+			isa = PBXGroup;
+			children = (
+				396E36B627993C8F00090C08 /* RangeViewController+Constraints.swift */,
+				396E36BF279FFFE700090C08 /* HomeViewController+Constraints.swift */,
+				396E36C127A0034B00090C08 /* VenueDetailsViewController+Constraints.swift */,
+				396E36D327A0288500090C08 /* VenuesViewController+Constraints.swift */,
+			);
+			path = Constraints;
+			sourceTree = "<group>";
+		};
+		396E36C527A0053400090C08 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				396E36BB279FE00E00090C08 /* Categories.json */,
+				396E36BD279FEF0000090C08 /* FoodVenues.json */,
+				396E36C627A0054900090C08 /* Photo */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
+		396E36C627A0054900090C08 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				396E36C327A0051A00090C08 /* 589b75ac18fd2b5565de258b.json */,
+				396E36C727A005E900090C08 /* 518cd853498e9692cce275f0.json */,
+				396E36C927A0062200090C08 /* 4f97d63ce4b06330b575433c.json */,
+				396E36CB27A0065600090C08 /* 5f4116c2459e75490f0d4450.json */,
+				396E36CD27A0067A00090C08 /* 4e745a8bb993a71aa331748a.json */,
+				396E36CF27A006AA00090C08 /* 4d977138744f37045b62d557.json */,
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 		39AB81202771EF890073B1FE /* Business Layer */ = {
@@ -161,6 +228,7 @@
 				39AFAABB276B5779006D7A98 /* Presentation */,
 				391B9028278D6FA400F3A5C8 /* Extenstions */,
 				39AC65EA27678AE600659BB3 /* APICalls */,
+				396E36C527A0053400090C08 /* MockData */,
 				39AC65CE27672F1300659BB3 /* Assets.xcassets */,
 				39AC65D027672F1300659BB3 /* LaunchScreen.storyboard */,
 				39AC65D327672F1300659BB3 /* Info.plist */,
@@ -251,6 +319,7 @@
 			packageProductDependencies = (
 				39818BE32785C0DC00BCDE53 /* SimpleCheckbox */,
 				39818BE62785C27500BCDE53 /* RangeUISlider */,
+				396E36B12797F7E500090C08 /* SnapKit */,
 			);
 			productName = FindVenues;
 			productReference = 39AC65C227672F1000659BB3 /* FindVenues.app */;
@@ -283,6 +352,7 @@
 			packageReferences = (
 				39818BE22785C0DC00BCDE53 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */,
 				39818BE52785C27500BCDE53 /* XCRemoteSwiftPackageReference "RangeUISlider" */,
+				396E36B02797F7E500090C08 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 39AC65C327672F1000659BB3 /* Products */;
 			projectDirPath = "";
@@ -298,12 +368,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396E36BC279FE00E00090C08 /* Categories.json in Resources */,
+				396E36CE27A0067A00090C08 /* 4e745a8bb993a71aa331748a.json in Resources */,
 				39AC65E02767367E00659BB3 /* RangeViewController.xib in Resources */,
 				39AC65D227672F1300659BB3 /* LaunchScreen.storyboard in Resources */,
 				39AC65CF27672F1300659BB3 /* Assets.xcassets in Resources */,
 				39AC65DC276733D300659BB3 /* HomeViewController.xib in Resources */,
+				396E36C427A0051A00090C08 /* 589b75ac18fd2b5565de258b.json in Resources */,
+				396E36D027A006AA00090C08 /* 4d977138744f37045b62d557.json in Resources */,
+				396E36BE279FEF0000090C08 /* FoodVenues.json in Resources */,
 				39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */,
+				396E36CC27A0065600090C08 /* 5f4116c2459e75490f0d4450.json in Resources */,
+				396E36C827A005E900090C08 /* 518cd853498e9692cce275f0.json in Resources */,
 				39818BEB2787131A00BCDE53 /* VenueDetailsViewController.xib in Resources */,
+				396E36CA27A0062200090C08 /* 4f97d63ce4b06330b575433c.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,12 +392,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396E36C0279FFFE700090C08 /* HomeViewController+Constraints.swift in Sources */,
 				39AC65DF2767367E00659BB3 /* RangeViewController.swift in Sources */,
 				39AB811D2771CBC70073B1FE /* VenuesTableViewCell.swift in Sources */,
 				391B902E278DD4D100F3A5C8 /* MyLocation.swift in Sources */,
 				39AFAAB7276B5749006D7A98 /* APIClient.swift in Sources */,
+				396E36BA2799461200090C08 /* RangeViewController+collectionView.swift in Sources */,
 				39AB81222771F0420073B1FE /* VenuesRequestDTO.swift in Sources */,
 				39AFAAB9276B5754006D7A98 /* APIClientProtocol.swift in Sources */,
+				396E36C227A0034B00090C08 /* VenueDetailsViewController+Constraints.swift in Sources */,
 				39AFAAB4276B3D65006D7A98 /* HTTPClientProtocol.swift in Sources */,
 				39818BCD278487F900BCDE53 /* VenueCategoriesAPI.swift in Sources */,
 				39AB811F2771EF610073B1FE /* VenueBO.swift in Sources */,
@@ -339,8 +420,10 @@
 				39818BCF27848D9500BCDE53 /* CategoriesRequestDTO.swift in Sources */,
 				39AC65C827672F1000659BB3 /* SceneDelegate.swift in Sources */,
 				3997E3702768C64A00170EA4 /* Constants.swift in Sources */,
+				396E36D227A019EF00090C08 /* VenueDetailsViewController+collectionView.swift in Sources */,
 				39AB81262772F6040073B1FE /* QueriesCollectionViewCell.swift in Sources */,
 				391B9027278C03EB00F3A5C8 /* UIImageView+downloaded.swift in Sources */,
+				396E36D427A0288500090C08 /* VenuesViewController+Constraints.swift in Sources */,
 				396E36AB2790443B00090C08 /* VenuePhotoDetailsBO.swift in Sources */,
 				39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */,
 				390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */,
@@ -349,6 +432,7 @@
 				391B902C278D803700F3A5C8 /* VenueOnMap.swift in Sources */,
 				39AFAABD276B637A006D7A98 /* SettingsPlistParser.swift in Sources */,
 				39AC65EC27678B0D00659BB3 /* VenueRepository.swift in Sources */,
+				396E36B727993C8F00090C08 /* RangeViewController+Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +646,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		396E36B02797F7E500090C08 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		39818BE22785C0DC00BCDE53 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/BeauNouvelle/SimpleCheckbox";
@@ -581,6 +673,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		396E36B12797F7E500090C08 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 396E36B02797F7E500090C08 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		39818BE32785C0DC00BCDE53 /* SimpleCheckbox */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 39818BE22785C0DC00BCDE53 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */;

@@ -9,4 +9,5 @@ import Foundation
 
 protocol HTTPClientProtocol {
     func get<T: Codable>(class: T.Type, url: String, parameters: [AnyHashable: String], headers: [AnyHashable: String]?, completion: @escaping (Result<T, HTTPErrors>) -> Void)
+    func getFromLocalFile<T: Codable>(class: T.Type, file: String, completion: @escaping (Result<T, HTTPErrors>) -> Void)
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 class VenueDetailsViewController: UIViewController {
+    var venueDetailsCollectionView: UICollectionView!
+    let venueDetailsView = UIView()
     let venueTitle = UILabel()
     let venuePhoto = UIImageView()
     let venueAddress = UILabel()
@@ -52,35 +54,58 @@ class VenueDetailsViewController: UIViewController {
         buildVenueDetailsView()
     }
     
+    func createCollectionView() {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 60, height: 60)
+        
+        venueDetailsCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        venueDetailsCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Constants.CollectionViewCell.venueDetailsViewIdentifier)
+        venueDetailsCollectionView.backgroundColor = .white
+        
+        venueDetailsCollectionView.dataSource = self
+        venueDetailsCollectionView.delegate = self
+        
+        self.view.addSubview(venueDetailsCollectionView)
+    }
+    
     func uploadPhoto(link: String?) {
         if let venuePhotoURL = link {
             var venueImage: UIImage?
-            self.venuePhoto.downloaded(from: venuePhotoURL) { image in
+            venuePhoto.downloaded(from: venuePhotoURL) { image in
                 venueImage = image
             }
             venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+            venuePhoto.image = venueImage
             
-            self.venuePhoto.image = venueImage
+            let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(_:)))
+            venuePhoto.addGestureRecognizer(tapGR)
+            venuePhoto.isUserInteractionEnabled = true
         } else {
 //            self.venuePhoto = <placeholder>
         }
     }
     
     func buildVenueDetailsView() {
-        venueTitle.frame = CGRect(origin: CGPoint(x: 100, y: 65), size: CGSize(width: 400, height: 21))
-        view.addSubview(venueTitle)
+        createCollectionView()
         
-        venuePhoto.frame = CGRect(origin: CGPoint(x: 20, y: 95), size: CGSize(width: 450, height: 325))
-        venuePhoto.center = CGPoint(x: 225, y: 300)
-        view.addSubview(venuePhoto)
-        
-        venueAddress.frame = CGRect(origin: CGPoint(x: 23, y: 510), size: CGSize(width: 400, height: 21))
-        view.addSubview(venueAddress)
-        
-        venuePhone.frame = CGRect(origin: CGPoint(x: 23, y: 540), size: CGSize(width: 400, height: 21))
-        view.addSubview(venuePhone)
-        
-        venueDistance.frame = CGRect(origin: CGPoint(x: 23, y: 570), size: CGSize(width: 400, height: 21))
-        view.addSubview(venueDistance)
+        venueDetailsView.addSubview(venueTitle)
+        venueDetailsView.addSubview(venuePhoto)
+        venueDetailsView.addSubview(venueAddress)
+        venueDetailsView.addSubview(venuePhone)
+        venueDetailsView.addSubview(venueDistance)
+    }
+}
+
+// MARK: - Objective C functions
+
+extension VenueDetailsViewController {
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            print("Image tapped")
+            sender.view?.snp.makeConstraints({ make in
+                make.width.equalToSuperview()
+            })
+        }
     }
 }

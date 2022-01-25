@@ -52,9 +52,9 @@ extension TabBarViewController {
         repo.getVenues { result in
             switch result {
             case .success(let venuesBO):
-//                for r in venuesBO {
-//                    print("R: \(r.id), \(r.name), \(r.location).")
-//                }
+                for r in venuesBO {
+                    print("R: \(r.id), \(r.name), \(r.location).")
+                }
                 self.homeVC.venues = venuesBO
                 completion(venuesBO)
             case .failure(let error):

@@ -14,6 +14,20 @@ enum HTTPErrors: Error {
 }
 
 class HTTPClient: HTTPClientProtocol {
+    func getFromLocalFile<T: Codable>(class: T.Type, file: String, completion: @escaping (Result<T, HTTPErrors>) -> Void) {
+        do {
+            if let bundlePath = Bundle.main.path(forResource: file, ofType: "json"), let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
+                let decoder = JSONDecoder()
+                let decodedData = try decoder.decode(T.self, from: jsonData)
+                
+                completion(.success(decodedData))
+            }
+        } catch {
+            print("HTTPClient: Error in the getFromLocalFile -> \(error)")
+            completion(.failure(.badRequest))
+        }
+    }
+    
     func get<T: Codable>(class: T.Type, url: String, parameters: [AnyHashable : String], headers: [AnyHashable : String]?, completion: @escaping (Result<T, HTTPErrors>) -> Void) {
         guard var urlComps = URLComponents(string: url) else {
             completion(.failure(.badRequest))
@@ -64,7 +78,7 @@ class HTTPClient: HTTPClientProtocol {
             guard let data = data, error == nil else {
                 print("Something went wrong in creating a data task.")
                 DispatchQueue.main.async {
-                    completion(.failure(.noData))
+                    completion(.failure(.badRequest))
                 }
                 return
             }
@@ -82,6 +96,9 @@ class HTTPClient: HTTPClientProtocol {
             }
             
             guard let json = dataResults else {
+                DispatchQueue.main.async {
+                    completion(.failure(.noData))
+                }
                 return
             }
             

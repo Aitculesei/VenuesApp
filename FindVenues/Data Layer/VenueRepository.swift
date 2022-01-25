@@ -21,9 +21,9 @@ class VenueRepository: VenueRepositoryProtocol {
         let version = getCurrentDate()
         let requestDTO: VenuesRequestDTO
         if let query = LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.queryKey, type: String.self){
-            requestDTO = VenuesRequestDTO(query: query, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version, radius: "\(LocationManagerClass.range ?? 2000)")
+            requestDTO = VenuesRequestDTO(query: query, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version, radius: "\((LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.rangeValueKey, type: Float.self) ?? 2) * 1000.0)")
         } else {
-            requestDTO = VenuesRequestDTO(query: Constants.VenuesRequest.defaultQuery, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version, radius: "\(LocationManagerClass.range ?? 2000)")
+            requestDTO = VenuesRequestDTO(query: Constants.VenuesRequest.defaultQuery, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version, radius: "\((LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.rangeValueKey, type: Float.self) ?? 2) * 1000.0)")
             LocalDataManager.resetData()
         }
 
@@ -57,7 +57,7 @@ class VenueRepository: VenueRepositoryProtocol {
         let currentDate = getCurrentDate()
         let venuePhotoRequestDTO = VenuePhotoRequestDTO(venueID: venueID, version: currentDate)
         
-        apiClient.getVenuePhoto(requestDTO: venuePhotoRequestDTO) { response in
+        apiClient.getVenuePhoto(id: venueID, requestDTO: venuePhotoRequestDTO) { response in
             if response.response.venue.photos.count > 0 {
                 let rawData = response.response.venue.photos.groups[0].items
                 completion(.success(rawData.map({ apiVenuePhotosRequestResult in

@@ -38,15 +38,10 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         TabBarViewController().reloadInputViews()
-//        pinLocationsOnMap()
         self.mapView.reloadInputViews()
         drawMyMap()
+        setupConstraints()
     }
-    
-//    func removeAllAnnotations() {
-//        let allAnnotations = self.mapView.annotations
-//        self.mapView.removeAnnotations(allAnnotations)
-//    }
     
     func pinLocationsOnMap() {
         let allAnnotations = self.mapView.annotations
