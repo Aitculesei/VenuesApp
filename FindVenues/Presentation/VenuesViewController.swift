@@ -44,7 +44,7 @@ class VenuesViewController: UIViewController {
 extension VenuesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.venueDetailsView.receivedVenue = receivedVenues[indexPath.row]
-        show(venueDetailsView, sender: self)
+        self.show(self.venueDetailsView, sender: self)
     }
 }
 

@@ -17,13 +17,23 @@ class VenueDetailsViewController: UIViewController {
     let venueDistance = UILabel()
     var receivedVenue: VenueDetailsBO? {
         didSet {
-            self.viewDidLoad()
+            self.populateWithData()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        buildVenueDetailsView()
+    }
+    
+    func populateWithData() {
         guard let venue = receivedVenue?.venueBO else {
             fatalError("Venue details are missing / Venue is missing.")
         }
@@ -50,8 +60,6 @@ class VenueDetailsViewController: UIViewController {
         venueAddress.text = "📍 \(location)"
         venuePhone.text = "☎️ \(phone)"
         venueDistance.text = "\(NSString(format: "%.01f", convertedDistance)) km from the current location"
-        
-        buildVenueDetailsView()
     }
     
     func createCollectionView() {

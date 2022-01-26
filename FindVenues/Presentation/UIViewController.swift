@@ -78,7 +78,7 @@ extension TabBarViewController {
             guard let venueID = venue.id else {
                 fatalError("Venue id found nil!")
             }
-        
+            
             repo.getVenuePhotos(venueID: venueID) { result in
                 switch result {
                 case .success(let venuePhotos):
