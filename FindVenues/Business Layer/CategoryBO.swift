@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct CategoryBO: Codable {
+struct CategoryBO: Codable, Hashable {
     let id: String?
     let name: String?
     let icon: String?

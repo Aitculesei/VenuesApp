@@ -23,8 +23,6 @@ class VenueDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +88,7 @@ class VenueDetailsViewController: UIViewController {
             venuePhoto.addGestureRecognizer(tapGR)
             venuePhoto.isUserInteractionEnabled = true
         } else {
-//            self.venuePhoto = <placeholder>
+            venuePhoto.image = UIImage() // Placeholder
         }
     }
     

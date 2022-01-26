@@ -38,12 +38,10 @@ extension RangeViewController {
 //        with coordinator: UIViewControllerTransitionCoordinator
 //    ) {
 //        super.willTransition(to: newCollection, with: coordinator)
-//        // 1
 //        let isPortrait = UIDevice.current.orientation.isPortrait
 //
-//        // 2
-//        lblTimer.snp.updateConstraints { make in
-//            make.height.equalTo(isPortrait ? 45 : 65)
+//        rangeSelectorView.snp.updateConstraints { make in
+//            make.leading.trailing.equalToSuperview().inset(20)
 //        }
 //
 //        // 3

@@ -54,6 +54,7 @@ extension RangeViewController: UICollectionViewDataSource {
             fatalError("Queries Collection View cell could not be created.")
         }
         
+        
         guard let categoryIconUrl = queriesDataSource[indexPath.row].icon else {
             fatalError("\(queriesDataSource[indexPath.row].name) category icon is missing.")
         }

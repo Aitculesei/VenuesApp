@@ -51,6 +51,8 @@ class RangeViewController: UIViewController, UIScrollViewDelegate {
         queriesCollectionView.dataSource = self
         queriesCollectionView.delegate = self
         
+        
+        
         self.view.addSubview(queriesCollectionView)
     }
     
