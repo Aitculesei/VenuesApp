@@ -57,7 +57,7 @@ class VenueRepository: VenueRepositoryProtocol {
         let currentDate = getCurrentDate()
         let venuePhotoRequestDTO = VenuePhotoRequestDTO(venueID: venueID, version: currentDate)
         
-        apiClient.getVenuePhoto(id: venueID, requestDTO: venuePhotoRequestDTO) { response in
+        apiClient.getVenuePhoto(requestDTO: venuePhotoRequestDTO) { response in
             if response.response.venue.photos.count > 0 {
                 let rawData = response.response.venue.photos.groups[0].items
                 completion(.success(rawData.map({ apiVenuePhotosRequestResult in

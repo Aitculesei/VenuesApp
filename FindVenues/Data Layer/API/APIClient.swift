@@ -49,7 +49,7 @@ class APIClient: APIClientProtocol {
         }
     }
     
-    func getVenuePhoto(id: String, requestDTO: VenuePhotoRequestDTO, completion: @escaping (VenuePhotosDTO) -> Void) {
+    func getVenuePhoto(requestDTO: VenuePhotoRequestDTO, completion: @escaping (VenuePhotosDTO) -> Void) {
 //        httpClient.get(class: VenuePhotosDTO.self, url: requestDTO.photoURLString, parameters: requestDTO.parametersDicitonary, headers: nil) { result in
 //            switch result {
 //            case .success(let receivedPhotos):
@@ -58,7 +58,7 @@ class APIClient: APIClientProtocol {
 //                print("HTTPClient Error for venues photos request: \(error)")
 //            }
 //        }
-        httpClient.getFromLocalFile(class: VenuePhotosDTO.self, file: id) { result in
+        httpClient.getFromLocalFile(class: VenuePhotosDTO.self, file: requestDTO.venueID) { result in
             switch result {
             case .success(let receivedPhotos):
                 completion(receivedPhotos)

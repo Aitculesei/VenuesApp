@@ -10,8 +10,7 @@ import Foundation
 extension VenueDetailsViewController {
     func setupConstraints() {
         venueDetailsCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.width.bottom.equalToSuperview()
+            make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
         }
         
         venueDetailsView.snp.makeConstraints { make in
