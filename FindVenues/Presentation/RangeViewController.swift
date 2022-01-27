@@ -34,7 +34,7 @@ class RangeViewController: UIViewController, UIScrollViewDelegate {
         createShowCurrentLocationCheckBox()
         
         createResetButton()
-        queriesCollectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        queriesCollectionView.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges) }
     }
     
     // MARK: - Create the Collection View with the queries
@@ -45,12 +45,11 @@ class RangeViewController: UIViewController, UIScrollViewDelegate {
         layout.itemSize = CGSize(width: 60, height: 60)
         
         queriesCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        queriesCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Constants.CollectionViewCell.queriesCollectionIdentifier)
+        queriesCollectionView.register(QueriesCollectionViewCell.self, forCellWithReuseIdentifier: Constants.CollectionViewCell.queriesCollectionIdentifier)
         queriesCollectionView.backgroundColor = .white
         
         queriesCollectionView.dataSource = self
         queriesCollectionView.delegate = self
-        
         
         
         self.view.addSubview(queriesCollectionView)

@@ -29,79 +29,48 @@ extension RangeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == Section.categories.rawValue {
-            return createCategoriesCollection(collectionView, cellForItemAt: indexPath)
-        } else if indexPath.section == Section.buttons.rawValue {
-            return createButtons(collectionView, cellForItemAt: indexPath)
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CollectionViewCell.queriesCollectionIdentifier, for: indexPath) as? QueriesCollectionViewCell {
+            if indexPath.section == Section.categories.rawValue {
+                return createCategoriesCollection(collectionView, cellForItemAt: indexPath, cell: cell)
+            } else if indexPath.section == Section.buttons.rawValue {
+                return createButtons(collectionView, cell: cell)
+            }
         }
         
         return UICollectionViewCell()
     }
     
-    func createButtons(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CollectionViewCell.queriesCollectionIdentifier, for: indexPath) as? UICollectionViewCell else {
-            fatalError("Queries Collection View cell could not be created.")
-        }
-
+    func createButtons(_ collectionView: UICollectionView, cell: UICollectionViewCell) -> UICollectionViewCell {
         cell.contentView.addSubview(buttonsView)
         setupConstraints()
         
         return cell
     }
     
-    func createCategoriesCollection(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CollectionViewCell.queriesCollectionIdentifier, for: indexPath) as? UICollectionViewCell else {
-            fatalError("Queries Collection View cell could not be created.")
-        }
-        
-        
+    func createCategoriesCollection(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, cell: QueriesCollectionViewCell) -> UICollectionViewCell {
         guard let categoryIconUrl = queriesDataSource[indexPath.row].icon else {
             fatalError("\(queriesDataSource[indexPath.row].name) category icon is missing.")
         }
-        var categoryIcon: UIImage?
-        let imageview = UIImageView()
-        imageview.downloaded(from: categoryIconUrl) { icon in
-            categoryIcon = icon
+        cell.imageview.downloaded(from: categoryIconUrl) { icon in
+            cell.categoryIcon = icon
         }
         
-        let loadingActivityIndicator: UIActivityIndicatorView = {
-            let indicator = UIActivityIndicatorView()
-            
-            indicator.style = .large
-            indicator.color = .blue
-                
-            // The indicator should be animating when
-            // the view appears.
-            indicator.startAnimating()
-                
-            // Setting the autoresizing mask to flexible for all
-            // directions will keep the indicator in the center
-            // of the view and properly handle rotation.
-            indicator.autoresizingMask = [
-                .flexibleLeftMargin, .flexibleRightMargin,
-                .flexibleTopMargin, .flexibleBottomMargin
-            ]
-                
-            return indicator
-        }()
-        loadingActivityIndicator.tag = 999
+        cell.loadingActivityIndicator.tag = 999
         
-        let button = UIButton()
-        let categoryLabel = UILabel()
         let categoryNameSplitted = self.queriesDataSource[indexPath.row].name?.split(separator: " ")
-        categoryLabel.text = String(categoryNameSplitted?[0] ?? "")
+        cell.categoryLabel.text = String(categoryNameSplitted?[0] ?? "")
         
-        cell.contentView.addSubview(button)
-        cell.contentView.addSubview(categoryLabel)
-        cell.contentView.addSubview(loadingActivityIndicator)
+        cell.contentView.addSubview(cell.button)
+        cell.contentView.addSubview(cell.categoryLabel)
+        cell.contentView.addSubview(cell.loadingActivityIndicator)
         
-        button.snp.makeConstraints { make in
+        cell.button.snp.makeConstraints { make in
             make.centerX.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.8)
-            make.bottom.equalTo(categoryLabel.snp.top).offset(-2)
+            make.bottom.equalTo(cell.categoryLabel.snp.top).offset(-2)
         }
         
-        loadingActivityIndicator.snp.makeConstraints { make in
+        cell.loadingActivityIndicator.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
         
@@ -109,17 +78,17 @@ extension RangeViewController: UICollectionViewDataSource {
             if let viewWithTag = self.view.viewWithTag(999) {
                 viewWithTag.removeFromSuperview()
             }
-            categoryIcon = categoryIcon?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+            cell.categoryIcon = cell.categoryIcon?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
             
-            button.setImage(categoryIcon, for: .normal)
-            button.setTitle("\(self.queriesDataSource[indexPath.row].name!)", for: .normal)
+            cell.button.setImage(cell.categoryIcon, for: .normal)
+            cell.button.setTitle("\(self.queriesDataSource[indexPath.row].name!)", for: .normal)
             
-            categoryLabel.snp.makeConstraints { make in
+            cell.categoryLabel.snp.makeConstraints { make in
                 make.centerX.bottom.equalToSuperview()
             }
             
-            button.addTarget(self, action: #selector(self.didSelectQuery), for: .touchUpInside)
-            button.backgroundColor = .blue
+            cell.button.addTarget(self, action: #selector(self.didSelectQuery), for: .touchUpInside)
+            cell.button.backgroundColor = .blue
         }
         
         DispatchQueue.main.async {
