@@ -20,10 +20,11 @@ class VenuesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        venuesTableView.backgroundColor = .lightGray
+        venuesTableView.backgroundColor = .white
         venuesTableView.delegate = self
         venuesTableView.dataSource = self
         venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
+        
         view.addSubview(venuesTableView)
     }
     

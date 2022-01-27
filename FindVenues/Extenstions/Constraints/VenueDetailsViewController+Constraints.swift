@@ -26,7 +26,7 @@ extension VenueDetailsViewController {
         venuePhoto.snp.makeConstraints { make in
             make.top.equalTo(venueTitle.snp.bottom).offset(25)
             make.trailing.leading.equalToSuperview().inset(10)
-            make.height.equalTo(325)
+            make.height.equalTo(400)
         }
         
         venueAddress.snp.makeConstraints { make in

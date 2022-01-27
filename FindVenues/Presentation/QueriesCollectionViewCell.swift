@@ -9,7 +9,7 @@ import UIKit
 
 class QueriesCollectionViewCell: UICollectionViewCell {
     var categoryIcon: UIImage?
-    let imageview = UIImageView()
+    var imageview = UIImageView()
     let loadingActivityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         
@@ -36,5 +36,7 @@ class QueriesCollectionViewCell: UICollectionViewCell {
     open override func prepareForReuse() {
         super.prepareForReuse()
         
+        button.isHidden = true
+        categoryLabel.isHidden = true
     }
 }

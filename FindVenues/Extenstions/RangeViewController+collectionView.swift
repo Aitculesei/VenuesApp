@@ -89,6 +89,9 @@ extension RangeViewController: UICollectionViewDataSource {
             
             cell.button.addTarget(self, action: #selector(self.didSelectQuery), for: .touchUpInside)
             cell.button.backgroundColor = .blue
+            
+            cell.button.isHidden = false
+            cell.categoryLabel.isHidden = false
         }
         
         DispatchQueue.main.async {
