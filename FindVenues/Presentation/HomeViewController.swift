@@ -17,7 +17,6 @@ class HomeViewController: UIViewController {
     var venues: [VenueBO] = [] {
         didSet {
             self.pinLocationsOnMap()
-            
         }
     }
 
@@ -64,8 +63,6 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: MKMapViewDelegate {
     func drawMyMap() {
-//        mapView.frame = view.bounds
-        
         mapView.delegate = self
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
