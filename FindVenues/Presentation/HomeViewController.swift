@@ -11,10 +11,10 @@ import CoreLocation
 import SimpleCheckbox
 
 class HomeViewController: UIViewController {
-    let mapView = MKMapView()
+    let venuesMapView = MKMapView()
     var location = CLLocation()
     var locationManager: LocationManagerClass?
-    var venues: [VenueBO] = [] {
+    var venues = [VenueBO]() {
         didSet {
             self.pinLocationsOnMap()
         }
@@ -23,13 +23,17 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .lightGray
+        venuesMapView.delegate = self
+        venuesMapView.mapType = MKMapType.standard
+        venuesMapView.isZoomEnabled = true
+        venuesMapView.isScrollEnabled = true
+        
         guard let location = LocationManagerClass.sharedLocation else {
             fatalError("Could not get coordinates.")
         }
         self.location = location
         
-        mapView.register(
+        venuesMapView.register(
           MyLocationMarkerView.self,
           forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
     }
@@ -37,16 +41,18 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        TabBarViewController().reloadInputViews()
-        self.mapView.reloadInputViews()
         drawMyMap()
         setupConstraints()
     }
     
-    func pinLocationsOnMap() {
-        let allAnnotations = self.mapView.annotations
-        self.mapView.removeAnnotations(allAnnotations)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
+        let allAnnotations = venuesMapView.annotations
+        venuesMapView.removeAnnotations(allAnnotations)
+    }
+    
+    func pinLocationsOnMap() {
         for venue in venues {
             guard let lat = venue.lat, let lng = venue.long else {
                 fatalError("Venue lat or lng is missing.")
@@ -54,7 +60,7 @@ class HomeViewController: UIViewController {
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             let venueOnMap = VenueOnMap(title: venue.name, locationName: venue.location, coordinate: coordinate)
             
-            mapView.addAnnotation(venueOnMap)
+            venuesMapView.addAnnotation(venueOnMap)
         }
     }
 }
@@ -63,20 +69,26 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: MKMapViewDelegate {
     func drawMyMap() {
-        mapView.delegate = self
-        mapView.mapType = MKMapType.standard
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
         
-        mapView.centerToLocation(self.location)
+        venuesMapView.centerToLocation(self.location)
+        
         self.pinLocationsOnMap()
+        
         if LocationManagerClass.isCurrentLocationON {
             let myLocation = MyLocation(title: "I am here!", coordinate: self.location.coordinate)
-            mapView.addAnnotation(myLocation)
+            venuesMapView.addAnnotation(myLocation)
         }
         
-        view.addSubview(mapView)
+        view.addSubview(venuesMapView)
     }
+    
+//    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
+//        print("VENUES IN MAP: \(venues)")
+//    }
+    
+//    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+//        mapView.setCenter(userLocation.coordinate, animated: true)
+//    }
     
     // Applied for each added annotation. Configures the CALLOUT
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -84,18 +96,17 @@ extension HomeViewController: MKMapViewDelegate {
             return nil
         }
         
-        let identifier = "venueOnMap"
         var view: MKMarkerAnnotationView
         
         if let dequeuedView = mapView.dequeueReusableAnnotationView(
-            withIdentifier: identifier) as? MKMarkerAnnotationView {
+            withIdentifier: Constants.MapView.identifier) as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
             
             view = MKMarkerAnnotationView(
                 annotation: annotation,
-                reuseIdentifier: identifier)
+                reuseIdentifier: Constants.MapView.identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
@@ -115,5 +126,3 @@ extension HomeViewController: MKMapViewDelegate {
         venueOnMap.mapItem?.openInMaps(launchOptions: launchOptions)
     }
 }
-
-

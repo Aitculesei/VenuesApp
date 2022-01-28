@@ -45,6 +45,10 @@ struct Constants {
         static let venueDetailsViewIdentifier = "venueDetailsCollectionCell"
     }
     
+    enum MapView {
+        static let identifier = "venueOnMap"
+    }
+    
     enum VenuesRequest {
         static let defaultQuery = "restaurant"
         enum Parameters {

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SimpleCheckbox
 
 class TabBarViewController: UITabBarController {
     let repo = VenueRepository()
@@ -28,25 +27,6 @@ class TabBarViewController: UITabBarController {
 // MARK: - Extensions
 
 extension TabBarViewController {
-    func createTabBarMenu() {
-        homeVC.title = "Home"
-        rangeVC.title = "Distance"
-        venuesVC.title = "Venues"
-        
-        // Assign VC to Tab bar controller
-        self.setViewControllers([homeVC, rangeVC, venuesVC], animated: false)
-        
-        guard let items = self.tabBar.items else {return}
-        let images = ["house", "slider.horizontal.3", "list.bullet.rectangle.portrait.fill"]
-        for (index, item) in items.enumerated() {
-            item.image = UIImage(systemName: images[index])
-        }
-        
-        // Change tint color
-        self.tabBar.tintColor = .black
-        self.tabBar.backgroundColor = .white
-    }
-    
     func updateVenues(completion: @escaping ([VenueBO]) -> Void) {
         repo.getVenues { result in
             switch result {

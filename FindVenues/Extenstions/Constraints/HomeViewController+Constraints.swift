@@ -9,7 +9,7 @@ import Foundation
 
 extension HomeViewController {
     func setupConstraints() {
-        mapView.snp.makeConstraints { make in
+        venuesMapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
