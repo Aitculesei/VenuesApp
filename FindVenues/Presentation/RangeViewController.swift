@@ -159,7 +159,10 @@ extension RangeViewController {
         if let query = sender.currentTitle {
             LocalDataManager.saveData(data: query, key: Constants.LocalDataManagerSavings.queryKey)
         }
-        TabBarViewController().reloadInputViews()
+        let tabBarVC = TabBarViewController()
+        tabBarVC.modalPresentationStyle = .fullScreen
+        tabBarVC.reloadInputViews()
+        self.present(tabBarVC, animated: true, completion: nil)
     }
     
     // Update the value of the UISlider's label

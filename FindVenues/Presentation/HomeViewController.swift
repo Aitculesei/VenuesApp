@@ -19,10 +19,10 @@ class HomeViewController: UIViewController {
             self.pinLocationsOnMap()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         venuesMapView.delegate = self
         venuesMapView.mapType = MKMapType.standard
         venuesMapView.isZoomEnabled = true
@@ -72,7 +72,7 @@ extension HomeViewController: MKMapViewDelegate {
         
         venuesMapView.centerToLocation(self.location)
         
-        self.pinLocationsOnMap()
+        pinLocationsOnMap()
         
         if LocationManagerClass.isCurrentLocationON {
             let myLocation = MyLocation(title: "I am here!", coordinate: self.location.coordinate)
@@ -81,14 +81,6 @@ extension HomeViewController: MKMapViewDelegate {
         
         view.addSubview(venuesMapView)
     }
-    
-//    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-//        print("VENUES IN MAP: \(venues)")
-//    }
-    
-//    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-//        mapView.setCenter(userLocation.coordinate, animated: true)
-//    }
     
     // Applied for each added annotation. Configures the CALLOUT
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
