@@ -59,7 +59,12 @@ extension VenuesViewController: UITableViewDataSource {
             fatalError("Unable to determine Venues Table View Cell.")
         }
         
+//        cell.textLabel?.text = """
+//            \(receivedVenues[indexPath.row].venueBO?.name ?? "")
+//            \(receivedVenues[indexPath.row].venueBO?.location ?? "")
+//        """
         cell.textLabel?.text = receivedVenues[indexPath.row].venueBO?.name
+        cell.detailTextLabel?.text = receivedVenues[indexPath.row].venueBO?.location
         cell.accessoryType = .disclosureIndicator
         
         return cell

@@ -25,16 +25,16 @@ class VenueOnMap: NSObject, MKAnnotation {
     
     // To tell the Maps where to go. MKMapItem = describes a point of interest on the map
     var mapItem: MKMapItem? {
-      guard let location = locationName else {
-        return nil
-      }
-
-      let addressDict = [CNPostalAddressStreetKey: location]
-      let placemark = MKPlacemark(
-        coordinate: coordinate,
-        addressDictionary: addressDict)
-      let mapItem = MKMapItem(placemark: placemark)
-      mapItem.name = title
-      return mapItem
+        guard let location = locationName else {
+            return nil
+        }
+        
+        let addressDict = [CNPostalAddressStreetKey: location]
+        let placemark = MKPlacemark(
+            coordinate: coordinate,
+            addressDictionary: addressDict)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        return mapItem
     }
 }

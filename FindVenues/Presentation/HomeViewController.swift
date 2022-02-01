@@ -7,40 +7,19 @@
 
 import UIKit
 import MapKit
-import CoreLocation
-import SimpleCheckbox
 
 class HomeViewController: UIViewController {
-    let venuesMapView = MKMapView()
-    var location = CLLocation()
-    var locationManager: LocationManagerClass?
-    var venues = [VenueBO]() {
-        didSet {
-            self.pinLocationsOnMap()
-        }
-    }
+    internal var venuesMapView: MKMapView!
+    private var homeViewModel: HomeViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        venuesMapView.delegate = self
-        venuesMapView.mapType = MKMapType.standard
-        venuesMapView.isZoomEnabled = true
-        venuesMapView.isScrollEnabled = true
-        
-        guard let location = LocationManagerClass.sharedLocation else {
-            fatalError("Could not get coordinates.")
-        }
-        self.location = location
-        
-        venuesMapView.register(
-          MyLocationMarkerView.self,
-          forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        homeViewModel = HomeViewModel()
         drawMyMap()
         setupConstraints()
     }
@@ -48,40 +27,20 @@ class HomeViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        let allAnnotations = venuesMapView.annotations
-        venuesMapView.removeAnnotations(allAnnotations)
+        venuesMapView.removeAnnotations(venuesMapView.annotations)
     }
     
-    func pinLocationsOnMap() {
-        for venue in venues {
-            guard let lat = venue.lat, let lng = venue.long else {
-                fatalError("Venue lat or lng is missing.")
-            }
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-            let venueOnMap = VenueOnMap(title: venue.name, locationName: venue.location, coordinate: coordinate)
-            
-            venuesMapView.addAnnotation(venueOnMap)
-        }
+    func drawMyMap() {
+        venuesMapView = homeViewModel.getMapView()
+        venuesMapView.delegate = self
+        
+        view.addSubview(venuesMapView)
     }
 }
 
 // MARK: - Extensions
 
 extension HomeViewController: MKMapViewDelegate {
-    func drawMyMap() {
-        
-        venuesMapView.centerToLocation(self.location)
-        
-        pinLocationsOnMap()
-        
-        if LocationManagerClass.isCurrentLocationON {
-            let myLocation = MyLocation(title: "I am here!", coordinate: self.location.coordinate)
-            venuesMapView.addAnnotation(myLocation)
-        }
-        
-        view.addSubview(venuesMapView)
-    }
-    
     // Applied for each added annotation. Configures the CALLOUT
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? VenueOnMap else {
@@ -112,9 +71,34 @@ extension HomeViewController: MKMapViewDelegate {
             return
         }
         
-        let launchOptions = [
-            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
-        ]
-        venueOnMap.mapItem?.openInMaps(launchOptions: launchOptions)
+//        let launchOptions = [
+//            MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
+//        ]
+//        venueOnMap.mapItem?.openInMaps(launchOptions: launchOptions)
+        
+        for venue in homeViewModel.venues {
+            if (venue.name! == venueOnMap.title!) {
+                guard let venueID = venue.id else {
+                    fatalError("Venue id found nil!")
+                }
+                
+                let repo = VenueRepository()
+                repo.getVenuePhotos(venueID: venueID) { result in
+                    let venueDetailsView = VenueDetailsViewController()
+                    switch result {
+                    case .success(let venuePhotos):
+                        if venuePhotos.isEmpty {
+                            venueDetailsView.receivedVenue = VenueDetailsBO(venueBO: venue, photo: nil)
+                            self.show(venueDetailsView, sender: self)
+                        } else {
+                            venueDetailsView.receivedVenue = VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!)
+                            self.show(venueDetailsView, sender: self)
+                        }
+                    case .failure(let error):
+                        print("Thrown error when we received venue photos. \(error)")
+                    }
+                }
+            }
+        }
     }
 }
