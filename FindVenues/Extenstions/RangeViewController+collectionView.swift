@@ -9,18 +9,18 @@ import UIKit
 import SnapKit
 
 enum Section: Int {
-    case categories = 0
-    case buttons = 1
+    case categories
+    case buttons
 }
 
 extension RangeViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        Constants.VenueDetailsViewProperties.viewNumberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == Section.categories.rawValue {
-            return queriesDataSource.count
+            return rangeViewModel.queriesDataSource.count
         } else if section == Section.buttons.rawValue {
             return 1
         }
@@ -48,8 +48,8 @@ extension RangeViewController: UICollectionViewDataSource {
     }
     
     func createCategoriesCollection(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, cell: QueriesCollectionViewCell) -> UICollectionViewCell {
-        guard let categoryIconUrl = queriesDataSource[indexPath.row].icon else {
-            fatalError("\(queriesDataSource[indexPath.row].name) category icon is missing.")
+        guard let categoryIconUrl = rangeViewModel.queriesDataSource[indexPath.row].icon else {
+            fatalError("\(rangeViewModel.queriesDataSource[indexPath.row].name) category icon is missing.")
         }
         cell.imageview.downloaded(from: categoryIconUrl) { icon in
             cell.categoryIcon = icon
@@ -57,7 +57,7 @@ extension RangeViewController: UICollectionViewDataSource {
         
         cell.loadingActivityIndicator.tag = 999
         
-        let categoryNameSplitted = self.queriesDataSource[indexPath.row].name?.split(separator: " ")
+        let categoryNameSplitted = rangeViewModel.queriesDataSource[indexPath.row].name?.split(separator: " ")
         cell.categoryLabel.text = String(categoryNameSplitted?[0] ?? "")
         
         cell.contentView.addSubview(cell.button)
@@ -81,7 +81,7 @@ extension RangeViewController: UICollectionViewDataSource {
             cell.categoryIcon = cell.categoryIcon?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
             
             cell.button.setImage(cell.categoryIcon, for: .normal)
-            cell.button.setTitle("\(self.queriesDataSource[indexPath.row].name!)", for: .normal)
+            cell.button.setTitle("\(self.rangeViewModel.queriesDataSource[indexPath.row].name!)", for: .normal)
             
             cell.categoryLabel.snp.makeConstraints { make in
                 make.centerX.bottom.equalToSuperview()
@@ -95,7 +95,7 @@ extension RangeViewController: UICollectionViewDataSource {
         }
         
         DispatchQueue.main.async {
-            self.collectionViewHeightConstraint?.update(offset: self.queriesCollectionView.contentSize.height)
+            self.rangeViewModel.collectionViewHeightConstraint?.update(offset: self.queriesCollectionView.contentSize.height)
         }
         return cell
     }
@@ -103,7 +103,7 @@ extension RangeViewController: UICollectionViewDataSource {
 
 extension RangeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print("Selected query: \(queriesDataSource[indexPath.row])")
+        print("Selected query: \(rangeViewModel.queriesDataSource[indexPath.row])")
     }
 }
 

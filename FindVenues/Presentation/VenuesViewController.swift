@@ -8,22 +8,21 @@
 import UIKit
 
 class VenuesViewController: UIViewController {
-    var venuesTableView = UITableView()
-    let venueDetailsView = VenueDetailsViewController()
-    
-    var receivedVenues: [VenueDetailsBO] = [] {
-        didSet {
-            self.venuesTableView.reloadData()
-        }
-    }
+    private(set) var venuesListViewModel: VenuesListViewModel!
+    private(set) var venuesTableView: UITableView!
+    private(set) var venueDetailsView: VenueDetailsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        venuesTableView.backgroundColor = .white
+        venuesListViewModel = VenuesListViewModel()
+        venueDetailsView = VenueDetailsViewController()
+        
+        venuesTableView = venuesListViewModel.createTableView()
         venuesTableView.delegate = self
         venuesTableView.dataSource = self
-        venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
+        
+        venuesTableView.reloadData()
         
         view.addSubview(venuesTableView)
     }
@@ -36,37 +35,5 @@ class VenuesViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         venuesTableView.frame = view.bounds
-    }
-}
-
-// MARK: - Extensions
-
-// Delegate is used to handle interactions of cells
-extension VenuesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.venueDetailsView.receivedVenue = receivedVenues[indexPath.row]
-        self.show(self.venueDetailsView, sender: self)
-    }
-}
-
-extension VenuesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return receivedVenues.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier, for: indexPath) as? UITableViewCell else {
-            fatalError("Unable to determine Venues Table View Cell.")
-        }
-        
-//        cell.textLabel?.text = """
-//            \(receivedVenues[indexPath.row].venueBO?.name ?? "")
-//            \(receivedVenues[indexPath.row].venueBO?.location ?? "")
-//        """
-        cell.textLabel?.text = receivedVenues[indexPath.row].venueBO?.name
-        cell.detailTextLabel?.text = receivedVenues[indexPath.row].venueBO?.location
-        cell.accessoryType = .disclosureIndicator
-        
-        return cell
     }
 }

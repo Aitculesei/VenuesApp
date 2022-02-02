@@ -60,4 +60,8 @@ struct Constants {
             static let categoryId = "categoryId"
         }
     }
+    
+    enum VenueDetailsViewProperties {
+        static let viewNumberOfSections = 2
+    }
 }

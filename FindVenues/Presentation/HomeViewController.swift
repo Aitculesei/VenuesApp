@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 class HomeViewController: UIViewController {
-    internal var venuesMapView: MKMapView!
+    private(set) var venuesMapView: MKMapView!
     private var homeViewModel: HomeViewModel!
     
     override func viewDidLoad() {
@@ -88,10 +88,10 @@ extension HomeViewController: MKMapViewDelegate {
                     switch result {
                     case .success(let venuePhotos):
                         if venuePhotos.isEmpty {
-                            venueDetailsView.receivedVenue = VenueDetailsBO(venueBO: venue, photo: nil)
+                            venueDetailsView.venueDetailsViewModel.receivedVenue = VenueDetailsBO(venueBO: venue, photo: nil)
                             self.show(venueDetailsView, sender: self)
                         } else {
-                            venueDetailsView.receivedVenue = VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!)
+                            venueDetailsView.venueDetailsViewModel.receivedVenue = VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!)
                             self.show(venueDetailsView, sender: self)
                         }
                     case .failure(let error):

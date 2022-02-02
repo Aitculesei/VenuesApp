@@ -8,18 +8,14 @@
 import UIKit
 
 class VenueDetailsViewController: UIViewController {
+    private(set) var venueDetailsViewModel = VenueDetailsViewModel()
     var venueDetailsCollectionView: UICollectionView!
-    let venueDetailsView = UIView()
-    let venueTitle = UILabel()
-    let venuePhoto = UIImageView()
-    let venueAddress = UILabel()
-    let venuePhone = UILabel()
-    let venueDistance = UILabel()
-    var receivedVenue: VenueDetailsBO? {
-        didSet {
-            self.populateWithData()
-        }
-    }
+    var venueDetailsView: UIView!
+    var venueTitle: UILabel!
+    var venuePhoto: UIImageView!
+    var venueAddress: UILabel!
+    var venuePhone: UILabel!
+    var venueDistance: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,103 +24,35 @@ class VenueDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        buildVenueDetailsView()
+        createCollectionView()
+        populateWithData()
     }
     
     func populateWithData() {
-        guard let venue = receivedVenue?.venueBO else {
-            fatalError("Venue details are missing / Venue is missing.")
-        }
-        guard var location = venue.location else {
-            fatalError("Address cannot be missing.")
-        }
-        guard let distance = venue.distance else {
-            fatalError("Distance cannot be nil.")
-        }
+        venueDetailsView = UIView()
         
-        uploadPhoto(link: self.receivedVenue?.photo)
-        let phone: String
-        if venue.phone == nil {
-            phone = "<don't have a specified phone number>"
-        } else {
-            phone = venue.phone!
-        }
-        let convertedDistance = (Float(distance) / 1000)
-        if location == "" {
-            location = "<don't have a location specified>"
-        }
+        venueTitle = venueDetailsViewModel.getTitleView()
+        venueDetailsView.addSubview(venueTitle)
         
-        venueTitle.text = venue.name
-        venueAddress.text = "📍 \(location)"
-        venuePhone.text = "☎️ \(phone)"
-        venueDistance.text = "\(NSString(format: "%.01f", convertedDistance)) km from the current location"
+        venueAddress = venueDetailsViewModel.getAddressView()
+        venueDetailsView.addSubview(venueAddress)
+        
+        venuePhone = venueDetailsViewModel.getPhoneView()
+        venueDetailsView.addSubview(venuePhone)
+        
+        venueDistance = venueDetailsViewModel.getDistanceView()
+        venueDetailsView.addSubview(venueDistance)
+        
+        venuePhoto = venueDetailsViewModel.getVenueImageView()
+        venueDetailsView.addSubview(venuePhoto)
     }
     
     func createCollectionView() {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 60, height: 60)
-        
-        venueDetailsCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        venueDetailsCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Constants.CollectionViewCell.venueDetailsViewIdentifier)
-        venueDetailsCollectionView.backgroundColor = .white
+        venueDetailsCollectionView = venueDetailsViewModel.getVenueDetailsCollectionView(frame: self.view.frame)
         
         venueDetailsCollectionView.dataSource = self
         venueDetailsCollectionView.delegate = self
         
         self.view.addSubview(venueDetailsCollectionView)
-    }
-    
-    func uploadPhoto(link: String?) {
-        if let venuePhotoURL = link {
-            var venueImage: UIImage?
-            venuePhoto.downloaded(from: venuePhotoURL) { image in
-                venueImage = image
-            }
-            venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-            venuePhoto.image = venueImage
-            
-            let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(_:)))
-            venuePhoto.addGestureRecognizer(tapGR)
-            let doubleTapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageDoubleTapped(_:)))
-            doubleTapGR.numberOfTapsRequired = 2
-            venuePhoto.addGestureRecognizer(doubleTapGR)
-            venuePhoto.isUserInteractionEnabled = true
-        } else {
-            venuePhoto.image = UIImage() // Placeholder
-        }
-    }
-    
-    func buildVenueDetailsView() {
-        createCollectionView()
-        
-        venueDetailsView.addSubview(venueTitle)
-        venueDetailsView.addSubview(venuePhoto)
-        venueDetailsView.addSubview(venueAddress)
-        venueDetailsView.addSubview(venuePhone)
-        venueDetailsView.addSubview(venueDistance)
-    }
-}
-
-// MARK: - Objective C functions
-
-extension VenueDetailsViewController {
-    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            sender.view?.snp.remakeConstraints({ make in
-                make.edges.equalToSuperview()
-                make.bottom.equalTo(venueAddress.snp.top).offset(125)
-            })
-        }
-    }
-    
-    @objc func imageDoubleTapped(_ sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            sender.view?.snp.remakeConstraints({ make in
-                make.top.equalTo(venueTitle.snp.bottom).offset(25)
-                make.trailing.leading.equalToSuperview().inset(10)
-                make.height.equalTo(400)
-            })
-        }
     }
 }

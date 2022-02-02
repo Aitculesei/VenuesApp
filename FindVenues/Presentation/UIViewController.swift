@@ -8,11 +8,9 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-    private var venuesVM: VenuesViewModel!
-    
-    var venuesVC: VenuesViewController!
-    var rangeVC: RangeViewController!
-    var homeVC: HomeViewController!
+    private(set) var venuesVC: VenuesViewController!
+    private(set) var rangeVC: RangeViewController!
+    private(set) var homeVC: HomeViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,14 +19,5 @@ class TabBarViewController: UITabBarController {
         rangeVC = RangeViewController()
         homeVC = HomeViewController()
         createTabBarMenu()
-        
-        venuesVM = VenuesViewModel()
-        
-        venuesVM.getVenuesV { venues, venueWithPhoto in
-            self.venuesVC.receivedVenues = venueWithPhoto
-        }
-        venuesVM.getCategories { categories in
-            self.rangeVC.queriesDataSource = categories
-        }
     }
 }
