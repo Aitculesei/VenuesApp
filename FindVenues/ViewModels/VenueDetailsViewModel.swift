@@ -94,39 +94,11 @@ class VenueDetailsViewModel: NSObject {
             venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
             venuePhoto.image = venueImage
             
-            let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(_:)))
-            venuePhoto.addGestureRecognizer(tapGR)
-            let doubleTapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageDoubleTapped(_:)))
-            doubleTapGR.numberOfTapsRequired = 2
-            venuePhoto.addGestureRecognizer(doubleTapGR)
             venuePhoto.isUserInteractionEnabled = true
         } else {
             venuePhoto.image = UIImage() // Placeholder
         }
         
         return venuePhoto
-    }
-}
-
-// MARK: - Objective C functions
-
-extension VenueDetailsViewModel {
-    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            sender.view?.snp.remakeConstraints({ make in
-                make.edges.equalToSuperview()
-//                make.bottom.equalTo(venueAddress.snp.top).offset(125)
-            })
-        }
-    }
-    
-    @objc func imageDoubleTapped(_ sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            sender.view?.snp.remakeConstraints({ make in
-//                make.top.equalTo(venueTitle.snp.bottom).offset(25)
-                make.trailing.leading.equalToSuperview().inset(10)
-                make.height.equalTo(400)
-            })
-        }
     }
 }

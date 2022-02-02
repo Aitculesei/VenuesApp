@@ -67,18 +67,3 @@ class RangeViewController: UIViewController, UIScrollViewDelegate {
         buttonsView.addSubview(resetButton)
     }
 }
-
-// MARK: - Objective C functions. Targets for the UI elements.
-
-extension RangeViewController {
-    // A new query was selected
-    @objc func didSelectQuery(_ sender: UIButton) {
-        if let query = sender.currentTitle {
-            LocalDataManager.saveData(data: query, key: Constants.LocalDataManagerSavings.queryKey)
-        }
-        let tabBarVC = TabBarViewController()
-        tabBarVC.modalPresentationStyle = .fullScreen
-        tabBarVC.reloadInputViews()
-        self.present(tabBarVC, animated: true, completion: nil)
-    }
-}
