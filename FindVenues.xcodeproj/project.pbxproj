@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27D8BE8F27A84F37005ED8AF /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D8BE8E27A84F37005ED8AF /* Bindable.swift */; };
+		27D8BE9127A85093005ED8AF /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D8BE9027A85093005ED8AF /* DetailsViewModel.swift */; };
 		390BC8DE27704E6B0057EB06 /* VenueRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390BC8DD27704E6B0057EB06 /* VenueRepositoryProtocol.swift */; };
 		3997E3702768C64A00170EA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E36F2768C64A00170EA4 /* Constants.swift */; };
 		3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27D8BE8E27A84F37005ED8AF /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		27D8BE9027A85093005ED8AF /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		390BC8DD27704E6B0057EB06 /* VenueRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRepositoryProtocol.swift; sourceTree = "<group>"; };
 		3997E36F2768C64A00170EA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3997E3712768DDB900170EA4 /* VenueSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSearchAPI.swift; sourceTree = "<group>"; };
@@ -81,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27D8BE8D27A84F19005ED8AF /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				27D8BE8E27A84F37005ED8AF /* Bindable.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		39AB81202771EF890073B1FE /* Business Layer */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,11 +180,13 @@
 		39AFAABB276B5779006D7A98 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				27D8BE8D27A84F19005ED8AF /* Util */,
 				39AC65C927672F1000659BB3 /* UIViewController.swift */,
 				39AC65D9276733D300659BB3 /* HomeViewController.swift */,
 				39AC65DD2767367E00659BB3 /* RangeViewController.swift */,
 				39AB81252772F6040073B1FE /* QueriesCollectionViewCell.swift */,
 				39AC65E12767377500659BB3 /* DetailsViewController.swift */,
+				27D8BE9027A85093005ED8AF /* DetailsViewModel.swift */,
 				39AB811C2771CBC70073B1FE /* VenuesTableViewCell.swift */,
 				39AC65E22767377500659BB3 /* DetailsViewController.xib */,
 				39AC65DE2767367E00659BB3 /* RangeViewController.xib */,
@@ -260,11 +274,13 @@
 				39AFAAB7276B5749006D7A98 /* APIClient.swift in Sources */,
 				39AB81222771F0420073B1FE /* VenuesRequestDTO.swift in Sources */,
 				39AFAAB9276B5754006D7A98 /* APIClientProtocol.swift in Sources */,
+				27D8BE8F27A84F37005ED8AF /* Bindable.swift in Sources */,
 				39AFAAB4276B3D65006D7A98 /* HTTPClientProtocol.swift in Sources */,
 				39AB811F2771EF610073B1FE /* VenueBO.swift in Sources */,
 				39AB81282774C2370073B1FE /* LocationManager.swift in Sources */,
 				39AC65CA27672F1000659BB3 /* UIViewController.swift in Sources */,
 				39AB81242771FDA70073B1FE /* LocalDataManager.swift in Sources */,
+				27D8BE9127A85093005ED8AF /* DetailsViewModel.swift in Sources */,
 				39AFAAB1276B3CFB006D7A98 /* HTTPClient.swift in Sources */,
 				39AC65E627677C7300659BB3 /* GetVenueDetailsAPI.swift in Sources */,
 				3997E3722768DDB900170EA4 /* VenueSearchAPI.swift in Sources */,

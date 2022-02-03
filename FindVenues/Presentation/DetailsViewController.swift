@@ -8,17 +8,16 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-    let venuesTableView: UITableView = {
+    lazy var venuesTableView: UITableView = {
         let venuesTableView = UITableView()
         venuesTableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.TableViewCell.identifier)
         
         return venuesTableView
     }()
-    var receivedVenues: [VenueBO] = [] {
-        didSet {
-            venuesTableView.reloadData()
-        }
-    }
+
+    let viewModel = DetailsViewModel()
+
+    private var venues: [VenueBO]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +26,14 @@ class DetailsViewController: UIViewController {
         venuesTableView.delegate = self
         venuesTableView.dataSource = self
         view.addSubview(venuesTableView)
+
+        self.setupBindings()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.viewModel.sendAction(action: .loadData)
     }
     
     override func viewDidLayoutSubviews() {
@@ -45,16 +52,43 @@ extension DetailsViewController: UITableViewDelegate {
 
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.receivedVenues.count
+        self.venues?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = venuesTableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier, for: indexPath) as? UITableViewCell else {
+        guard let cell = venuesTableView.dequeueReusableCell(withIdentifier: Constants.TableViewCell.identifier) else {
             fatalError("Unable to determine Venues Table View Cell.")
         }
-        
-        cell.textLabel?.text = self.receivedVenues[indexPath.row].name
+
+        if let venues = self.venues  {
+            cell.textLabel?.text = venues[indexPath.row].name
+        }
         
         return cell
+    }
+}
+
+extension DetailsViewController {
+
+    private func setupBindings() {
+        self.viewModel.state.bind { state in
+            switch state {
+            case .idle:
+                // hide spinner
+                print("idle.")
+            case .loading:
+                // show spinner
+                print("loading...")
+            case .loaded(let data):
+                self.venues = data
+                self.venuesTableView.reloadData()
+                // hide spinner
+                self.viewModel.sendAction(action: .reset)
+            case .error(let error):
+                //show error
+                self.viewModel.sendAction(action: .reset)
+                print("error \(error.localizedDescription)")
+            }
+        }
     }
 }

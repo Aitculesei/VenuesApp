@@ -35,7 +35,7 @@ extension TabBarViewController {
         let homeVC = HomeViewController()
         let rangeVC = RangeViewController()
         let detailsVC = DetailsViewController()
-        detailsVC.receivedVenues = venues
+//        detailsVC.receivedVenues = venues
         
         homeVC.title = "Home"
         rangeVC.title = "Distance"
