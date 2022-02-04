@@ -11,14 +11,15 @@ import UIKit
 // Delegate is used to handle interactions of cells
 extension VenuesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.venueDetailsView.venueDetailsViewModel.receivedVenue = venuesListViewModel.receivedVenues[indexPath.row]
-        self.show(self.venueDetailsView, sender: self)
+        let venueDetailsView = VenueDetailsViewController()
+        venueDetailsView.receivedVenue = self.receivedVenues[indexPath.row]
+        self.show(venueDetailsView, sender: self)
     }
 }
 
 extension VenuesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return venuesListViewModel.receivedVenues.count
+        return self.receivedVenues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -26,8 +27,8 @@ extension VenuesViewController: UITableViewDataSource {
             fatalError("Unable to determine Venues Table View Cell.")
         }
         
-        cell.textLabel?.text = venuesListViewModel.receivedVenues[indexPath.row].venueBO?.name
-        cell.detailTextLabel?.text = venuesListViewModel.receivedVenues[indexPath.row].venueBO?.location
+        cell.textLabel?.text = self.receivedVenues[indexPath.row].venueBO?.name
+        cell.detailTextLabel?.text = self.receivedVenues[indexPath.row].venueBO?.location
         cell.accessoryType = .disclosureIndicator
         
         return cell
