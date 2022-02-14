@@ -11,8 +11,7 @@ import UIKit
 // Delegate is used to handle interactions of cells
 extension VenuesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let venueDetailsView = VenueDetailsViewController()
-        venueDetailsView.receivedVenue = self.receivedVenues[indexPath.row]
+        let venueDetailsView = VenueDetailsViewController(self.receivedVenues[indexPath.row])
         self.show(venueDetailsView, sender: self)
     }
 }

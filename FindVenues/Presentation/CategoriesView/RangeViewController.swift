@@ -162,12 +162,12 @@ extension RangeViewController {
         DispatchQueue.main.async {
             self.rangeLabel.text = "\(self.rangeSelector.value) km"
         }
-        self.rangeViewModel.sendAction(action: .setRange(sender))
+        self.rangeViewModel.sendAction(action: .setRange(sender.value))
     }
     
     // Change the state of the checkbox
     @objc func checkBoxValueDidChange(_ sender: SimpleCheckbox.Checkbox) {
-        self.rangeViewModel.sendAction(action: .checkCurrentLocationCheckbox(sender))
+        self.rangeViewModel.sendAction(action: .checkCurrentLocationCheckbox(sender.isChecked))
     }
     
     // Reset button

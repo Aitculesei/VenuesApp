@@ -12,20 +12,14 @@ class VenueRepository: VenueRepositoryProtocol {
     let apiClient: APIClientProtocol = APIClient()
 
     func getVenues(completion: @escaping (Result<[VenueBO], APIError>) -> Void) {
-        guard let lat = LocationManagerClass.sharedLocation?.coordinate.latitude else {
-            fatalError("APIClient: Latitude coordinate is missing.")
+        
+        guard let currentLocation = HomeViewController.location else {
+            fatalError("Current location is nil.")
         }
-        guard let lng = LocationManagerClass.sharedLocation?.coordinate.longitude else {
-            fatalError("APIClient: Longitude coordinate is missing.")
-        }
+        
         let version = getCurrentDate()
-        let requestDTO: VenuesRequestDTO
-        if let query = LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.queryKey, type: String.self){
-            requestDTO = VenuesRequestDTO(query: query, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version, radius: "\((LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.rangeValueKey, type: Float.self) ?? 2) * 1000.0)")
-        } else {
-            requestDTO = VenuesRequestDTO(query: Constants.VenuesRequest.defaultQuery, lat: "\(String(describing: lat))", lng: "\(String(describing: lng))", version: version, radius: "\((LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.rangeValueKey, type: Float.self) ?? 2) * 1000.0)")
-            LocalDataManager.resetData()
-        }
+        var requestDTO: VenuesRequestDTO
+        requestDTO = VenuesRequestDTO(query: LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.queryKey, type: String.self) ?? Constants.VenuesRequest.defaultQuery, lat: "\(String(describing: currentLocation.coordinate.latitude))", lng: "\(String(describing: currentLocation.coordinate.longitude))", version: version, radius: "\((LocalDataManager.loadData(key: Constants.LocalDataManagerSavings.rangeValueKey, type: Float.self) ?? 2) * 1000.0)")
 
         apiClient.getVenues(requestDTO: requestDTO) { response in
             guard let rawVenues = response.response?.venues else {
@@ -33,6 +27,7 @@ class VenueRepository: VenueRepositoryProtocol {
                 return
             }
             completion(.success(rawVenues.map({ apiVenueResult in
+                
                 VenueBO(venueDetailsAPIData: apiVenueResult)
             })))
         }
@@ -58,17 +53,19 @@ class VenueRepository: VenueRepositoryProtocol {
         let venuePhotoRequestDTO = VenuePhotoRequestDTO(venueID: venueID, version: currentDate)
         
         apiClient.getVenuePhoto(requestDTO: venuePhotoRequestDTO) { response in
-            if response.response.venue.photos.count > 0 {
-                let rawData = response.response.venue.photos.groups[0].items
-                completion(.success(rawData.map({ apiVenuePhotosRequestResult in
-                    VenuePhotoDetailsBO(venueID: response.response.venue.id, venueDetailsAPIData: apiVenuePhotosRequestResult)
-                })))
-            } else {
-                let rawData = response.response.venue.photos.groups
-                completion(.success(rawData.map({ _ in
-                    VenuePhotoDetailsBO(venueID: response.response.venue.id, venueDetailsAPIData: nil)
-                })))
-            }
+//            if !response.response.venue.photos.groups.isEmpty {
+//                print("w")
+            let rawData = response.response.venue.photos.groups[0].items
+            completion(.success(rawData.map({ apiVenuePhotosRequestResult in
+                VenuePhotoDetailsBO(venueID: response.response.venue.id, venueDetailsAPIData: apiVenuePhotosRequestResult)
+            })))
+//            } else {
+//                print("b")
+//                let rawData = response.response.venue.photos.groups
+//                completion(.success(rawData.map({ _ in
+//                    VenuePhotoDetailsBO(venueID: response.response.venue.id, venueDetailsAPIData: nil)
+//                })))
+//            }
         }
     }
     

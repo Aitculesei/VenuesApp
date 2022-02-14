@@ -68,6 +68,11 @@ extension VenuesViewController {
                     SwiftSpinner.hide()
                 }
                 self.venuesViewModel.sendAction(action: .reset)
+//            case .venueImageLoaded(_):
+//                DispatchQueue.main.async {
+//                    SwiftSpinner.hide()
+//                }
+//                self.venuesViewModel.sendAction(action: .reset)
             case .error(let error):
                 DispatchQueue.main.async {
                     SwiftSpinner.show("Failed to load the venues!", animated: false)

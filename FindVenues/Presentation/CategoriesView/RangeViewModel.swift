@@ -6,15 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import SnapKit
-import SimpleCheckbox
 
 class RangeViewModel: ViewModel {
     var collectionViewHeightConstraint: Constraint?
-    private var rangeLabel = UILabel()
-    var rangeSelector = UISlider()
-    var showCurrentLocationCheckBox = SimpleCheckbox.Checkbox()
     
     typealias T = State
     typealias U = Actions
@@ -28,8 +23,8 @@ class RangeViewModel: ViewModel {
 
     enum Actions {
         case loadData
-        case checkCurrentLocationCheckbox(_ sender: SimpleCheckbox.Checkbox)
-        case setRange(_ sender: UISlider)
+        case checkCurrentLocationCheckbox(_ isChecked: Bool)
+        case setRange(_ rangeValue: Float)
         case resetEntireView(_ minimumRangeValue: Float)
         case reset
     }
@@ -56,12 +51,12 @@ class RangeViewModel: ViewModel {
                         self.state.value = .error(error: error)
                     }
                 }
-            case .checkCurrentLocationCheckbox(let sender):
+            case .checkCurrentLocationCheckbox(let isChecked):
                 self.state.value = .idle
-                LocationManagerClass.isCurrentLocationON = sender.isChecked
-            case .setRange(let sender):
+                LocationManagerClass.isCurrentLocationON = isChecked
+            case .setRange(let rangeValue):
                 self.state.value = .idle
-                LocalDataManager.saveData(data: sender.value, key: Constants.LocalDataManagerSavings.rangeValueKey)
+                LocalDataManager.saveData(data: rangeValue, key: Constants.LocalDataManagerSavings.rangeValueKey)
             case .resetEntireView(let minimumRangeValue):
                 self.state.value = .idle
                 LocalDataManager.saveData(data: minimumRangeValue, key: Constants.LocalDataManagerSavings.rangeValueKey)

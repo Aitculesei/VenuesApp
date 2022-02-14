@@ -10,22 +10,24 @@ import MapKit
 import SwiftSpinner
 
 class HomeViewController: UIViewController {
-    private var venuesViewModel: VenuesMapViewModel!
+    private var venuesViewModel: VenuesViewModel!
     @IBOutlet weak var venuesMapView: MKMapView!
     
-    private(set) var venues = [VenueBO]()
-    private let location: CLLocation = {
-        guard let location = LocationManagerClass.sharedLocation else {
-            fatalError("Could not get coordinates.")
-        }
+    private var venueAnnotationImage = UIImageView()
+    private(set) var venues = [VenueDetailsBO]()
+    
+    static var location: CLLocation!
+    
+    convenience init(_ currentLocation: CLLocation) {
+        self.init(nibName:nil, bundle:nil)
         
-        return location
-    }()
+        HomeViewController.location = currentLocation
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        venuesViewModel = VenuesMapViewModel()
+        venuesViewModel = VenuesViewModel()
         venuesMapView.mapType = MKMapType.standard
         venuesMapView.isZoomEnabled = true
         venuesMapView.isScrollEnabled = true
@@ -40,8 +42,8 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.venuesMapView.centerToLocation(self.location)
-        venuesViewModel.sendAction(action: .loadData)
+        self.venuesMapView.centerToLocation(HomeViewController.location)
+        self.venuesViewModel.sendAction(action: .loadData)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,13 +69,17 @@ extension HomeViewController: MKMapViewDelegate {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
-            
             view = MKMarkerAnnotationView(
                 annotation: annotation,
                 reuseIdentifier: Constants.MapView.identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+//            view.image = annotation.image.image
+            print("IMAGE = \(annotation.image.image)")
+            view.glyphImage = annotation.image.image
+            view.clusteringIdentifier = Constants.MapView.identifier
         }
         return view
     }
@@ -90,27 +96,9 @@ extension HomeViewController: MKMapViewDelegate {
 //        venueOnMap.mapItem?.openInMaps(launchOptions: launchOptions)
         
         for venue in self.venues {
-            if (venue.name! == venueOnMap.title!) {
-                guard let venueID = venue.id else {
-                    fatalError("Venue id found nil!")
-                }
-                
-                let repo = VenueRepository()
-                repo.getVenuePhotos(venueID: venueID) { result in
-                    let venueDetailsView = VenueDetailsViewController()
-                    switch result {
-                    case .success(let venuePhotos):
-                        if venuePhotos.isEmpty {
-                            venueDetailsView.receivedVenue = VenueDetailsBO(venueBO: venue, photo: nil)
-                            self.show(venueDetailsView, sender: self)
-                        } else {
-                            venueDetailsView.receivedVenue = VenueDetailsBO(venueBO: venue, photo: venuePhotos[0].photo!)
-                            self.show(venueDetailsView, sender: self)
-                        }
-                    case .failure(let error):
-                        print("Thrown error when we received venue photos. \(error)")
-                    }
-                }
+            if (venue.venueBO?.name! == venueOnMap.title!) {
+                let venueDetailsView = VenueDetailsViewController(venue)
+                self.show(venueDetailsView, sender: self)
             }
         }
     }
@@ -119,17 +107,20 @@ extension HomeViewController: MKMapViewDelegate {
 extension HomeViewController {
     func pinLocationsOnMap() {
         for venue in self.venues {
-            guard let lat = venue.lat, let lng = venue.long else {
+            guard let lat = venue.venueBO?.lat, let lng = venue.venueBO?.long else {
                 fatalError("Venue lat or lng is missing.")
             }
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-            let venueOnMap = VenueOnMap(title: venue.name, locationName: venue.location, coordinate: coordinate)
+            
+            let venueOnMap = VenueOnMap(title: venue.venueBO?.name, locationName: venue.venueBO?.location, coordinate: coordinate, image:  venueAnnotationImage)
+            
+//            venuesViewModel.sendAction(action: .getAnnotationImage(link: venue.photo!))
 
             venuesMapView.addAnnotation(venueOnMap)
         }
         
         if LocationManagerClass.isCurrentLocationON {
-            let myLocation = MyLocation(title: "I am here!", coordinate: self.location.coordinate)
+            let myLocation = MyLocation(title: "I am here!", coordinate: HomeViewController.location.coordinate)
             venuesMapView.addAnnotation(myLocation)
         }
     }
@@ -149,13 +140,22 @@ extension HomeViewController {
                     SwiftSpinner.show(delay: 3.0, title: "It's taking a little longer than expected...")
                 }
             case .loaded(let data):
-                self.venues = data
+                self.venues = data 
                 self.pinLocationsOnMap()
                 // hide spinner
                 DispatchQueue.main.async {
                     SwiftSpinner.hide()
                 }
                 self.venuesViewModel.sendAction(action: .reset)
+//            case .venueImageLoaded(let image):
+//                print("IMAGE in the bind = \(image)")
+//                self.venueAnnotationImage.image = image
+//                // hide spinner
+//                DispatchQueue.main.async {
+//                    SwiftSpinner.hide()
+//                }
+//                self.venuesViewModel.sendAction(action: .reset)
+            
             case .error(let error):
                 //show error
                 DispatchQueue.main.async {

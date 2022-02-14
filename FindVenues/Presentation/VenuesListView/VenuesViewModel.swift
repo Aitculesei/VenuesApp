@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class VenuesViewModel: ViewModel {
     
@@ -16,11 +17,13 @@ class VenuesViewModel: ViewModel {
         case idle
         case loading
         case loaded(results: [VenueDetailsBO])
+//        case venueImageLoaded(image: UIImage)
         case error(error: Error)
     }
 
     enum Actions {
         case loadData
+//        case getAnnotationImage(link: String)
         case reset
     }
 
@@ -55,6 +58,8 @@ class VenuesViewModel: ViewModel {
                                     }
                                 case .failure(let error):
                                     print("Thrown error when we received venue photos. \(error)")
+//                                    fatalError("Thrown error when we received venue photos. \(error)")
+                                    self.state.value = .error(error: error)
                                 }
                             }
                         }
@@ -65,24 +70,19 @@ class VenuesViewModel: ViewModel {
                         print("VenuesListVM: Something is baaad with getting the venues \(error)")
                     }
                 }
+//            case .getAnnotationImage(let link):
+//                self.state.value = .loading
+//                UIImageView().downloaded(from: link) { image in
+//                    guard let image = image else {
+//                        fatalError("Missing an image url!")
+//                    }
+//
+//                    self.state.value = .venueImageLoaded(image: image)
+//                }
             default:
                 self.state.value = .idle
             }
-        case .loading:
-            switch action {
-            case .loadData:
-                print("+++ Unsupported state transition")
-            default:
-                self.state.value = .idle
-            }
-        case .loaded:
-            switch action {
-            case .loadData:
-                print("+++ Unsupported state transition")
-            default:
-                self.state.value = .idle
-            }
-        case .error:
+        default:
             switch action {
             case .loadData:
                 print("+++ Unsupported state transition")

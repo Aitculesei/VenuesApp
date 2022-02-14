@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftSpinner
 
 class VenueDetailsViewController: UIViewController {
     private(set) var venueDetailsViewModel = VenueDetailsViewModel()
@@ -19,8 +20,16 @@ class VenueDetailsViewController: UIViewController {
     var venuePhone: UILabel!
     var venueDistance: UILabel!
     
+    convenience init(_ receivedVenue: VenueDetailsBO?) {
+        self.init(nibName:nil, bundle:nil)
+        
+        self.receivedVenue = receivedVenue
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +37,7 @@ class VenueDetailsViewController: UIViewController {
         
         createCollectionView()
         populateWithData()
+        venueDetailsViewModel.sendAction(action: .loadData)
     }
     
     func populateWithData() {
@@ -45,7 +55,7 @@ class VenueDetailsViewController: UIViewController {
         venueDistance = self.getDistanceView()
         venueDetailsView.addSubview(venueDistance)
         
-        venuePhoto = venueDetailsViewModel.getVenueImageView(link: receivedVenue?.photo)
+        venuePhoto = self.getVenueImageView(link: receivedVenue?.photo)
         
         // Adding single and double tap gestures
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(_:)))
@@ -58,7 +68,13 @@ class VenueDetailsViewController: UIViewController {
     }
     
     func createCollectionView() {
-        venueDetailsCollectionView = venueDetailsViewModel.getVenueDetailsCollectionView(frame: self.view.frame)
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 60, height: 60)
+        
+        venueDetailsCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        venueDetailsCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: Constants.CollectionViewCell.venueDetailsViewIdentifier)
+        venueDetailsCollectionView.backgroundColor = UIColor.white
         
         venueDetailsCollectionView.dataSource = self
         venueDetailsCollectionView.delegate = self
@@ -125,6 +141,24 @@ extension VenueDetailsViewController {
         
         return venueDistance
     }
+    
+    func getVenueImageView(link: String?) -> UIImageView {
+        let venuePhoto = UIImageView()
+        if let venuePhotoURL = link {
+            var venueImage: UIImage?
+            venuePhoto.downloaded(from: venuePhotoURL) { image in
+                venueImage = image
+            }
+            venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+            venuePhoto.image = venueImage
+            
+            venuePhoto.isUserInteractionEnabled = true
+        } else {
+            venuePhoto.image = UIImage() // Placeholder
+        }
+        
+        return venuePhoto
+    }
 }
 
 // MARK: - Objective C functions
@@ -146,6 +180,40 @@ extension VenueDetailsViewController {
                 make.trailing.leading.equalToSuperview().inset(10)
                 make.height.equalTo(400)
             })
+        }
+    }
+}
+
+
+extension VenueDetailsViewController {
+    private func setupBindings() {
+        self.venueDetailsViewModel.state.bind { state in
+            switch state{
+            case .idle:
+                // Hide spinner
+                DispatchQueue.main.async {
+                    SwiftSpinner.hide()
+                }
+            case .loading:
+                // Show spinner
+                DispatchQueue.main.async {
+                    SwiftSpinner.show("Loading venue details...")
+                    SwiftSpinner.show(delay: 3.0, title: "It's taking a little longer than expected...")
+                }
+            case .loaded:
+                // hide spinner
+                DispatchQueue.main.async {
+                    SwiftSpinner.hide()
+                }
+                self.venueDetailsViewModel.sendAction(action: .reset)
+            case .error(let error):
+                //show error
+                DispatchQueue.main.async {
+                    SwiftSpinner.show("Failed to load the venue!", animated: false)
+                }
+                
+                self.venueDetailsViewModel.sendAction(action: .reset)
+            }
         }
     }
 }

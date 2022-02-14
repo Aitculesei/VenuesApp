@@ -1,21 +1,22 @@
 //
-//  VenuesViewModel.swift
+//  TabBarViewModel.swift
 //  FindVenues
 //
-//  Created by Aitculesei, Andrei on 03.02.2022.
+//  Created by Aitculesei, Andrei on 10.02.2022.
 //
 
 import Foundation
+import CoreLocation
 
-class VenuesMapViewModel: ViewModel {
-
+class TabBarViewModel: NSObject {
+    
     typealias T = State
     typealias U = Actions
 
     enum State {
         case idle
         case loading
-        case loaded(results: [VenueBO])
+        case loaded(location: CLLocation)
         case error(error: Error)
     }
 
@@ -36,17 +37,17 @@ class VenuesMapViewModel: ViewModel {
             switch action {
             case .loadData:
                 self.state.value = .loading
-                self.repo.getVenues { result in
-                    
-                    switch result {
-                    case .failure(let error):
-                        self.state.value = .error(error: error)
-                    case .success(let data):
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                            self.state.value = .loaded(results: data)
+                
+                LocationManagerClass.shared.getUserLocation { [weak self] location in
+                    DispatchQueue.main.async {
+                        guard let strongSelf = self else {
+                            return
                         }
+                        
+                        strongSelf.state.value = .loaded(location: location)
                     }
                 }
+                
             default:
                 self.state.value = .idle
             }

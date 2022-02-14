@@ -10,36 +10,53 @@ import CoreLocation
 import UIKit
 
 class LocationManagerClass: NSObject, CLLocationManagerDelegate {
-    let location: CLLocation
-    static var isCurrentLocationON: Bool = false
-    static var locationManager: CLLocationManager!
+    static var isCurrentLocationON = false
+    static let shared = LocationManagerClass()
+    let locationManager = CLLocationManager()
     
+    var completion: ((CLLocation) -> Void)?
     
-    static let sharedLocation: CLLocation? = {
-        locationManager = CLLocationManager()
-        
-        locationManager.requestAlwaysAuthorization()
+    public func getUserLocation(completion: @escaping ((CLLocation) -> Void)) {
+        self.completion = completion
         locationManager.requestWhenInUseAuthorization()
-        
-        if(CLLocationManager.locationServicesEnabled() && (CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-              CLLocationManager.authorizationStatus() == .authorizedAlways)) {
-            locationManager.startUpdatingLocation()
-            guard let location = locationManager.location else {
-                fatalError("Location is nil.")
-            }
-            
-            return location
-        } else {
-            return nil
-        }
-    }()
-    
-    init(_ location: CLLocation) {
-        self.location = location
+        locationManager.delegate = self
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
-        print("Location Manager Error ->> \(error)")
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if CLLocationManager.locationServicesEnabled(){
+            let status = manager.authorizationStatus
+            switch status {
+            case .notDetermined:
+                print("Not determined")
+                manager.requestWhenInUseAuthorization()
+            case .restricted:
+                print("Restricted")
+                break
+            case .denied:
+                print("Denied")
+                break
+            case .authorizedAlways:
+                print("Authorized")
+                manager.startUpdatingLocation()
+            case .authorizedWhenInUse:
+                print("Authorized when in use")
+                manager.startUpdatingLocation()
+            case .authorized:
+                print("Authorized")
+                manager.startUpdatingLocation()
+            }
+        } else {
+            print("Location services are not enabled!")
+            exit(0)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        
+        completion?(location)
+        locationManager.stopUpdatingLocation()
     }
 }

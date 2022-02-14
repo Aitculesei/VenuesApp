@@ -12,11 +12,18 @@ class VenueOnMap: NSObject, MKAnnotation {
     let title: String?
     let locationName: String?
     let coordinate: CLLocationCoordinate2D
+    let image: UIImageView
+//    let image: String
     
-    init(title: String?, locationName: String?, coordinate: CLLocationCoordinate2D) {
+    init(title: String?, locationName: String?, coordinate: CLLocationCoordinate2D, image: UIImageView) {
         self.title = title
         self.locationName = locationName
         self.coordinate = coordinate
+        
+        
+        self.image = image
+        
+        super.init()
     }
     
     var subtitle: String? {

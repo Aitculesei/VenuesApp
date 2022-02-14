@@ -50,7 +50,7 @@ struct Constants {
     }
     
     enum VenuesRequest {
-        static let defaultQuery = "restaurant"
+        static let defaultQuery = "Food"
         enum Parameters {
             static let query = "query"
             static let ll = "ll"
