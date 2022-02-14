@@ -48,6 +48,16 @@ class VenuesViewController: UIViewController {
     }
 }
 
+// MARK: - Coordinator
+
+extension VenuesViewController: Coordinator {
+    func start() {
+        
+    }
+}
+
+// MARK: - Bindings setup
+
 extension VenuesViewController {
     func setupBindings() {
         self.venuesViewModel.state.bind { state in
@@ -68,11 +78,6 @@ extension VenuesViewController {
                     SwiftSpinner.hide()
                 }
                 self.venuesViewModel.sendAction(action: .reset)
-//            case .venueImageLoaded(_):
-//                DispatchQueue.main.async {
-//                    SwiftSpinner.hide()
-//                }
-//                self.venuesViewModel.sendAction(action: .reset)
             case .error(let error):
                 DispatchQueue.main.async {
                     SwiftSpinner.show("Failed to load the venues!", animated: false)

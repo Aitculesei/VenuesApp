@@ -77,7 +77,7 @@ extension HomeViewController: MKMapViewDelegate {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             
 //            view.image = annotation.image.image
-            print("IMAGE = \(annotation.image.image)")
+//            print("IMAGE = \(annotation.image.image)")
             view.glyphImage = annotation.image.image
             view.clusteringIdentifier = Constants.MapView.identifier
         }
@@ -113,8 +113,6 @@ extension HomeViewController {
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             
             let venueOnMap = VenueOnMap(title: venue.venueBO?.name, locationName: venue.venueBO?.location, coordinate: coordinate, image:  venueAnnotationImage)
-            
-//            venuesViewModel.sendAction(action: .getAnnotationImage(link: venue.photo!))
 
             venuesMapView.addAnnotation(venueOnMap)
         }
@@ -125,8 +123,26 @@ extension HomeViewController {
         }
     }
     
+//    func getVenueImageView(link: String?) -> UIImageView {
+//        let venuePhoto = UIImageView()
+//        if let venuePhotoURL = link {
+//            var venueImage: UIImage?
+//            venuePhoto.downloaded(from: venuePhotoURL) { image in
+//                venueImage = image
+//            }
+//            venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+//            venuePhoto.image = venueImage
+//
+//            venuePhoto.isUserInteractionEnabled = true
+//        } else {
+//            venuePhoto.image = UIImage() // Placeholder
+//        }
+//
+//        return venuePhoto
+//    }
+    
     private func setupBindings() {
-        self.venuesViewModel.state.bind { state in
+        self.venuesViewModel.state.bind { [self] state in
             switch state{
             case .idle:
                 // Hide spinner
@@ -140,22 +156,13 @@ extension HomeViewController {
                     SwiftSpinner.show(delay: 3.0, title: "It's taking a little longer than expected...")
                 }
             case .loaded(let data):
-                self.venues = data 
+                self.venues = data
                 self.pinLocationsOnMap()
                 // hide spinner
                 DispatchQueue.main.async {
                     SwiftSpinner.hide()
                 }
                 self.venuesViewModel.sendAction(action: .reset)
-//            case .venueImageLoaded(let image):
-//                print("IMAGE in the bind = \(image)")
-//                self.venueAnnotationImage.image = image
-//                // hide spinner
-//                DispatchQueue.main.async {
-//                    SwiftSpinner.hide()
-//                }
-//                self.venuesViewModel.sendAction(action: .reset)
-            
             case .error(let error):
                 //show error
                 DispatchQueue.main.async {

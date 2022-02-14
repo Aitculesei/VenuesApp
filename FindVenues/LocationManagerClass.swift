@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreLocation
-import UIKit
+import SwiftSpinner
 
 class LocationManagerClass: NSObject, CLLocationManagerDelegate {
     static var isCurrentLocationON = false
@@ -34,6 +34,13 @@ class LocationManagerClass: NSObject, CLLocationManagerDelegate {
                 break
             case .denied:
                 print("Denied")
+                DispatchQueue.main.async {
+                    SwiftSpinner.show("Request for location DENIED! App is closing.")
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    exit(0)
+                }
+                
                 break
             case .authorizedAlways:
                 print("Authorized")

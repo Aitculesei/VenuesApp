@@ -47,7 +47,6 @@ class TabBarViewModel: NSObject {
                         strongSelf.state.value = .loaded(location: location)
                     }
                 }
-                
             default:
                 self.state.value = .idle
             }
