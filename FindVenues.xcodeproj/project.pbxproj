@@ -384,10 +384,10 @@
 				391B902B278D803700F3A5C8 /* VenueOnMap.swift */,
 				391B902D278DD4D100F3A5C8 /* MyLocation.swift */,
 				396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */,
+				3981957F27BB864A00CDE943 /* MainCoordinator.swift */,
 				3978E5AD27AD1B9C00818FA6 /* ViewModel.swift */,
 				3981957B27BAB22F00CDE943 /* Coordinator.swift */,
 				3981957D27BB784200CDE943 /* Storyboarded.swift */,
-				3981957F27BB864A00CDE943 /* MainCoordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

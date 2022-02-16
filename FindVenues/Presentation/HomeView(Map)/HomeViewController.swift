@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     private var venuesViewModel: VenuesViewModel!
     @IBOutlet weak var venuesMapView: MKMapView!
     
-    private var venueAnnotationImage = UIImageView()
+    private var venueAnnotationImage = UIImage(systemName: "checkmark.bubble.fill")
     private(set) var venues = [VenueDetailsBO]()
     
     static var location: CLLocation!
@@ -77,7 +77,7 @@ extension HomeViewController: MKMapViewDelegate {
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             
-            view.glyphImage = annotation.image.image
+            view.glyphImage = annotation.image
             view.clusteringIdentifier = Constants.MapView.identifier
         }
         return view
@@ -118,7 +118,7 @@ extension HomeViewController {
             }
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             
-            let venueOnMap = VenueOnMap(title: venue.venueBO?.name, locationName: venue.venueBO?.location, coordinate: coordinate, image: venueAnnotationImage)
+            let venueOnMap = VenueOnMap(title: venue.venueBO?.name, locationName: venue.venueBO?.location, coordinate: coordinate, image: venueAnnotationImage!)
 
             venuesMapView.addAnnotation(venueOnMap)
         }
@@ -128,24 +128,6 @@ extension HomeViewController {
             venuesMapView.addAnnotation(myLocation)
         }
     }
-    
-//    func getVenueImageView(link: String?) -> UIImageView {
-//        let venuePhoto = UIImageView()
-//        if let venuePhotoURL = link {
-//            var venueImage: UIImage?
-//            venuePhoto.downloaded(from: venuePhotoURL) { image in
-//                venueImage = image
-//            }
-//            venueImage = venueImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-//            venuePhoto.image = venueImage
-//
-//            venuePhoto.isUserInteractionEnabled = true
-//        } else {
-//            venuePhoto.image = UIImage() // Placeholder
-//        }
-//
-//        return venuePhoto
-//    }
     
     private func setupBindings() {
         self.venuesViewModel.state.bind { [self] state in

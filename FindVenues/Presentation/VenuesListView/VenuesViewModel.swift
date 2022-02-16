@@ -9,14 +9,14 @@ import Foundation
 import CoreLocation
 
 class VenuesViewModel: ViewModel {
-    
+
     typealias T = State
     typealias U = Actions
 
     enum State {
         case idle
         case loading
-        case loaded(results: [VenueDetailsBO])
+        case loaded(results: ([VenueDetailsBO]))
         case error(error: Error)
     }
 
