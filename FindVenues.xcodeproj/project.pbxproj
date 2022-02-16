@@ -46,8 +46,13 @@
 		39818BE42785C0DC00BCDE53 /* SimpleCheckbox in Frameworks */ = {isa = PBXBuildFile; productRef = 39818BE32785C0DC00BCDE53 /* SimpleCheckbox */; };
 		39818BE72785C27500BCDE53 /* RangeUISlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39818BE62785C27500BCDE53 /* RangeUISlider */; };
 		39818BEA2787131A00BCDE53 /* VenueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39818BE82787131A00BCDE53 /* VenueDetailsViewController.swift */; };
-		39818BEB2787131A00BCDE53 /* VenueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */; };
 		3981957C27BAB22F00CDE943 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981957B27BAB22F00CDE943 /* Coordinator.swift */; };
+		3981957E27BB784200CDE943 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981957D27BB784200CDE943 /* Storyboarded.swift */; };
+		3981958027BB864A00CDE943 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3981957F27BB864A00CDE943 /* MainCoordinator.swift */; };
+		3981958227BBACB000CDE943 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3981958127BBACB000CDE943 /* HomeViewController.storyboard */; };
+		398195AE27BCDC0E00CDE943 /* TabBarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398195AD27BCDC0E00CDE943 /* TabBarViewController.storyboard */; };
+		398195B027BCEAD700CDE943 /* VenueDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398195AF27BCEAD700CDE943 /* VenueDetailsViewController.storyboard */; };
+		398195B227BCEF8200CDE943 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 398195B127BCEF8200CDE943 /* HomeViewController.xib */; };
 		398A043727A3CD9B004EAA53 /* TabBarViewController+createTabBarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A043627A3CD9B004EAA53 /* TabBarViewController+createTabBarMenu.swift */; };
 		398A043927A7E879004EAA53 /* VenueTableViewCell+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A043827A7E879004EAA53 /* VenueTableViewCell+Constraints.swift */; };
 		3997E3702768C64A00170EA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997E36F2768C64A00170EA4 /* Constants.swift */; };
@@ -64,7 +69,6 @@
 		39AC65CF27672F1300659BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65CE27672F1300659BB3 /* Assets.xcassets */; };
 		39AC65D227672F1300659BB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65D027672F1300659BB3 /* LaunchScreen.storyboard */; };
 		39AC65DB276733D300659BB3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65D9276733D300659BB3 /* HomeViewController.swift */; };
-		39AC65DC276733D300659BB3 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65DA276733D300659BB3 /* HomeViewController.xib */; };
 		39AC65DF2767367E00659BB3 /* RangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65DD2767367E00659BB3 /* RangeViewController.swift */; };
 		39AC65E02767367E00659BB3 /* RangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39AC65DE2767367E00659BB3 /* RangeViewController.xib */; };
 		39AC65E32767377500659BB3 /* VenuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AC65E12767377500659BB3 /* VenuesViewController.swift */; };
@@ -114,8 +118,13 @@
 		39818BCE27848D9500BCDE53 /* CategoriesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRequestDTO.swift; sourceTree = "<group>"; };
 		39818BD027848F2300BCDE53 /* CategoryBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBO.swift; sourceTree = "<group>"; };
 		39818BE82787131A00BCDE53 /* VenueDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailsViewController.swift; sourceTree = "<group>"; };
-		39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VenueDetailsViewController.xib; sourceTree = "<group>"; };
 		3981957B27BAB22F00CDE943 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3981957D27BB784200CDE943 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		3981957F27BB864A00CDE943 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		3981958127BBACB000CDE943 /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
+		398195AD27BCDC0E00CDE943 /* TabBarViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarViewController.storyboard; sourceTree = "<group>"; };
+		398195AF27BCEAD700CDE943 /* VenueDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VenueDetailsViewController.storyboard; sourceTree = "<group>"; };
+		398195B127BCEF8200CDE943 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		398A043627A3CD9B004EAA53 /* TabBarViewController+createTabBarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarViewController+createTabBarMenu.swift"; sourceTree = "<group>"; };
 		398A043827A7E879004EAA53 /* VenueTableViewCell+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VenueTableViewCell+Constraints.swift"; sourceTree = "<group>"; };
 		3997E36F2768C64A00170EA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -134,7 +143,6 @@
 		39AC65D127672F1300659BB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39AC65D327672F1300659BB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39AC65D9276733D300659BB3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		39AC65DA276733D300659BB3 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		39AC65DD2767367E00659BB3 /* RangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeViewController.swift; sourceTree = "<group>"; };
 		39AC65DE2767367E00659BB3 /* RangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeViewController.xib; sourceTree = "<group>"; };
 		39AC65E12767377500659BB3 /* VenuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesViewController.swift; sourceTree = "<group>"; };
@@ -220,7 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				39AC65D9276733D300659BB3 /* HomeViewController.swift */,
-				39AC65DA276733D300659BB3 /* HomeViewController.xib */,
+				398195B127BCEF8200CDE943 /* HomeViewController.xib */,
+				3981958127BBACB000CDE943 /* HomeViewController.storyboard */,
 			);
 			path = "HomeView(Map)";
 			sourceTree = "<group>";
@@ -241,7 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				39818BE82787131A00BCDE53 /* VenueDetailsViewController.swift */,
-				39818BE92787131A00BCDE53 /* VenueDetailsViewController.xib */,
+				398195AF27BCEAD700CDE943 /* VenueDetailsViewController.storyboard */,
 				39554AF927AA8DD300C5EEAE /* VenueDetailsViewModel.swift */,
 				396E36D127A019EF00090C08 /* VenueDetailsViewController+collectionView.swift */,
 			);
@@ -254,6 +263,7 @@
 				39AC65C927672F1000659BB3 /* UIViewController.swift */,
 				398A043627A3CD9B004EAA53 /* TabBarViewController+createTabBarMenu.swift */,
 				3976B59B27B4EABB003F6121 /* TabBarViewModel.swift */,
+				398195AD27BCDC0E00CDE943 /* TabBarViewController.storyboard */,
 			);
 			path = "MainView(TabBar)";
 			sourceTree = "<group>";
@@ -376,6 +386,8 @@
 				396E36AE2791C92100090C08 /* MyLocationMarkerView.swift */,
 				3978E5AD27AD1B9C00818FA6 /* ViewModel.swift */,
 				3981957B27BAB22F00CDE943 /* Coordinator.swift */,
+				3981957D27BB784200CDE943 /* Storyboarded.swift */,
+				3981957F27BB864A00CDE943 /* MainCoordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -452,19 +464,21 @@
 			files = (
 				396E36BC279FE00E00090C08 /* Categories.json in Resources */,
 				396E36CE27A0067A00090C08 /* 4e745a8bb993a71aa331748a.json in Resources */,
+				398195B027BCEAD700CDE943 /* VenueDetailsViewController.storyboard in Resources */,
 				39AC65E02767367E00659BB3 /* RangeViewController.xib in Resources */,
 				39AC65D227672F1300659BB3 /* LaunchScreen.storyboard in Resources */,
 				39AC65CF27672F1300659BB3 /* Assets.xcassets in Resources */,
-				39AC65DC276733D300659BB3 /* HomeViewController.xib in Resources */,
 				396E36C427A0051A00090C08 /* 589b75ac18fd2b5565de258b.json in Resources */,
 				396E36D627A0307100090C08 /* Residence.json in Resources */,
 				396E36D027A006AA00090C08 /* 4d977138744f37045b62d557.json in Resources */,
 				396E36BE279FEF0000090C08 /* Food.json in Resources */,
 				39AFAAAF276A3F1D006D7A98 /* Settings.plist in Resources */,
 				396E36CC27A0065600090C08 /* 5f4116c2459e75490f0d4450.json in Resources */,
+				3981958227BBACB000CDE943 /* HomeViewController.storyboard in Resources */,
+				398195B227BCEF8200CDE943 /* HomeViewController.xib in Resources */,
 				396E36C827A005E900090C08 /* 518cd853498e9692cce275f0.json in Resources */,
-				39818BEB2787131A00BCDE53 /* VenueDetailsViewController.xib in Resources */,
 				396E36CA27A0062200090C08 /* 4f97d63ce4b06330b575433c.json in Resources */,
+				398195AE27BCDC0E00CDE943 /* TabBarViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +497,7 @@
 				396E36BA2799461200090C08 /* RangeViewController+collectionView.swift in Sources */,
 				39AB81222771F0420073B1FE /* VenuesRequestDTO.swift in Sources */,
 				3978E5AE27AD1B9C00818FA6 /* ViewModel.swift in Sources */,
+				3981957E27BB784200CDE943 /* Storyboarded.swift in Sources */,
 				39554AF827AA7AC900C5EEAE /* RangeViewModel.swift in Sources */,
 				39AFAAB9276B5754006D7A98 /* APIClientProtocol.swift in Sources */,
 				396E36C227A0034B00090C08 /* VenueDetailsViewController+Constraints.swift in Sources */,
@@ -523,6 +538,7 @@
 				391B902C278D803700F3A5C8 /* VenueOnMap.swift in Sources */,
 				3978E5B027AD1BDF00818FA6 /* VenuesViewModel.swift in Sources */,
 				39AFAABD276B637A006D7A98 /* SettingsPlistParser.swift in Sources */,
+				3981958027BB864A00CDE943 /* MainCoordinator.swift in Sources */,
 				39AC65EC27678B0D00659BB3 /* VenueRepository.swift in Sources */,
 				396E36B727993C8F00090C08 /* RangeViewController+Constraints.swift in Sources */,
 			);

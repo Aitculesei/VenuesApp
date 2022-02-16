@@ -10,6 +10,7 @@ import MapKit
 import SwiftSpinner
 
 class HomeViewController: UIViewController {
+    weak var coordinator: MainCoordinator?
     private var venuesViewModel: VenuesViewModel!
     @IBOutlet weak var venuesMapView: MKMapView!
     
@@ -76,8 +77,6 @@ extension HomeViewController: MKMapViewDelegate {
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             
-//            view.image = annotation.image.image
-//            print("IMAGE = \(annotation.image.image)")
             view.glyphImage = annotation.image.image
             view.clusteringIdentifier = Constants.MapView.identifier
         }
@@ -97,12 +96,19 @@ extension HomeViewController: MKMapViewDelegate {
         
         for venue in self.venues {
             if (venue.venueBO?.name! == venueOnMap.title!) {
-                let venueDetailsView = VenueDetailsViewController(venue)
-                self.show(venueDetailsView, sender: self)
+                coordinator?.showDetails(data: venue)
             }
         }
     }
 }
+
+// MARK: - Storyboarded
+
+extension HomeViewController: Storyboarded {
+    
+}
+
+// MARK: - Additional functions & Setting up the bindings
 
 extension HomeViewController {
     func pinLocationsOnMap() {
@@ -112,7 +118,7 @@ extension HomeViewController {
             }
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             
-            let venueOnMap = VenueOnMap(title: venue.venueBO?.name, locationName: venue.venueBO?.location, coordinate: coordinate, image:  venueAnnotationImage)
+            let venueOnMap = VenueOnMap(title: venue.venueBO?.name, locationName: venue.venueBO?.location, coordinate: coordinate, image: venueAnnotationImage)
 
             venuesMapView.addAnnotation(venueOnMap)
         }

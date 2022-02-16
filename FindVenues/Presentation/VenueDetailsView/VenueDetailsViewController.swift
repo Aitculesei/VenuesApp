@@ -9,6 +9,7 @@ import UIKit
 import SwiftSpinner
 
 class VenueDetailsViewController: UIViewController {
+    weak var coordinator: MainCoordinator?
     private(set) var venueDetailsViewModel = VenueDetailsViewModel()
     var receivedVenue: VenueDetailsBO?
     
@@ -184,6 +185,13 @@ extension VenueDetailsViewController {
     }
 }
 
+// MARK: - Storyboarded
+
+extension VenueDetailsViewController: Storyboarded {
+    
+}
+
+// MARK: - Setting up the bindings
 
 extension VenueDetailsViewController {
     private func setupBindings() {

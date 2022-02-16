@@ -16,6 +16,7 @@ class VenueRepository: VenueRepositoryProtocol {
         guard let currentLocation = HomeViewController.location else {
             fatalError("Current location is nil.")
         }
+//        let currentLocation = HomeViewController.location
         
         let version = getCurrentDate()
         var requestDTO: VenuesRequestDTO

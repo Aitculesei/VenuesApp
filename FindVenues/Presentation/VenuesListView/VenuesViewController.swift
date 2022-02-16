@@ -10,6 +10,7 @@ import SwiftSpinner
 
 class VenuesViewController: UIViewController {
     private var venuesViewModel: VenuesViewModel!
+    weak var coordinator: MainCoordinator?
     
     private(set) var venuesTableView: UITableView! = {
         let venuesTableView = UITableView()
@@ -48,12 +49,10 @@ class VenuesViewController: UIViewController {
     }
 }
 
-// MARK: - Coordinator
+// MARK: - Storyboarded
 
-extension VenuesViewController: Coordinator {
-    func start() {
-        
-    }
+extension VenuesViewController: Storyboarded {
+    
 }
 
 // MARK: - Bindings setup

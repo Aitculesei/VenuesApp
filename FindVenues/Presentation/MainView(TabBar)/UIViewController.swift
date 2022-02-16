@@ -9,7 +9,9 @@ import UIKit
 import SwiftSpinner
 import CoreLocation
 
-class TabBarViewController: UITabBarController {
+class TabBarViewController: UITabBarController, Storyboarded {
+    weak var coordinator: MainCoordinator?
+    
     private(set) var venuesVC: VenuesViewController!
     private(set) var rangeVC: RangeViewController!
     private(set) var homeVC: HomeViewController!
