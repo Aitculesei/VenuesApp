@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import SwiftSpinner
+import UIKit
 
 class LocationManagerClass: NSObject, CLLocationManagerDelegate {
     static var isCurrentLocationON = false
@@ -35,10 +36,10 @@ class LocationManagerClass: NSObject, CLLocationManagerDelegate {
             case .denied:
                 print("Denied")
                 DispatchQueue.main.async {
-                    SwiftSpinner.show("Request for location DENIED! App is closing.")
+                    SwiftSpinner.show("Request for location DENIED! We need to get your location to be able to continue.")
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    exit(0)
+                    self.showPermissionAlert()
                 }
                 
                 break
@@ -56,6 +57,31 @@ class LocationManagerClass: NSObject, CLLocationManagerDelegate {
             print("Location services are not enabled!")
             exit(0)
         }
+    }
+    
+    func showPermissionAlert() {
+        let alertController = UIAlertController(title: "Location Permission Required", message: "Please enable location permissions in settings.", preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "Settings", style: .default, handler: {(cAlertAction) in
+            //Redirect to Settings app
+            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+        })
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(cAlertAction) in
+            //Redirect to Settings app
+            DispatchQueue.main.async {
+                SwiftSpinner.show("App is closing...")
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                exit(0)
+            }
+        })
+        alertController.addAction(cancelAction)
+
+        alertController.addAction(okAction)
+
+        var topController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+        topController.present(alertController, animated: true, completion: nil)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

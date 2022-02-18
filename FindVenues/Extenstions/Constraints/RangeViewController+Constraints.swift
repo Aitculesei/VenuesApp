@@ -10,6 +10,10 @@ import SnapKit
 
 extension RangeViewController {
     func setupConstraints() {
+        queriesCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom)
+        }
+        
         buttonsView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

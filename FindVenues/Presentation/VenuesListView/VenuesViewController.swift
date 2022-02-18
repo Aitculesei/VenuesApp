@@ -7,10 +7,12 @@
 
 import UIKit
 import SwiftSpinner
+import SwiftUI
 
 class VenuesViewController: UIViewController {
     private var venuesViewModel: VenuesViewModel!
     weak var coordinator: MainCoordinator?
+    var navigationBar: UINavigationBar!
     
     private(set) var venuesTableView: UITableView! = {
         let venuesTableView = UITableView()
@@ -22,17 +24,30 @@ class VenuesViewController: UIViewController {
     }()
     private(set) var receivedVenues: [VenueDetailsBO] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         
         venuesViewModel = VenuesViewModel()
         
+        navigationBar = UINavigationBar()
+        navigationBar.backgroundColor = .white
+        view.addSubview(navigationBar)
+        
+        let navigationItem = UINavigationItem(title: "List of venues")
+        navigationBar.setItems([navigationItem], animated: false)
+        
         venuesTableView.delegate = self
         venuesTableView.dataSource = self
-        
         view.addSubview(venuesTableView)
+        
+        navigationBar.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+            make.height.equalTo(50)
+        }
 
+        setupConstraints()
         setupBindings()
     }
     
@@ -40,12 +55,6 @@ class VenuesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         venuesViewModel.sendAction(action: .loadData)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        venuesTableView.frame = view.bounds
     }
 }
 
@@ -77,7 +86,7 @@ extension VenuesViewController {
                     SwiftSpinner.hide()
                 }
                 self.venuesViewModel.sendAction(action: .reset)
-            case .error(let error):
+            case .error(_):
                 DispatchQueue.main.async {
                     SwiftSpinner.show("Failed to load the venues!", animated: false)
                 }

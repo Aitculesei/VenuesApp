@@ -7,11 +7,12 @@
 
 import Foundation
 
-@available(iOS 15.0.0, *)
 extension VenuesViewController {
     func setupConstraints() {
         venuesTableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide.snp.top)
+//            make.edges.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.width.bottom.equalToSuperview()
         }
     }
 }

@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import SwiftSpinner
+import SnapKit
 
 class HomeViewController: UIViewController {
     weak var coordinator: MainCoordinator?
@@ -15,6 +16,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var venuesMapView: MKMapView!
     
     private var venueAnnotationImage = UIImage(systemName: "checkmark.bubble.fill")
+//    private var venueAnnotationImage: UIImage = {
+//        var annotationImage = UIImage()
+//        UIImageView().downloaded(from: "https://fastly.4sqi.net/img/general/250x250/82258667_ZNluGwwVwL1BAtOpz7O-ZWg1d6svpTIqa__HWfxFGyE.jpg") { image in
+//            annotationImage = image!
+//        }
+//        return annotationImage
+//    }()
     private(set) var venues = [VenueDetailsBO]()
     
     static var location: CLLocation!
@@ -29,9 +37,15 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         venuesViewModel = VenuesViewModel()
+        
         venuesMapView.mapType = MKMapType.standard
         venuesMapView.isZoomEnabled = true
         venuesMapView.isScrollEnabled = true
+        venuesMapView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        venuesMapView.delegate = self
         
         venuesMapView.register(
           MyLocationMarkerView.self,
@@ -69,6 +83,7 @@ extension HomeViewController: MKMapViewDelegate {
             withIdentifier: Constants.MapView.identifier) as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
+            view.glyphImage = annotation.image
         } else {
             view = MKMarkerAnnotationView(
                 annotation: annotation,
@@ -151,7 +166,7 @@ extension HomeViewController {
                     SwiftSpinner.hide()
                 }
                 self.venuesViewModel.sendAction(action: .reset)
-            case .error(let error):
+            case .error(_):
                 //show error
                 DispatchQueue.main.async {
                     SwiftSpinner.show("Failed to load the map!", animated: false)

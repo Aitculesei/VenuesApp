@@ -20,6 +20,7 @@ class RangeViewController: UIViewController, UIScrollViewDelegate {
     var buttonsView: UIView!
     var checkboxView: UIView!
     var resetButton: UIButton!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     private(set) var queriesDataSource: [CategoryBO] = []
     
@@ -35,6 +36,12 @@ class RangeViewController: UIViewController, UIScrollViewDelegate {
         createResetButton()
         
         queriesCollectionView.snp.makeConstraints { $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges) }
+        
+        navigationBar.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+//            make.height.equalTo(25)
+        }
         
         createBindings()
     }

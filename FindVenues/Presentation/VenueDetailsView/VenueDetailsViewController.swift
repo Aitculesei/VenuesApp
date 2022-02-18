@@ -21,15 +21,19 @@ class VenueDetailsViewController: UIViewController {
     var venuePhone: UILabel!
     var venueDistance: UILabel!
     
-    convenience init(_ receivedVenue: VenueDetailsBO?) {
-        self.init(nibName:nil, bundle:nil)
-        
-        self.receivedVenue = receivedVenue
-    }
+//    convenience init(_ receivedVenue: VenueDetailsBO?) {
+//        self.init(nibName:nil, bundle:nil)
+//
+//        self.receivedVenue = receivedVenue
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let venue = receivedVenue?.venueBO else {
+            fatalError("Venue details are missing / Venue is missing.")
+        }
+        self.title = venue.name
         setupBindings()
     }
     
@@ -89,10 +93,10 @@ class VenueDetailsViewController: UIViewController {
 extension VenueDetailsViewController {
     func getTitleView() -> UILabel {
         let venueTitle = UILabel()
-        guard let venue = receivedVenue?.venueBO else {
-            fatalError("Venue details are missing / Venue is missing.")
-        }
-        venueTitle.text = venue.name
+//        guard let venue = receivedVenue?.venueBO else {
+//            fatalError("Venue details are missing / Venue is missing.")
+//        }
+//        venueTitle.text = venue.name
         
         return venueTitle
     }

@@ -41,11 +41,15 @@ extension TabBarViewController {
             case .loaded(let location):
                 self.venuesVC = VenuesViewController()
                 self.rangeVC = RangeViewController()
-                self.homeVC = HomeViewController(location)
+                let storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
+                if let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+                    HomeViewController.location = location
+                    self.homeVC = vc
+                }
                 self.createTabBarMenu()
                 
                 self.tabBarViewModel.sendAction(action: .reset)
-            case .error(let error):
+            case .error(_):
                 DispatchQueue.main.async {
                     SwiftSpinner.show("Failed to load the current location. Using a custom location...", animated: false)
                 }
